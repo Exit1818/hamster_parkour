@@ -2,8 +2,6 @@
 {
 	全局:
 		0: CheckpointPosition
-		1: Ability1State
-		2: Ability2State
 		3: SecondaryFireState
 		4: UltimateState
 		5: Creator
@@ -21,34 +19,18 @@
 		19: RoomAliveHoursLeft
 		22: CurrentMap
 		23: TeleportWhenEnterNextPosition
-		24: _unused_var_24
 		26: RGB
 		27: JumpState
+		28: CheatRecord
+		29: PlayersData
 }
 
 动作
 {
-	全局.CheckpointPosition = 数组(矢量(-92.872, 6.500, -11.765), 矢量(-106.448, 14.679, -8.352), 矢量(-84.292, 6.500, -11.444), 矢量(-87.125,
-		13.401, 3.441), 矢量(55.689, 0.202, 48.792), 矢量(55.655, 9.621, 44.724));
-	全局.Ability1State = 数组();
-	全局.Ability2State = 数组();
-	全局.SecondaryFireState = 数组(假, 假, 假, 假, 假);
-	全局.UltimateState = 数组(假, 假, 假, 假, 假);
-	全局.Creator = 数组(自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"));
-	全局.RingRadius = 数组(1.800, 2, 2);
-	全局.JudgeWhenLanding = 真;
-	全局.DefaultAliblty1Enabled = 真;
-	全局.DefaultAliblty2Enabled = 真;
-	全局.DefaultSecondaryEnabled = 真;
-	全局.DefaultUltimateEnabled = 假;
-	全局.UltimateCD = 15;
-	全局.OneTimeAbility = 真;
-	全局.DisableContinuousCreation = 假;
-	全局.PioneerModeEnabled = 真;
-	全局.PioneerStarted = 假;
-	全局.RoomAliveHoursLeft = 3;
-	全局.CurrentMap = 地图(66号公路);
-	全局.TeleportWhenEnterNextPosition = 假;
-	全局.RGB = 数组(255, 255, 0, 244, 208, 68, 180, 255);
-	全局.JumpState = 数组(假, 真, 假, 真, 假);
+	全局.CheckpointPosition = 数组(矢量(-84.240, 6.500, -11.156), 矢量(-86.014, 13.389, 3.979), 矢量(-92.313, 6.500, -11.546), 矢量(-104.955, 14.726, -7.082), 矢量(-64.913,
+		6.500, 10.907), 矢量(-81.170, 13.275, 7.436), 矢量(-30.013, 3.308, -4.228), 矢量(-20.067, 12.147, -15.232), 矢量(55.271, 0.217,
+		48.513), 矢量(54.574, 10.160, 44.881));
+	全局.SecondaryFireState = 数组(假, 假, 假, 真, 假, 假, 假, 假, 假);
+	全局.UltimateState = 数组(假, 假, 假, 假, 假, 假, 假, 假, 假);
+	全局.JumpState = 数组(假, 假, 假, 假, 假, 真, 假, 真, 假);
 }
