@@ -3688,6 +3688,7 @@
 		全局.PioneerModeEnabled == 假;
 		事件玩家.FreeMode == 假;
 		事件玩家.IsReady == 真;
+		事件玩家.GameComplete == 假;
 		相距距离(所选位置(事件玩家), 首个(全局.CheckpointPosition)) > 全局.RingRadius;
         已重生(事件玩家) == 真;
 	}
@@ -3731,7 +3732,7 @@
 		Else;
 			小字体信息(事件玩家, 自定义字符串("关闭自由移动​"));
 			调用子程序(Reset);
-			If(事件玩家.ScoreOfThisRound != 0);
+			If(事件玩家.ScoreOfThisRound != 0 && !事件玩家.GameComplete);
 				追踪玩家变量频率(事件玩家, ScoreOfThisRound, 16200, 1, 全部禁用);
 			End;
 		End;
