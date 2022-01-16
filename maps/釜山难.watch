@@ -1,0 +1,58 @@
+变量
+{
+	全局:
+		0: CheckpointPosition
+		1: Ability1State
+		2: Ability2State
+		3: SecondaryFireState
+		4: UltimateState
+		5: Creator
+		6: RingRadius
+		7: JudgeWhenLanding
+		8: DefaultAliblty1Enabled
+		9: DefaultAliblty2Enabled
+		10: DefaultSecondaryEnabled
+		11: DefaultUltimateEnabled
+		12: UltimateCD
+		13: OneTimeAbility
+		14: DisableContinuousCreation
+		15: PioneerModeEnabled
+		17: PioneerStarted
+		19: RoomAliveHoursLeft
+		22: CurrentMap
+		23: TeleportWhenEnterNextPosition
+		24: _unused_var_24
+		26: RGB
+		27: JumpState
+}
+
+动作
+{
+	全局.CheckpointPosition = 数组(矢量(
+		190.939, 12.095, 248.087), 矢量(192.324, 21.354, 245.543), 矢量(-322.846, 8.290, 156.164), 矢量(-317.791, 12.073, 160.891), 矢量(
+		-270.730, 9.357, 153.463), 矢量(-282.104, 11.826, 141.329), 矢量(50.272, 4.872, -77.588), 矢量(41.794, 12.157,
+		-87.207), 矢量(60.457, 10, -125.801), 矢量(52.663, 21.399, -126.638), 矢量(16.358, 13, -132.703), 矢量(12.431, 23.301, -131.003), 矢量(81.524, 13, -105.764), 矢量(77.481, 22.760, -108.472));
+	全局.Ability1State = 数组();
+	全局.Ability2State = 数组();
+	全局.SecondaryFireState = 数组(假, 真, 假, 真, 假, 真, 假, 真, 假, 真, 假, 真, 假);
+	全局.UltimateState = 数组(假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假);
+	全局.Creator = 数组(自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"),
+		自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"));
+	全局.RingRadius = 数组(1.800, 2, 2);
+	全局.JudgeWhenLanding = 真;
+	全局.DefaultAliblty1Enabled = 真;
+	全局.DefaultAliblty2Enabled = 真;
+	全局.DefaultSecondaryEnabled = 真;
+	全局.DefaultUltimateEnabled = 假;
+	全局.UltimateCD = 15;
+	全局.OneTimeAbility = 真;
+	全局.DisableContinuousCreation = 假;
+	全局.PioneerModeEnabled = 真;
+	全局.PioneerStarted = 假;
+	全局.RoomAliveHoursLeft = 2;
+	全局.CurrentMap = 地图(釜山);
+	全局.TeleportWhenEnterNextPosition = 假;
+	全局._unused_var_24 = 数组();
+	全局.RGB = 数组(255, 255, 0, 244, 208, 68, 180, 255);
+	全局.JumpState = 数组(假, 真, 假, 真, 假, 真, 假, 真, 假, 真, 假, 真, 假);
+}

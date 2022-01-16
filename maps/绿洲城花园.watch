@@ -1,0 +1,61 @@
+变量
+{
+	全局:
+		0: CheckpointPosition
+		1: Ability1State
+		2: Ability2State
+		3: SecondaryFireState
+		4: UltimateState
+		5: Creator
+		6: RingRadius
+		7: JudgeWhenLanding
+		8: DefaultAliblty1Enabled
+		9: DefaultAliblty2Enabled
+		10: DefaultSecondaryEnabled
+		11: DefaultUltimateEnabled
+		12: UltimateCD
+		13: OneTimeAbility
+		14: DisableContinuousCreation
+		15: PioneerModeEnabled
+		16: Pioneer
+		17: PioneerStarted
+		19: RoomAliveHoursLeft
+		22: CurrentMap
+		23: TeleportWhenEnterNextPosition
+		24: _unused_var_24
+		26: RGB
+}
+
+动作
+{
+	全局.CheckpointPosition = 数组(矢量(73.710, 2.250, -244.883), 矢量(78.262, 3.197, -250.225), 矢量(78.120, 6.454, -252.728), 矢量(79.645,
+		10.005, -253.970), 矢量(76.453, 6.464, -262.994), 矢量(77.741, 6.464, -254.144), 矢量(81.036, 2.218, -250.249), 矢量(75.006, 5.490,
+		-257.909), 矢量(80.113, 2.218, -249.754), 矢量(88.362, 5.500, -261.233), 矢量(99.117, 5.500, -254.479), 矢量(99.907, 8.920, -262.262),
+		矢量(85.900, 10.005, -260.184), 矢量(75.753, 6.464, -256.227), 矢量(97.701, 3.188, -225.378), 矢量(106.202, 4.500, -219.554), 矢量(
+		114.973, 4.500, -212.120), 矢量(116.138, 3.188, -201.368), 矢量(107.212, 4.500, -210.979), 矢量(107.292, 4.500, -215.301), 矢量(
+		110.083, 11.527, -216.342), 矢量(106.353, 4.500, -219.495), 矢量(117.810, 2.250, -202.358));
+	全局.Ability1State = 数组();
+	全局.Ability2State = 数组();
+	全局.SecondaryFireState = 数组(假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 真, 假, 假, 假, 假, 假, 假, 假, 假);
+	全局.UltimateState = 数组(假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假);
+	全局.Creator = 数组(自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"),
+		自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"),
+		自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("柠檬"));
+	全局.RingRadius = 数组(1.700, 2, 1.700);
+	全局.JudgeWhenLanding = 真;
+	全局.DefaultAliblty1Enabled = 真;
+	全局.DefaultAliblty2Enabled = 真;
+	全局.DefaultSecondaryEnabled = 真;
+	全局.DefaultUltimateEnabled = 假;
+	全局.UltimateCD = 15;
+	全局.OneTimeAbility = 真;
+	全局.DisableContinuousCreation = 假;
+	全局.PioneerModeEnabled = 真;
+	全局.Pioneer = 数组(无);
+	全局.PioneerStarted = 真;
+	全局.RoomAliveHoursLeft = 3;
+	全局.CurrentMap = 地图(绿洲城花园);
+	全局.TeleportWhenEnterNextPosition = 假;
+	全局._unused_var_24 = 数组();
+	全局.RGB = 数组(255, 255, 0, 244, 208, 68, 180, 255);
+}

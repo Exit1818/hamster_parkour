@@ -1,0 +1,63 @@
+变量
+{
+	全局:
+		0: CheckpointPosition
+		1: Ability1State
+		2: Ability2State
+		3: SecondaryFireState
+		4: UltimateState
+		5: Creator
+		6: RingRadius
+		7: JudgeWhenLanding
+		8: DefaultAliblty1Enabled
+		9: DefaultAliblty2Enabled
+		10: DefaultSecondaryEnabled
+		11: DefaultUltimateEnabled
+		12: UltimateCD
+		13: OneTimeAbility
+		14: DisableContinuousCreation
+		15: PioneerModeEnabled
+		17: PioneerStarted
+		19: RoomAliveHoursLeft
+		22: CurrentMap
+		23: TeleportWhenEnterNextPosition
+		24: _unused_var_24
+		26: RGB
+}
+
+动作
+{
+	全局.CheckpointPosition = 数组(矢量(-207.291, 1, -37.480), 矢量(-184.862, 5.007, -27.532), 矢量(-169.295, 5, -25.104), 矢量(-155.609, 3.872,
+		-67.711), 矢量(-164.009, -3.409, -87.446), 矢量(-174.661, -4.416, -84.558), 矢量(-175.395, -4.925, -72.955), 矢量(-199.358, 5.233,
+		-49.501), 矢量(-212.240, 5.637, -35.280), 矢量(-207.775, 1, -44.250), 矢量(-217.070, 12.980, -22.620), 矢量(-223.440, 7.313, -3.440),
+		矢量(-200.447, 6.986, 4.102), 矢量(-204.718, 9.895, -5.040), 矢量(-195.441, 7.323, -30.936), 矢量(-200.591, -0.879, -52.514), 矢量(
+		-188.311, 4.105, -57.733), 矢量(-216.973, 10.013, -21.016), 矢量(-235.710, -0.830, -25.220), 矢量(-206.267, 6.977, -2.775), 矢量(
+		-190.140, 6.980, -8.830), 矢量(-186.997, 5.299, -29.801), 矢量(-216.770, 12.980, -22.320), 矢量(-205.920, 9.895, -4.880), 矢量(
+		-223.882, 5.562, -16.209), 矢量(-212.462, 7.045, -26.769), 矢量(-196.826, 1, 5.561), 矢量(-174.314, 5.239, -22.198));
+	全局.Ability1State = 数组();
+	全局.Ability2State = 数组();
+	全局.SecondaryFireState = 数组(真, 假, 真, 假, 假, 假, 真, 假, 假, 真, 假, 假, 假, 假, 假, 假, 真, 假, 真, 假, 假, 真, 假, 假, 假, 真, 真);
+	全局.UltimateState = 数组(假, 矢量(-195.700, 1.069, -25.320), 假, 矢量(-173.724, 5.374, -36.796), 假, 假, 假, 矢量(-187.179, -4.847, -62.848), 假,
+		假, 矢量(-207.458, 1.091, -34.908), 假, 假, 假, 假, 假, 假, 假, 假, 矢量(-226.888, 1.092, -16.447), 假, 假, 矢量(-191.969, 5.097, -23.564), 假,
+		假, 假, 假, 矢量(-207.112, 1.093, 1.040));
+	全局.Creator = 数组(自定义字符串("Gardenia"), 自定义字符串("Gardenia"), 自定义字符串("Gardenia"), 自定义字符串("Gardenia"), 自定义字符串("Gardenia"), 自定义字符串("Gardenia"), 自定义字符串("Gardenia"), 自定义字符串("Gardenia"), 自定义字符串("Gardenia"), 自定义字符串("Gardenia"), 自定义字符串(
+		"Gardenia"), 自定义字符串("Gardenia"), 自定义字符串("Gardenia"), 自定义字符串("Gardenia"), 自定义字符串("Gardenia"), 自定义字符串("Gardenia"), 自定义字符串(
+		"Gardenia"), 自定义字符串("Gardenia"), 自定义字符串("你老舅"), 自定义字符串("Gardenia"), 自定义字符串("Gardenia"), 自定义字符串("Gardenia"), 自定义字符串("Gardenia"),
+		自定义字符串("Gardenia"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"));
+	全局.RingRadius = 数组(1.700, 2, 1.700);
+	全局.JudgeWhenLanding = 真;
+	全局.DefaultAliblty1Enabled = 真;
+	全局.DefaultAliblty2Enabled = 真;
+	全局.DefaultSecondaryEnabled = 真;
+	全局.DefaultUltimateEnabled = 假;
+	全局.UltimateCD = 15;
+	全局.OneTimeAbility = 真;
+	全局.DisableContinuousCreation = 假;
+	全局.PioneerModeEnabled = 真;
+	全局.PioneerStarted = 假;
+	全局.RoomAliveHoursLeft = 2;
+	全局.CurrentMap = 地图(伊利奥斯深井);
+	全局.TeleportWhenEnterNextPosition = 假;
+	全局._unused_var_24 = 数组();
+	全局.RGB = 数组(255, 255, 0, 244, 208, 68, 180, 255);
+}

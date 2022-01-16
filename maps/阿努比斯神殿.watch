@@ -1,0 +1,63 @@
+变量
+{
+	全局:
+		0: CheckpointPosition
+		1: Ability1State
+		2: Ability2State
+		3: SecondaryFireState
+		4: UltimateState
+		5: Creator
+		6: RingRadius
+		7: JudgeWhenLanding
+		8: DefaultAliblty1Enabled
+		9: DefaultAliblty2Enabled
+		10: DefaultSecondaryEnabled
+		11: DefaultUltimateEnabled
+		12: UltimateCD
+		13: OneTimeAbility
+		14: DisableContinuousCreation
+		15: PioneerModeEnabled
+		16: Pioneer
+		17: PioneerStarted
+		19: RoomAliveHoursLeft
+		22: CurrentMap
+		23: TeleportWhenEnterNextPosition
+		24: _unused_var_24
+		26: RGB
+		27: JumpState
+}
+
+动作
+{
+	全局.CheckpointPosition = 数组(矢量(-33.082, 1.652, 22.436), 矢量(-30.052, 6.510, 28.100), 矢量(-55.690, 1.555, 41.771), 矢量(-58.659, 6.510,
+		44.874), 矢量(-28.252, 1.475, 59.225), 矢量(-29.594, 9.015, 56.145), 矢量(-29.518, 1.409, 43.476), 矢量(-32.198, 10.200, 44.071), 矢量(
+		-16.526, 1.512, 51.671), 矢量(-13.008, 10.434, 53.983), 矢量(-10.468, 1.484, 55.678), 矢量(-11.661, 10.584, 55.749), 矢量(-12.438,
+		4.664, 88.499), 矢量(-4.492, 12.827, 86.360), 矢量(-20.513, 4.509, 37.788), 矢量(-9.426, 4.317, 42.038), 矢量(-11.779, 12.368, 47.580),
+		矢量(-41.986, 1.562, 51.211), 矢量(-40.476, 10.200, 48.762), 矢量(-22.578, 10.279, 45.070), 矢量(-14.487, 8.002, 69.106), 矢量(-9.899,
+		4.665, 84.318), 矢量(-12.016, 14.431, 82.900), 矢量(-14.832, 1.977, 103.153), 矢量(-16.481, 10.897, 109.045), 矢量(-21.548, 2.688,
+		104.123), 矢量(-26.292, 13.294, 94.228), 矢量(-25.242, 4.616, 91.112), 矢量(-26.983, 14.217, 85.167));
+	全局.Ability1State = 数组();
+	全局.Ability2State = 数组();
+	全局.SecondaryFireState = 数组(假, 真, 假, 真, 假, 真, 假, 假, 假, 假, 假, 真, 假, 真, 假, 假, 真, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假);
+	全局.UltimateState = 数组(假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假);
+	全局.Creator = 数组(自定义字符串(""), 自定义字符串(""), 自定义字符串(""), 自定义字符串(""), 自定义字符串(""), 自定义字符串(""), 自定义字符串(""), 自定义字符串(""), 自定义字符串(""), 自定义字符串(
+		""), 自定义字符串(""), 自定义字符串(""), 自定义字符串(""), 自定义字符串(""), 自定义字符串(""), 自定义字符串(""), 自定义字符串(""), 自定义字符串(""), 自定义字符串(""), 自定义字符串(""),
+		自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串(
+		"Exit"));
+	全局.RingRadius = 数组(1.800, 2, 2);
+	全局.JudgeWhenLanding = 真;
+	全局.DefaultAliblty1Enabled = 真;
+	全局.DefaultAliblty2Enabled = 真;
+	全局.DefaultSecondaryEnabled = 真;
+	全局.DefaultUltimateEnabled = 假;
+	全局.UltimateCD = 15;
+	全局.OneTimeAbility = 真;
+	全局.DisableContinuousCreation = 假;
+	全局.PioneerModeEnabled = 真;
+	全局.Pioneer = 数组(0);
+	全局.PioneerStarted = 假;
+	全局.RoomAliveHoursLeft = 3;
+	全局.CurrentMap = 地图(阿努比斯神殿);
+	全局.TeleportWhenEnterNextPosition = 假;
+	全局.JumpState = 数组(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 假, 假, 假, 假, 假, 假, 假, 假);
+}

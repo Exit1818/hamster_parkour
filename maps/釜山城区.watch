@@ -1,0 +1,50 @@
+变量
+{
+	全局:
+		0: CheckpointPosition
+		1: Ability1State
+		2: Ability2State
+		3: SecondaryFireState
+		4: UltimateState
+		5: Creator
+		6: RingRadius
+		7: JudgeWhenLanding
+		8: DefaultAliblty1Enabled
+		9: DefaultAliblty2Enabled
+		10: DefaultSecondaryEnabled
+		11: DefaultUltimateEnabled
+		12: UltimateCD
+		13: OneTimeAbility
+		14: DisableContinuousCreation
+		15: PioneerModeEnabled
+		17: PioneerStarted
+		19: RoomAliveHoursLeft
+		22: CurrentMap
+		23: TeleportWhenEnterNextPosition
+		26: RGB
+}
+
+动作
+{
+	全局.CheckpointPosition = 数组(矢量(16.185, 13, -133.545), 矢量(12.660, 22.961, -129.597));
+	全局.Ability1State = 数组();
+	全局.Ability2State = 数组();
+	全局.SecondaryFireState = 数组(假);
+	全局.UltimateState = 数组(假, 假);
+	全局.Creator = 数组(自定义字符串("Exit"));
+	全局.RingRadius = 数组(1.700, 2, 1.700);
+	全局.JudgeWhenLanding = 真;
+	全局.DefaultAliblty1Enabled = 真;
+	全局.DefaultAliblty2Enabled = 真;
+	全局.DefaultSecondaryEnabled = 真;
+	全局.DefaultUltimateEnabled = 假;
+	全局.UltimateCD = 15;
+	全局.OneTimeAbility = 真;
+	全局.DisableContinuousCreation = 假;
+	全局.PioneerModeEnabled = 真;
+	全局.PioneerStarted = 假;
+	全局.RoomAliveHoursLeft = 4;
+	全局.CurrentMap = 地图(釜山);
+	全局.TeleportWhenEnterNextPosition = 假;
+	全局.RGB = 数组(255, 255, 0, 244, 208, 68, 180, 255);
+}
