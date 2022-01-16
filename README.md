@@ -1,8 +1,8 @@
 # hamster_parkour
-仓鼠跑酷
+仓鼠跑酷地图工坊代码
 
 
-### [熔火工坊](https://www.owmod.net/work/view/1715)
+### [熔火工坊](https://www.owmod.net/work/view/1715){target="_blank"}
 
 
 ### 仓鼠跑酷合集代码：
