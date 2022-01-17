@@ -1,26 +1,4 @@
-变量
-{
-	全局:
-		0: CheckpointPosition
-		1: Ability1State
-		2: Ability2State
-		3: SecondaryFireState
-		4: UltimateState
-		5: Creator
-		6: RingRadius
-		7: JudgeWhenLanding
-		8: DefaultAliblty1Enabled
-		9: DefaultAliblty2Enabled
-		10: DefaultSecondaryEnabled
-		11: DefaultUltimateEnabled
-		12: UltimateCD
-		13: OneTimeAbility
-		14: DisableContinuousCreation
-		15: PioneerModeEnabled
-		17: PioneerStarted
-		22: CurrentMap
-		23: TeleportWhenEnterNextPosition
-}
+
 
 动作
 {

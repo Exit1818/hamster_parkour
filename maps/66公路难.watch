@@ -1,29 +1,3 @@
-变量
-{
-	全局:
-		0: CheckpointPosition
-		3: SecondaryFireState
-		4: UltimateState
-		5: Creator
-		6: RingRadius
-		7: JudgeWhenLanding
-		8: DefaultAliblty1Enabled
-		9: DefaultAliblty2Enabled
-		10: DefaultSecondaryEnabled
-		11: DefaultUltimateEnabled
-		12: UltimateCD
-		13: OneTimeAbility
-		14: DisableContinuousCreation
-		15: PioneerModeEnabled
-		17: PioneerStarted
-		19: RoomAliveHoursLeft
-		22: CurrentMap
-		23: TeleportWhenEnterNextPosition
-		26: RGB
-		27: JumpState
-		28: CheatRecord
-		29: PlayersData
-}
 
 动作
 {

@@ -1,29 +1,3 @@
-变量
-{
-	全局:
-		0: CheckpointPosition
-		1: Ability1State
-		2: Ability2State
-		3: SecondaryFireState
-		4: UltimateState
-		5: Creator
-		6: RingRadius
-		7: JudgeWhenLanding
-		8: DefaultAliblty1Enabled
-		9: DefaultAliblty2Enabled
-		10: DefaultSecondaryEnabled
-		11: DefaultUltimateEnabled
-		12: UltimateCD
-		13: OneTimeAbility
-		14: DisableContinuousCreation
-		15: PioneerModeEnabled
-		17: PioneerStarted
-		19: RoomAliveHoursLeft
-		22: CurrentMap
-		23: TeleportWhenEnterNextPosition
-		24: _unused_var_24
-		26: RGB
-}
 
 规则("炸客镇~")
 {
@@ -62,8 +36,6 @@
 			2.126, 6.733, -37.199), 矢量(-34.843, 7.822, -41.361), 矢量(-35.535, 4.498, -31.661), 矢量(-26.278, 12.597, -64.060), 矢量(-2.092,
 			12.501, -75.894), 矢量(-1.268, 12.511, -88.839), 矢量(10.713, 12.501, -86.807), 矢量(3.810, 11.026, -45.293), 矢量(34.945, 8.790,
 			-56.858), 矢量(33.747, 18.783, -87.313));
-		全局.Ability1State = 数组();
-		全局.Ability2State = 数组();
 		全局.SecondaryFireState = 数组(假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 真, 假, 假, 假, 假, 假, 假,
 			假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 真, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 真, 假, 真, 假, 假, 假, 假, 假, 假, 假, 假, 真, 真, 假, 真, 假,
 			真, 真, 真, 假, 真, 真, 假, 假, 真, 真, 真);
@@ -82,21 +54,5 @@
 			自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"),
 			自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"),
 			自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"), 自定义字符串("十元"));
-		全局.RingRadius = 数组(1.700, 2, 1.700);
-		全局.JudgeWhenLanding = 真;
-		全局.DefaultAliblty1Enabled = 真;
-		全局.DefaultAliblty2Enabled = 真;
-		全局.DefaultSecondaryEnabled = 真;
-		全局.DefaultUltimateEnabled = 假;
-		全局.UltimateCD = 15;
-		全局.OneTimeAbility = 真;
-		全局.DisableContinuousCreation = 假;
-		全局.PioneerModeEnabled = 真;
-		全局.PioneerStarted = 假;
-		全局.RoomAliveHoursLeft = 3;
-		全局.CurrentMap = 地图(渣客镇);
-		全局.TeleportWhenEnterNextPosition = 假;
-		全局._unused_var_24 = 数组();
-		全局.RGB = 数组(255, 255, 0, 244, 208, 68, 180, 255);
 	}
 }
