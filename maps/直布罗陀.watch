@@ -1,30 +1,3 @@
-变量
-{
-	全局:
-		0: CheckpointPosition
-		1: Ability1State
-		2: Ability2State
-		3: SecondaryFireState
-		4: UltimateState
-		5: Creator
-		6: RingRadius
-		7: JudgeWhenLanding
-		8: DefaultAliblty1Enabled
-		9: DefaultAliblty2Enabled
-		10: DefaultSecondaryEnabled
-		11: DefaultUltimateEnabled
-		12: UltimateCD
-		13: OneTimeAbility
-		14: DisableContinuousCreation
-		15: PioneerModeEnabled
-		16: Pioneer
-		17: PioneerStarted
-		19: RoomAliveHoursLeft
-		22: CurrentMap
-		23: TeleportWhenEnterNextPosition
-		24: _unused_var_24
-		26: RGB
-}
 
 动作
 {
@@ -43,8 +16,6 @@
 		-89.559), 矢量(26.950, 0, -105.060), 矢量(28.547, 4, -106.251), 矢量(30.856, 0, -100.365), 矢量(35.380, 4, -99.321), 矢量(38.411, 0,
 		-98.620), 矢量(33.072, 4, -91.002), 矢量(42.876, -6.199, -118.168), 矢量(38.005, 0, -110.511), 矢量(33.333, 6.561, -109.705), 矢量(
 		16.183, -5, -69.457), 矢量(29.248, 6.793, -90.002), 矢量(38.118, -4.453, -78.344), 矢量(35.091, 3.046, -49.376));
-	全局.Ability1State = 数组();
-	全局.Ability2State = 数组();
 	全局.SecondaryFireState = 数组(假, 假, 假, 真, 真, 真, 真, 真, 真, 真, 假, 假, 真, 真, 假, 假, 真, 真, 真, 真, 真, 假, 真, 假, 假, 假, 真, 真, 假, 真, 真, 假, 真, 假, 真,
 		真, 真, 假, 真, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 真, 真, 真, 真, 假, 假, 假, 假, 假, 假, 真, 假, 假, 真, 真, 真, 真);
 	全局.UltimateState = 数组(假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假, 假,
@@ -59,21 +30,4 @@
 		自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"),
 		自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"),
 		自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"), 自定义字符串("Exit"));
-	全局.RingRadius = 数组(1.700, 2, 1.750);
-	全局.JudgeWhenLanding = 真;
-	全局.DefaultAliblty1Enabled = 真;
-	全局.DefaultAliblty2Enabled = 真;
-	全局.DefaultSecondaryEnabled = 真;
-	全局.DefaultUltimateEnabled = 假;
-	全局.UltimateCD = 15;
-	全局.OneTimeAbility = 真;
-	全局.DisableContinuousCreation = 假;
-	全局.PioneerModeEnabled = 真;
-	全局.Pioneer = 自定义字符串("Exit");
-	全局.PioneerStarted = 假;
-	全局.RoomAliveHoursLeft = 3;
-	全局.CurrentMap = 地图(监测站：直布罗陀);
-	全局.TeleportWhenEnterNextPosition = 假;
-	全局._unused_var_24 = 数组();
-	全局.RGB = 数组(255, 255, 0, 244, 208, 68, 180, 200);
 }
