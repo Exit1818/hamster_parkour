@@ -3,8 +3,33 @@
 {
 	全局.CheckpointPosition = 数组(矢量(-84.240, 6.500, -11.156), 矢量(-86.014, 13.389, 3.979), 矢量(-92.313, 6.500, -11.546), 矢量(-104.955, 14.726, -7.082), 矢量(-64.913,
 		6.500, 10.907), 矢量(-81.170, 13.275, 7.436), 矢量(-30.013, 3.308, -4.228), 矢量(-20.067, 12.147, -15.232), 矢量(55.271, 0.217,
-		48.513), 矢量(54.574, 10.160, 44.881));
+		48.513), 矢量(54.026, 10.654, 45.636));
 	全局.SecondaryFireState = 数组(假, 假, 假, 真, 假, 假, 假, 假, 假);
 	全局.UltimateState = 数组(假, 假, 假, 假, 假, 假, 假, 假, 假);
 	全局.JumpState = 数组(假, 假, 假, 假, 假, 真, 假, 真, 假);
+}变量
+{
+	全局:
+		0: CheckpointPosition
+		3: SecondaryFireState
+		4: UltimateState
+		5: Creator
+		6: RingRadius
+		7: JudgeWhenLanding
+		8: DefaultAliblty1Enabled
+		9: DefaultAliblty2Enabled
+		10: DefaultSecondaryEnabled
+		11: DefaultUltimateEnabled
+		12: UltimateCD
+		13: OneTimeAbility
+		14: DisableContinuousCreation
+		15: PioneerModeEnabled
+		17: PioneerStarted
+		19: RoomAliveHoursLeft
+		22: CurrentMap
+		23: TeleportWhenEnterNextPosition
+		26: RGB
+		27: JumpState
+		28: CheatRecord
+		29: PlayersData
 }
