@@ -2,7 +2,7 @@
 {
 	主程序
 	{
-		描述: "仓鼠跑酷开拓者, by喜欢跑酷的小伙伴们. （代码：9ZDS3，会不定期更新，保存代码，不要保存预设），ver 2.43加入超级跳模式 ! 超级跳模式作者：花开堪折直须折 ver2.50加入传送点  直接更换地图即可游玩不同点位 更多跑酷点位和教学前往熔火工坊查看  其他合集代码：G7V27 | 13GT0R  通关教学：b站up：Stan_sin"
+		描述: "仓鼠跑酷开拓者, by喜欢跑酷的小伙伴们. （代码：9ZDS3，会不定期更新，保存代码，不要保存预设），ver 2.43加入超级跳模式 ! 超级跳模式作者：花开堪折直须折 ver2.50加入传送点 ver3.0加入拿小球模式  直接更换地图即可游玩不同点位 更多跑酷点位和教学前往熔火工坊查看  其他合集代码：G7V27 | 13GT0R  通关教学：b站up：Stan_sin"
 		模式名称: "仓鼠跑酷"
 	}
 
@@ -102,6 +102,7 @@
 		目标点圈不透明度: 244
 		目标点圈大小: 1.800
 		跳关提醒: 关闭
+		是否允许开拓: 开启
 	}
 }
 
@@ -127,7 +128,7 @@
 		16: Pioneer
 		17: PioneerStarted
 		18: PioneerLandingPosition
-		19: RoomAliveHoursLeft
+		19: PioneerSpherePosition
 		20: BestScore
 		22: CurrentMap
 		23: TeleportWhenEnterNextPosition
@@ -136,6 +137,10 @@
 		27: JumpState
 		28: CheatRecord
         29: PlayersData
+		30: RoomAliveHoursLeft
+		31: SpherePosition
+		32: SphereRadius
+
 
 	玩家:
 		0: Level
@@ -163,6 +168,7 @@
         22: mistake
         23: dataIndex
 		24: cheat_log
+		25: sphere_state
 		26: pioneer_mode
         
 }
@@ -1808,6 +1814,7 @@
 		全局.RingRadius[0] = 地图工坊设置实数(自定义字符串("参数"), 自定义字符串("目标点圈大小"), 1.500, 0.500, 4, 0);
 		全局.RingRadius[1] = 地图工坊设置实数(自定义字符串("参数"), 自定义字符串(" 起始点圈大小"), 2, 0.200, 5, 1);
 		全局.RingRadius[2] = 地图工坊设置实数(自定义字符串("参数"), 自定义字符串("起飞点圈大小"), 2, 0.200, 4, 2);
+		全局.SphereRadius = 地图工坊设置实数(自定义字符串("参数"), 自定义字符串("小球大小"), 1.2, 0.200, 2, 3);
 	}
 }
 
@@ -1883,18 +1890,20 @@
 		关闭游戏预设计分模式;
 		关闭游戏预设完成条件;
 		关闭游戏预设音乐模式;
-		根据条件跳过(!(数量(全局.CheckpointPosition) == 0), 6);
-		全局.CheckpointPosition = 空数组;
-		全局.Ability1State = 空数组;
-		全局.Ability2State = 空数组;
-		全局.SecondaryFireState = 空数组;
-		全局.Creator = 空数组;
-		全局.UltimateState = 空数组;
+		If(数量(全局.CheckpointPosition) == 0);
+			全局.CheckpointPosition = 空数组;
+			全局.Ability1State = 空数组;
+			全局.Ability2State = 空数组;
+			全局.SecondaryFireState = 空数组;
+			全局.Creator = 空数组;
+			全局.UltimateState = 空数组;
+		End;
 		全局.RoomAliveHoursLeft = 4;
 		全局.PlayersData = 空数组;
 		设置比赛时间(1800);
 		设置目标点描述(所有玩家(所有队伍), 自定义字符串("本局游戏时间还剩：​{0}小时​{1}分钟​", 全局.RoomAliveHoursLeft, 取整(比赛时间 / 60, 下)), 可见和字符串);
 		全局.PioneerLandingPosition = 无;
+		全局.PioneerSpherePosition = 无;
 		创建HUD文本(所有玩家(所有队伍), 自定义字符串(
 			"模式名称：仓鼠跑酷\r\n代码：9ZDS3\r\n记得在近期游玩里收藏\r\n会不定期更新，保存代码，不要保存预设\r\n更换地图游玩不同关卡，推荐地图池：\r\n直布罗陀|66号公路|圣诞节国王大道|花村|沃斯卡亚工业区\r\n更多跑酷点位和教学前往熔火工坊查看"),
 			无, 无, 左边, 0, 颜色(亮紫色), 颜色(白色), 颜色(白色), 可见和字符串, 默认可见度);
@@ -1902,25 +1911,30 @@
 		创建HUD文本(所有玩家(所有队伍), 无, 无, 自定义字符串(" "), 右边, 1, 颜色(白色), 颜色(白色), 颜色(橙色), 可见和字符串, 默认可见度);
 		创建HUD文本(已过滤的数组(所有玩家(所有队伍), !按钮被按下(当前数组元素, 按钮(互动))), 自定义字符串("按下互动键({0})查看快捷键说明​以及操作说明", 输入绑定字符串(按钮(互动))), 无, 无, 左边, 2, 颜色(黄色), 颜色(
 			白色), 颜色(黄色), 可见和字符串, 默认可见度);
-		根据条件跳过(!全局.PioneerModeEnabled, 8);
-		创建HUD文本(已过滤的数组(所有玩家(所有队伍), !实体存在(全局.Pioneer) && 数量(全局.CheckpointPosition) == 0 && 在地面上(当前数组元素)), 自定义字符串("互动{0}+装填{1} 在当前位置开拓​",
-			输入绑定字符串(按钮(互动)), 输入绑定字符串(按钮(装填))), 无, 无, 左边, 1, 颜色(橙色), 颜色(白色), 颜色(白色), 可见和字符串, 始终不可见);
-		创建HUD文本(已过滤的数组(所有玩家(所有队伍), 当前数组元素.GameComplete && !实体存在(全局.Pioneer) && 数量(全局.CheckpointPosition) != 0), 自定义字符串(
-			"互动{0}+装填{1} 成为开拓者,继续开拓​", 输入绑定字符串(按钮(互动)), 输入绑定字符串(按钮(装填))), 无, 无, 左边, 2, 颜色(橙色), 颜色(白色), 颜色(白色), 可见和字符串, 始终不可见);
-		创建HUD文本(已过滤的数组(所有玩家(所有队伍), 当前数组元素.GameComplete && 实体存在(全局.Pioneer)), 自定义字符串("当前开拓者: {0}", 全局.Pioneer), 无, 无, 左边, 0, 颜色(橙色), 颜色(白色),
-			颜色(白色), 可见和字符串, 始终不可见);
-		创建HUD文本(所有玩家(所有队伍), 无, 无, 自定义字符串("已开拓关卡数:{0}", 数量(全局.CheckpointPosition) - 1), 右边, 0, 颜色(白色), 颜色(白色), 颜色(橙色), 可见和字符串, 默认可见度);
-		创建HUD文本(添加至数组(添加至数组(空数组, 全局.Pioneer), 无)[1 * !(全局.PioneerLandingPosition != 无)], 自定义字符串("已开拓 长按互动确认,短按互动重新开拓​"), 无, 无, 顶部, 1, 颜色(
-			橙色), 颜色(白色), 颜色(白色), 可见和字符串, 始终不可见);
-		创建效果(已过滤的数组(全局.Pioneer, 全局.PioneerLandingPosition != 假), 环, 颜色(黄色), 全局.PioneerLandingPosition, 全局.RingRadius[0], 可见，位置和半径);
-		创建效果(已过滤的数组(全局.Pioneer, 全局.PioneerLandingPosition != 假), 光柱, 颜色(黄色), 全局.PioneerLandingPosition, 全局.RingRadius[0], 可见，位置和半径);
-		创建效果(已过滤的数组(全局.Pioneer, 全局.Pioneer.UltimateUsed != (假 || 0)), 环, 颜色(亮紫色), 全局.Pioneer.UltimateUsed, 全局.RingRadius[2], 可见，位置和半径);
-		创建效果(已过滤的数组(全局.Pioneer, 全局.Pioneer.UltimateUsed != (假 || 0)), 光柱, 颜色(亮紫色), 全局.Pioneer.UltimateUsed, 全局.RingRadius[2], 可见，位置和半径);
-		根据条件跳过(全局.PioneerModeEnabled == 真, 2);
-		全局.BestScore[0] = 自定义字符串("无");
-		全局.BestScore[1] = 0;
-		创建HUD文本(所有玩家(所有队伍), 自定义字符串("最好成绩: {0}/{1}S", 全局.BestScore[0], 全局.BestScore[1]), 无, 无, 左边, 0, 颜色(绿色), 颜色(白色), 颜色(白色), 可见和字符串,
+		If(全局.PioneerModeEnabled == 真);
+			创建HUD文本(已过滤的数组(所有玩家(所有队伍), !实体存在(全局.Pioneer) && 数量(全局.CheckpointPosition) == 0 && 在地面上(当前数组元素)), 自定义字符串("互动{0}+装填{1} 在当前位置开拓​",
+				输入绑定字符串(按钮(互动)), 输入绑定字符串(按钮(装填))), 无, 无, 左边, 1, 颜色(橙色), 颜色(白色), 颜色(白色), 可见和字符串, 始终不可见);
+			创建HUD文本(已过滤的数组(所有玩家(所有队伍), 当前数组元素.GameComplete && !实体存在(全局.Pioneer) && 数量(全局.CheckpointPosition) != 0), 自定义字符串(
+				"互动{0}+装填{1} 成为开拓者,继续开拓​", 输入绑定字符串(按钮(互动)), 输入绑定字符串(按钮(装填))), 无, 无, 左边, 2, 颜色(橙色), 颜色(白色), 颜色(白色), 可见和字符串, 始终不可见);
+			创建HUD文本(已过滤的数组(所有玩家(所有队伍), 当前数组元素.GameComplete && 实体存在(全局.Pioneer)), 自定义字符串("当前开拓者: {0}", 全局.Pioneer), 无, 无, 左边, 0, 颜色(橙色), 颜色(白色),
+				颜色(白色), 可见和字符串, 始终不可见);
+			创建HUD文本(所有玩家(所有队伍), 无, 无, 自定义字符串("已开拓关卡数:{0}", 数量(全局.CheckpointPosition) - 1), 右边, 0, 颜色(白色), 颜色(白色), 颜色(橙色), 可见和字符串, 默认可见度);
+			创建HUD文本(添加至数组(添加至数组(空数组, 全局.Pioneer), 无)[1 * !(全局.PioneerLandingPosition != 无)], 自定义字符串("已开拓 长按互动确认,短按互动重新开拓​"), 无, 无, 顶部, 1, 颜色(
+				橙色), 颜色(白色), 颜色(白色), 可见和字符串, 始终不可见);
+			创建效果(已过滤的数组(全局.Pioneer, 全局.PioneerLandingPosition != 假), 环, 颜色(黄色), 全局.PioneerLandingPosition, 全局.RingRadius[0], 可见，位置和半径);
+			创建效果(已过滤的数组(全局.Pioneer, 全局.PioneerLandingPosition != 假), 光柱, 颜色(黄色), 全局.PioneerLandingPosition, 全局.RingRadius[0], 可见，位置和半径);
+			创建效果(已过滤的数组(全局.Pioneer, 全局.Pioneer.UltimateUsed != (假 || 0)), 环, 颜色(亮紫色), 全局.Pioneer.UltimateUsed, 全局.RingRadius[2], 可见，位置和半径);
+			创建效果(已过滤的数组(全局.Pioneer, 全局.Pioneer.UltimateUsed != (假 || 0)), 光柱, 颜色(亮紫色), 全局.Pioneer.UltimateUsed, 全局.RingRadius[2], 可见，位置和半径);
+			"小球"
+			创建效果(已过滤的数组(全局.Pioneer, 全局.PioneerSpherePosition != 假), 球, 自定义颜色(154, 110, 147, 255), 全局.PioneerSpherePosition + 矢量(0, 1.6, 0), 全局.SphereRadius - 0.2, 可见，位置和半径);
+			"小球图标"
+			创建图标(已过滤的数组(全局.Pioneer, 全局.PioneerSpherePosition != 假), 全局.PioneerSpherePosition + 矢量(0, 1.5, 0), 加号, 可见，位置和颜色, 颜色(橙色), 真);
+		Else;
+			全局.BestScore[0] = 自定义字符串("无");
+			全局.BestScore[1] = 0;
+			创建HUD文本(所有玩家(所有队伍), 自定义字符串("最好成绩: {0}/{1}S", 全局.BestScore[0], 全局.BestScore[1]), 无, 无, 左边, 0, 颜色(绿色), 颜色(白色), 颜色(白色), 可见和字符串,
 			默认可见度);
+		End;
 	}
 }
 
@@ -1957,26 +1971,18 @@
 		启用死亡回放时目标的HUD(事件玩家);
 		创建地图文本(所有玩家(所有队伍), 事件玩家, 事件玩家, 1, 不要截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
 		创建效果(已过滤的数组(事件玩家, 数量(全局.CheckpointPosition) != 0), 环, 颜色(绿色), 全局.CheckpointPosition[事件玩家.Level], 全局.RingRadius[1], 可见，位置和半径);
-		禁用 创建效果(已过滤的数组(事件玩家, !事件玩家.GameComplete), 环, 颜色(黄色), 全局.CheckpointPosition[事件玩家.Level + 1], 全局.RingRadius, 可见，位置和半径);
-		禁用 创建地图文本(已过滤的数组(事件玩家, !事件玩家.GameComplete), 自定义字符串("在这里起飞"), 全局.UltimateState[事件玩家.Level + 1], 2, 不要截取, 可见，位置和字符串, 颜色(白色), 始终不可见);
-		禁用 创建效果(已过滤的数组(事件玩家, !事件玩家.GameComplete), 环, 颜色(亮紫色), 全局.UltimateState[事件玩家.Level + 1], 全局.RingRadius, 可见，位置和半径);
-		禁用 创建效果(已过滤的数组(事件玩家, !事件玩家.GameComplete), 光柱, 颜色(黄色), 全局.CheckpointPosition[事件玩家.Level + 1], 全局.RingRadius, 可见，位置和半径);
-		禁用 创建效果(已过滤的数组(事件玩家, !事件玩家.GameComplete), 光柱, 颜色(亮紫色), 全局.UltimateState[事件玩家.Level + 1], 全局.RingRadius, 可见，位置和半径);
-		禁用 创建地图文本(已过滤的数组(事件玩家, !事件玩家.GameComplete), 自定义字符串("到这里来"), 全局.CheckpointPosition[事件玩家.Level + 1], 2, 不要截取, 可见，位置和字符串, 颜色(白色), 始终不可见);
 		创建图标(已过滤的数组(事件玩家, !事件玩家.GameComplete), 全局.CheckpointPosition[事件玩家.Level + 1], 旗帜, 可见和位置, 颜色(黄色), 真);
 		创建HUD文本(已过滤的数组(事件玩家, !事件玩家.GameComplete), 自定义字符串("第​{0}关 作者: {1}", 事件玩家.Level + 1, 全局.Creator[事件玩家.Level]), 无, 无, 左边, 0, 颜色(橙色),
 			颜色(白色), 颜色(白色), 可见和字符串, 始终不可见);
-		根据条件跳过(!全局.PioneerModeEnabled, 2);
-		创建HUD文本(所有玩家(所有队伍), 无, 无, 自定义字符串("{0}:{1}", 事件玩家, 事件玩家.Level), 右边, 1000 - 事件玩家.Level, 颜色(白色), 颜色(白色), 颜色(橙色), 可见性，排序规则和字符串, 默认可见度);
-		跳过(3);
-		创建HUD文本(已过滤的数组(事件玩家, !事件玩家.GameComplete), 无, 无, 自定义字符串("检查点: {0} / {1}", 事件玩家.Level + 1, 数量(全局.CheckpointPosition) - 1), 顶部, -1,
-			颜色(白色), 颜色(白色), 颜色(白色), 可见和字符串, 始终不可见);
-		创建HUD文本(已过滤的数组(所有玩家(所有队伍), 事件玩家.BestScore != 0), 无, 无, 自定义字符串("{0}：{2}S/第{1}关", 事件玩家, 事件玩家.Level, 事件玩家.ScoreOfThisRound), 右边,
-			事件玩家.BestScore, 颜色(白色), 颜色(白色), 颜色(橙色), 可见性，排序规则和字符串, 默认可见度);
-		创建HUD文本(已过滤的数组(事件玩家, 事件玩家.ScoreOfThisRound != 0), 无, 无, 事件玩家.ScoreOfThisRound, 顶部, 1, 颜色(白色), 颜色(白色), 颜色(白色), 可见和字符串, 默认可见度);
-		禁用 创建HUD文本(所有玩家(所有队伍), 全局.Pioneer.UltimateUsed, 全局.Pioneer.ultimate_worked, 全局.Pioneer.cheat_log, 左边, 0, 颜色(白色), 颜色(白色), 颜色(白色),
-			可见和字符串, 默认可见度);
-		禁用 创建HUD文本(事件玩家, 相距距离(全局.CheckpointPosition[事件玩家.Level], 所选位置(事件玩家)), 无, 无, 左边, 0, 颜色(白色), 颜色(白色), 颜色(白色), 可见和字符串, 默认可见度);
+		If(全局.PioneerModeEnabled == 真);
+			创建HUD文本(所有玩家(所有队伍), 无, 无, 自定义字符串("{0}:{1}", 事件玩家, 事件玩家.Level), 右边, 1000 - 事件玩家.Level, 颜色(白色), 颜色(白色), 颜色(橙色), 可见性，排序规则和字符串, 默认可见度);
+		Else;
+			创建HUD文本(已过滤的数组(事件玩家, !事件玩家.GameComplete), 无, 无, 自定义字符串("检查点: {0} / {1}", 事件玩家.Level + 1, 数量(全局.CheckpointPosition) - 1), 顶部, -1,
+				颜色(白色), 颜色(白色), 颜色(白色), 可见和字符串, 始终不可见);
+			创建HUD文本(已过滤的数组(所有玩家(所有队伍), 事件玩家.BestScore != 0), 无, 无, 自定义字符串("{0}：{2}S/第{1}关", 事件玩家, 事件玩家.Level, 事件玩家.ScoreOfThisRound), 右边,
+				事件玩家.BestScore, 颜色(白色), 颜色(白色), 颜色(橙色), 可见性，排序规则和字符串, 默认可见度);
+			创建HUD文本(已过滤的数组(事件玩家, 事件玩家.ScoreOfThisRound != 0), 无, 无, 事件玩家.ScoreOfThisRound, 顶部, 1, 颜色(白色), 颜色(白色), 颜色(白色), 可见和字符串, 默认可见度);
+		End;
 		创建效果(已过滤的数组(事件玩家, !事件玩家.GameComplete), 环, 自定义颜色(全局.RGB[0], 全局.RGB[1], 全局.RGB[2], 全局.RGB[3]), 全局.CheckpointPosition[事件玩家.Level + 1],
 			全局.RingRadius[0], 可见，位置和半径);
 		事件玩家.BestScore[0] = 最后创建的实体;
@@ -1997,6 +2003,12 @@
 		事件玩家.BestScore[5] = 上一个文本ID;
 		小字体信息(事件玩家, 自定义字符串("按下互动有惊喜哦"));
 		创建HUD文本(所有玩家(所有队伍), 自定义字符串(""), 无, 无, 左边, 0, 颜色(白色), 颜色(白色), 颜色(白色), 可见和字符串, 默认可见度);
+		"小球"
+		创建效果(已过滤的数组(事件玩家, 事件玩家.sphere_state == 假 && !事件玩家.GameComplete), 球, 自定义颜色(154, 110, 147, 255), 全局.SpherePosition[事件玩家.Level + 1] + 矢量(0, 1.6, 0), 全局.SphereRadius - 0.2, 可见，位置和半径);
+		"小球图标"
+		创建地图文本(已过滤的数组(事件玩家, 事件玩家.sphere_state == 假 && !事件玩家.GameComplete), 自定义字符串("先来拿糖果"), 全局.SpherePosition[事件玩家.Level + 1] + 矢量(0, 2, 0), 2, 不要截取, 可见，位置和字符串,
+			颜色(白色), 始终不可见);
+		创建图标(已过滤的数组(事件玩家, 事件玩家.sphere_state == 假 && !事件玩家.GameComplete), 全局.SpherePosition[事件玩家.Level + 1] + 矢量(0, 1.5, 0), 加号, 可见，位置和颜色, 颜色(橙色), 真);
 		调用子程序(ResetBall);
 		禁用 小字体信息(事件玩家, 自定义字符串("玩家初始化"));
 	}
@@ -2040,8 +2052,9 @@
 	动作
 	{
 		传送(事件玩家, 全局.CheckpointPosition[事件玩家.Level]);
-		根据条件跳过(事件玩家.GameComplete == 假, 1);
-		事件玩家.BestScore[6] = 0;
+		If(事件玩家.GameComplete == 真);
+			事件玩家.BestScore[6] = 0;
+		End;
 		等待(0.100, 当为“假”时中止);
 		事件玩家.GameComplete = 假;
 		调用子程序(Reset);
@@ -2066,23 +2079,18 @@
 	{
 		事件玩家.GameComplete = 真;
 		调用子程序(SetAbility);
-		根据条件跳过(全局.PioneerModeEnabled, 10);
-		根据条件跳过(!(事件玩家.ScoreOfThisRound != 0), 8);
-		事件玩家.LastScore = 事件玩家.ScoreOfThisRound;
-		小字体信息(所有玩家(所有队伍), 自定义字符串("{0}耗时​{1}完成比赛!", 事件玩家, 事件玩家.LastScore));
-		IF(事件玩家.cheat == 0);
-            事件玩家.BestScore = 事件玩家.ScoreOfThisRound;
-            根据条件跳过(全局.BestScore[1] == 0, 1);
-            根据条件跳过(事件玩家.BestScore >= 全局.BestScore[1], 2);
-            全局.BestScore[0] = 自定义字符串("{0}", 事件玩家);
-            全局.BestScore[1] = 事件玩家.LastScore;
-        End;
+		If(全局.PioneerModeEnabled == 假 && 事件玩家.ScoreOfThisRound != 0);
+			事件玩家.LastScore = 事件玩家.ScoreOfThisRound;
+			小字体信息(所有玩家(所有队伍), 自定义字符串("{0}耗时​{1}完成比赛!", 事件玩家, 事件玩家.LastScore));
+			If(事件玩家.cheat == 0);
+				事件玩家.BestScore = 事件玩家.ScoreOfThisRound;
+				If(全局.BestScore[1] == 0 || 事件玩家.BestScore < 全局.BestScore[1]);
+					全局.BestScore[0] = 自定义字符串("{0}", 事件玩家);
+					全局.BestScore[1] = 事件玩家.LastScore;
+				End;
+			End;
+		End;
 		停止追踪玩家变量(事件玩家, ScoreOfThisRound);
-		禁用 事件玩家.ScoreOfThisRound = 0;
-		跳过(3);
-		根据条件跳过(!(!实体存在(全局.Pioneer) && 数量(全局.CheckpointPosition) != 0 && 事件玩家 != 最后(全局.Creator)), 2);
-		全局.PioneerStarted = 假;
-		禁用 全局.Pioneer = 事件玩家;
 	}
 }
 
@@ -2102,14 +2110,15 @@
 
 	动作
 	{
-		根据条件跳过(!(数量(全局.CheckpointPosition) < 1000), 4);
-		播放效果(事件玩家, 环状爆炸声音, 颜色(白色), 事件玩家, 100);
-		事件玩家.FreeMode = 假;
-		调用子程序(Reset);
-		跳过(3);
-		小字体信息(事件玩家, 自定义字符串("不能再继续开拓了​"));
-		全局.PioneerStarted = 假;
-		全局.Pioneer = 无;
+		If(数量(全局.CheckpointPosition) < 1000);
+			播放效果(事件玩家, 环状爆炸声音, 颜色(白色), 事件玩家, 100);
+			事件玩家.FreeMode = 假;
+			调用子程序(Reset);
+		Else;
+			小字体信息(事件玩家, 自定义字符串("不能再继续开拓了​"));
+			全局.PioneerStarted = 假;
+			全局.Pioneer = 无;
+		End;
 		If(全局.UltimateState[事件玩家.Level + 1] != 假);
 			施加推力(事件玩家, 速率(事件玩家) * -1, 0.010, 至地图, 取消相反运动);
 			大字体信息(事件玩家, 自定义字符串("不要乱跑"));
@@ -2162,11 +2171,11 @@
 	{
 		全局.DefaultUltimateEnabled == 真;
 		正在使用终极技能(事件玩家) == 假;
+		终极技能充能百分比(事件玩家) <= 1;
 	}
 
 	动作
 	{
-		根据条件跳过(!(终极技能充能百分比(事件玩家) <= 1), 1);
 		事件玩家.UltimateCharge = 0;
 	}
 }
@@ -2192,9 +2201,11 @@
 	动作
 	{
 		等待(0.500, 当为“假”时中止);
-		根据条件跳过(!(相距距离(所选位置(事件玩家), 全局.CheckpointPosition[事件玩家.Level]) > 全局.RingRadius || !在地面上(事件玩家)), 2);
-		根据条件跳过(!(事件玩家 != 全局.Pioneer || 全局.PioneerLandingPosition == 无), 1);
-		设置辅助攻击模式启用(事件玩家, 假);
+		If(相距距离(所选位置(事件玩家), 全局.CheckpointPosition[事件玩家.Level]) > 全局.RingRadius || !在地面上(事件玩家));
+			If(事件玩家 != 全局.Pioneer || 全局.PioneerLandingPosition == 无);
+				设置辅助攻击模式启用(事件玩家, 假);
+			End;
+		End;
 	}
 }
 
@@ -2219,9 +2230,11 @@
 	动作
 	{
 		等待(0.500, 当为“假”时中止);
-		根据条件跳过(!(相距距离(所选位置(事件玩家), 全局.CheckpointPosition[事件玩家.Level]) > 全局.RingRadius || !在地面上(事件玩家)), 2);
-		根据条件跳过(!(事件玩家 != 全局.Pioneer || 全局.PioneerLandingPosition == 无), 1);
-		设置启用技能 2(事件玩家, 假);
+		If(相距距离(所选位置(事件玩家), 全局.CheckpointPosition[事件玩家.Level]) > 全局.RingRadius || !在地面上(事件玩家));
+			If(事件玩家 != 全局.Pioneer || 全局.PioneerLandingPosition == 无);
+				设置启用技能 2(事件玩家, 假);
+			End;
+		End;
 	}
 }
 
@@ -2321,6 +2334,35 @@
 	}
 }
 
+规则("小球拾取")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.sphere_state == 假;
+		事件玩家.IsReady == 真;
+		事件玩家.FreeMode == 假;
+		全局.Pioneer != 事件玩家;
+		事件玩家.GameComplete == 假;
+		相距距离(事件玩家, 全局.SpherePosition[事件玩家.Level + 1]) <= 全局.SphereRadius;
+		(!全局.JudgeWhenLanding || 在地面上(事件玩家)) == 假;
+		事件玩家.ultimate_worked == 假;
+	}
+
+	动作
+	{
+		事件玩家.sphere_state = !事件玩家.GameComplete && !事件玩家.FreeMode ? 真 : 假;
+		小字体信息(事件玩家, 自定义字符串("拿到糖果了!"));
+		播放效果(事件玩家, 正面状态施加声音, 无, 事件玩家, 80);
+	}
+}
+
 规则("闯关者到达下一关")
 {
 	事件
@@ -2343,6 +2385,12 @@
 
 	动作
 	{
+		If(!事件玩家.sphere_state);
+			调用子程序(Reset);
+			小字体信息(事件玩家, 自定义字符串("糖果还没拿到!"));
+			播放效果(事件玩家, 爆炸声音, 无, 事件玩家, 100);
+			中止;
+		End;
 		播放效果(事件玩家, 状态爆炸声音, 颜色(白色), 事件玩家, 100);
 		事件玩家.Level += 1;
 		调用子程序(EditPlayerData);
@@ -2368,7 +2416,6 @@
 		事件玩家.GameComplete == 假;
 		在地面上(事件玩家) == 真;
 		相距距离(所选位置(事件玩家), 全局.CheckpointPosition[事件玩家.Level]) > 全局.RingRadius[1];
-		禁用 事件玩家.ultimate_worked == 假;
 		相距距离(所选位置(事件玩家), 全局.CheckpointPosition[事件玩家.Level + 1]) > 全局.RingRadius[0];
 	}
 
@@ -2404,31 +2451,73 @@
 	动作
 	{
 		If(事件玩家.ultimate_worked == 假);
-			根据条件跳过(!(相距距离(所选位置(事件玩家), 全局.CheckpointPosition[事件玩家.Level]) < 全局.RingRadius[1] * 2), 7);
-			开始规则(MessageCall, 无动作);
-			调用子程序(Reset);
-			根据条件跳过(事件玩家.UltimateUsed == (假 || 0), 3);
-			根据条件跳过(相距距离(事件玩家.UltimateUsed, 所选位置(事件玩家)) < 2 * 全局.RingRadius[2], 2);
-			开始规则(MessageCall, 无动作);
-			调用子程序(Reset);
-			跳过(7);
-			根据条件跳过(在重生室中(事件玩家), 6);
-			播放效果(事件玩家, 状态爆炸声音, 颜色(白色), 事件玩家, 100);
-			全局.PioneerLandingPosition = 所选位置(事件玩家);
-			禁用 设置启用技能 1(事件玩家, 事件玩家.Ability1Used);
-			设置启用技能 2(事件玩家, 事件玩家.Ability2Used);
-			设置辅助攻击模式启用(事件玩家, 事件玩家.SecondaryFireUsed);
-			设置启用终极技能(事件玩家, 事件玩家.UltimateUsed);
-			禁用 创建效果(全局.Pioneer, 环, 颜色(黄色), 全局.PioneerLandingPosition, 全局.RingRadius, 可见，位置和半径);
-			禁用 事件玩家.BestScore[0] = 最后创建的实体;
-			禁用 创建效果(全局.Pioneer, 光柱, 颜色(黄色), 全局.PioneerLandingPosition, 全局.RingRadius, 可见，位置和半径);
-			禁用 事件玩家.BestScore[1] = 最后创建的实体;
-			禁用 根据条件跳过(事件玩家.UltimateUsed == (假 || 0), 4);
-			禁用 创建效果(全局.CheckpointPosition, 环, 颜色(亮紫色), 全局.Pioneer.UltimateUsed, 全局.RingRadius, 可见，位置和半径);
-			禁用 事件玩家.BestScore[3] = 最后创建的实体;
-			禁用 创建效果(全局.Pioneer, 光柱, 颜色(亮紫色), 全局.Pioneer.UltimateUsed, 全局.RingRadius, 可见，位置和半径);
-			禁用 事件玩家.BestScore[4] = 最后创建的实体;
-		Else;
+			If(相距距离(所选位置(事件玩家), 全局.CheckpointPosition[事件玩家.Level]) < 全局.RingRadius[1] * 2);
+				开始规则(MessageCall, 无动作);
+				调用子程序(Reset);
+				If(事件玩家.UltimateUsed != 假);
+					If(相距距离(事件玩家.UltimateUsed, 所选位置(事件玩家)) >= 2 * 全局.RingRadius[2]);
+						开始规则(MessageCall, 无动作);
+						调用子程序(Reset);
+					End;
+				End;
+			Else If(在重生室中(事件玩家) == 假);
+				播放效果(事件玩家, 状态爆炸声音, 颜色(白色), 事件玩家, 100);
+				全局.PioneerLandingPosition = 所选位置(事件玩家);
+				设置启用技能 2(事件玩家, 事件玩家.Ability2Used);
+				设置辅助攻击模式启用(事件玩家, 事件玩家.SecondaryFireUsed);
+				设置启用终极技能(事件玩家, 事件玩家.UltimateUsed);
+			End;
+		End;
+	}
+}
+
+规则("闯关者圈内触地")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.Pioneer != 事件玩家;
+		事件玩家.FreeMode == 假;
+		事件玩家.GameComplete == 假;
+		在地面上(事件玩家) == 真;
+		相距距离(所选位置(事件玩家), 全局.CheckpointPosition[事件玩家.Level]) <= 全局.RingRadius[1];
+		相距距离(所选位置(事件玩家), 全局.CheckpointPosition[事件玩家.Level + 1]) > 全局.RingRadius[0];
+	}
+
+	动作
+	{
+		事件玩家.sphere_state = 全局.SpherePosition[事件玩家.Level + 1] ? 假: 真;
+	}
+}
+
+规则("开拓者圈内触地")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家 == 全局.Pioneer;
+		事件玩家.FreeMode == 假;
+		全局.PioneerLandingPosition == 无;
+		全局.PioneerStarted == 真;
+		在地面上(事件玩家) == 真;
+		相距距离(所选位置(事件玩家), 全局.CheckpointPosition[事件玩家.Level]) <= 全局.RingRadius[1];
+	}
+
+	动作
+	{
+		全局.PioneerSpherePosition = 无;
 	}
 }
 
@@ -2540,19 +2629,19 @@
 
 	动作
 	{
-		根据条件跳过(!(全局.RoomAliveHoursLeft == 0 && 比赛时间 == 0), 2);
-		设置目标点描述(所有玩家(所有队伍), 自定义字符串("房间即将重启​"), 可见和字符串);
-		跳过(1);
-		设置目标点描述(所有玩家(所有队伍), 自定义字符串("本局游戏时间还剩：​{0}小时​{1}分钟​", 全局.RoomAliveHoursLeft, 取整(比赛时间 / 60, 下)), 可见和字符串);
+		If(全局.RoomAliveHoursLeft == 0 && 比赛时间 == 0);
+			设置目标点描述(所有玩家(所有队伍), 自定义字符串("房间即将重启​"), 可见和字符串);
+		Else;
+			设置目标点描述(所有玩家(所有队伍), 自定义字符串("本局游戏时间还剩：​{0}小时​{1}分钟​", 全局.RoomAliveHoursLeft, 取整(比赛时间 / 60, 下)), 可见和字符串);
+		End;
 		等待(1, 无视条件);
-		禁用 If(全局.cheat_log[2] == 真);
-		禁用 全局.cheat_log = 空数组;
-		禁用 End;
-		根据条件跳过(全局.CheatRecord == 假, 4);
-		根据条件跳过(数量(全局.cheat_log) < 1, 3);
-		大字体信息(所有玩家(所有队伍), 全局.cheat_log[0]);
-		等待(1, 无视条件);
-		修改全局变量(cheat_log, 根据索引从数组中移除, 0);
+		If (全局.CheatRecord != 假);
+			If(数量(全局.cheat_log) >= 1);
+				大字体信息(所有玩家(所有队伍), 全局.cheat_log[0]);
+				等待(1, 无视条件);
+				修改全局变量(cheat_log, 根据索引从数组中移除, 0);
+			End;
+		End;
 		循环;
 	}
 }
@@ -2571,21 +2660,25 @@
 		While(全局.JumpState[事件玩家.Level] == 自定义字符串("跳跃点"));
 			事件玩家.Level += 1;
 		End;
-		根据条件跳过(全局.Pioneer == 事件玩家, 1);
-		事件玩家.ultimate_log = 空数组;
+		If(全局.Pioneer != 事件玩家);
+			事件玩家.ultimate_log = 空数组;
+		End;
 		事件玩家.ultimate_info = 空数组;
 		调用子程序(ResetBall);
 		设置状态(事件玩家, 无, 定身, 0.250);
 		事件玩家.UltimateUsed = 假;
 		事件玩家.IsReady = 假;
-		根据条件跳过(!(水平速度(事件玩家) >= 6.900), 4);
-		设置辅助攻击模式启用(事件玩家, 假);
-		设置启用技能 1(事件玩家, 假);
-		设置启用技能 2(事件玩家, 假);
-		设置启用终极技能(事件玩家, 假);
-		根据条件跳过(!(事件玩家 == 全局.Pioneer), 2);
-		全局.PioneerStarted = 假;
-		全局.PioneerLandingPosition = 无;
+		事件玩家.sphere_state = 全局.SpherePosition[事件玩家.Level + 1] ? 假: 真;
+		If(水平速度(事件玩家) >= 6.900);
+			设置辅助攻击模式启用(事件玩家, 假);
+			设置启用技能 1(事件玩家, 假);
+			设置启用技能 2(事件玩家, 假);
+			设置启用终极技能(事件玩家, 假);
+		End;
+		If(事件玩家 == 全局.Pioneer);
+			全局.PioneerStarted = 假;
+			全局.PioneerLandingPosition = 无;
+		End;
 		IF(!全局.PioneerModeEnabled && 事件玩家.Level == 0);
             停止追踪玩家变量(事件玩家, ScoreOfThisRound);
             事件玩家.ScoreOfThisRound = 0;
@@ -2597,8 +2690,9 @@
 			传送(事件玩家, 全局.CheckpointPosition[事件玩家.Level]);
 		End;
 		事件玩家.IsReady = 真;
-		根据条件跳过(!(事件玩家 == 全局.Pioneer), 1);
-		全局.PioneerStarted = 真;
+		If(事件玩家 == 全局.Pioneer);
+			全局.PioneerStarted = 真;
+		End;
 		设置技能冷却(事件玩家, 按钮(辅助攻击模式), 0);
 		设置技能冷却(事件玩家, 按钮(技能1), 0);
 		设置技能冷却(事件玩家, 按钮(技能2), 0);
@@ -2651,7 +2745,6 @@
 		设置状态(被攻击方, 无, 消散, 16200);
 		等待(0.032, 无视条件);
 		If(全局.Pioneer == 事件玩家);
-			禁用 根据条件跳过(!(被攻击方 == 全局.Pioneer), 7);
 			If(全局.PioneerLandingPosition != 无);
 				传送(被攻击方, 全局.PioneerLandingPosition);
 			Else;
@@ -2675,7 +2768,6 @@
 		设置朝向(被攻击方, 被攻击方.FacingDirection, 至地图);
 		禁用 调用子程序(ResetBall);
 		被攻击方.IsReady = 真;
-		禁用 根据条件跳过(!(被攻击方 == 全局.Pioneer && 全局.PioneerLandingPosition == 无), 1);
 		If(全局.Pioneer == 事件玩家 && 全局.PioneerLandingPosition == 无);
 			全局.PioneerStarted = 真;
 		End;
@@ -2741,6 +2833,31 @@
 	}
 }
 
+规则("[热键] 开拓者放置小球")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家 == 全局.Pioneer;
+		全局.PioneerLandingPosition == 无;
+		全局.PioneerSpherePosition == 无;
+		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 真;
+		事件玩家.pioneer_mode != 自定义字符串("传送点");
+		相距距离(所选位置(事件玩家), 全局.CheckpointPosition[事件玩家.Level]) > 全局.RingRadius[1];
+	}
+
+	动作
+	{
+		全局.PioneerSpherePosition = 所选位置(事件玩家);
+	}
+}
+
 规则("[热键] 开拓者确认开拓")
 {
 	事件
@@ -2764,13 +2881,13 @@
 			全局.JumpState[事件玩家.Level] = 事件玩家.pioneer_mode == 自定义字符串("传送点");
 			事件玩家.InteractPressState = 0;
 			全局.CheckpointPosition[事件玩家.Level + 1] = 全局.PioneerLandingPosition;
-			禁用 修改全局变量(Ability1State, 添加至数组, 事件玩家.Ability1Used);
-			禁用 修改全局变量(Ability2State, 添加至数组, 事件玩家.Ability2Used);
 			全局.SecondaryFireState[事件玩家.Level] = 事件玩家.SecondaryFireUsed;
 			全局.UltimateState[事件玩家.Level + 1] = 事件玩家.UltimateUsed;
-			修改全局变量(Creator, 添加至数组, 自定义字符串("{0}", 事件玩家));
+			全局.SpherePosition[事件玩家.Level + 1] = 全局.PioneerSpherePosition;
+			全局.Creator[事件玩家.Level] = 自定义字符串("{0}", 事件玩家);
 			全局.PioneerStarted = 假;
 			全局.PioneerLandingPosition = 无;
+			全局.PioneerSpherePosition = 无;
 			全局.Pioneer = 无;
 			小字体信息(所有玩家(所有队伍), 自定义字符串("开拓者已开拓​"));
 			事件玩家.Level += 1;
@@ -2778,6 +2895,7 @@
 		Else;
 			事件玩家.InteractPressState = 0;
 			全局.PioneerLandingPosition = 无;
+			全局.PioneerSpherePosition = 无;
 			调用子程序(Reset);
 			If(事件玩家.ultimate_log == 自定义字符串("已开启"));
 				事件玩家.ultimate_worked = 真;
@@ -2813,6 +2931,7 @@
 		可用按钮(事件玩家, 按钮(辅助攻击模式));
 		事件玩家.InteractPressState = 0;
 		全局.PioneerLandingPosition = 无;
+		全局.PioneerSpherePosition = 无;
 		调用子程序(Reset);
 		If(事件玩家.pioneer_mode == 自定义字符串("超级跳"));
 			事件玩家.ultimate_worked = 真;
@@ -2846,23 +2965,28 @@
 
 	动作
 	{
-		根据条件跳过(!(数量(全局.CheckpointPosition) != 0), 16);
-		等待(0.500, 当为“假”时中止);
-		小字体信息(主机玩家, 自定义字符串("继续长按将清除最后一关​"));
-		等待(1.500, 当为“假”时中止);
-		修改全局变量(CheckpointPosition, 根据索引从数组中移除, 数量(全局.CheckpointPosition) - 1);
-		修改全局变量(Ability1State, 根据索引从数组中移除, 数量(全局.Ability1State) - 1);
-		修改全局变量(Ability2State, 根据索引从数组中移除, 数量(全局.Ability2State) - 1);
-		修改全局变量(SecondaryFireState, 根据索引从数组中移除, 数量(全局.SecondaryFireState) - 1);
-		修改全局变量(UltimateState, 根据索引从数组中移除, 数量(全局.UltimateState) - 1);
-		全局.Pioneer = 最后(全局.Creator);
-		修改全局变量(Creator, 根据索引从数组中移除, 数量(全局.Creator) - 1);
-		全局.PioneerStarted = 假;
-		全局.PioneerLandingPosition = 无;
-		根据条件跳过(!(数量(全局.CheckpointPosition) == 0), 2);
-		小字体信息(所有玩家(所有队伍), 自定义字符串("起点已清除​"));
-		跳过(1);
-		小字体信息(所有玩家(所有队伍), 自定义字符串("最后一关已删除​"));
+		If(数量(全局.CheckpointPosition) != 0);
+			等待(0.500, 当为“假”时中止);
+			小字体信息(主机玩家, 自定义字符串("继续长按将清除最后一关​"));
+			等待(1.500, 当为“假”时中止);
+			修改全局变量(CheckpointPosition, 根据索引从数组中移除, 数量(全局.CheckpointPosition) - 1);
+			修改全局变量(Ability1State, 根据索引从数组中移除, 数量(全局.Ability1State) - 1);
+			修改全局变量(Ability2State, 根据索引从数组中移除, 数量(全局.Ability2State) - 1);
+			修改全局变量(SecondaryFireState, 根据索引从数组中移除, 数量(全局.SecondaryFireState) - 1);
+			修改全局变量(UltimateState, 根据索引从数组中移除, 数量(全局.UltimateState) - 1);
+			修改全局变量(SpherePosition, 根据索引从数组中移除, 数量(全局.SpherePosition) - 1);
+			全局.Pioneer = 最后(全局.Creator);
+			修改全局变量(Creator, 根据索引从数组中移除, 数量(全局.Creator) - 1);
+			全局.PioneerStarted = 假;
+			全局.PioneerLandingPosition = 无;
+			If(数量(全局.CheckpointPosition) == 0);
+				小字体信息(所有玩家(所有队伍), 自定义字符串("起点已清除​"));
+			Else;
+				小字体信息(所有玩家(所有队伍), 自定义字符串("最后一关已删除​"));
+			End;
+		Else;
+			小字体信息(所有玩家(所有队伍), 自定义字符串("最后一关已删除​"));
+		End;
 	}
 }
 
@@ -2912,15 +3036,17 @@
 
 	动作
 	{
-		根据条件跳过(!(事件玩家.Level > 0), 1);
-		事件玩家.Level -= 1;
+		If(事件玩家.Level > 0);
+			事件玩家.Level -= 1;
+		End;
 		While(全局.JumpState[事件玩家.Level] == 自定义字符串("跳跃点"));
 			事件玩家.Level -= 1;
 		End;
-		根据条件跳过(!(事件玩家 == 全局.Pioneer), 3);
-		全局.Pioneer = 无;
-		全局.PioneerLandingPosition = 无;
-		全局.PioneerStarted = 假;
+		If(事件玩家 == 全局.Pioneer);
+			全局.Pioneer = 无;
+			全局.PioneerLandingPosition = 无;
+			全局.PioneerStarted = 假;
+		End;
 		调用子程序(Reset);
 	}
 }
@@ -2946,21 +3072,21 @@
 
 	动作
 	{
-		根据条件跳过(!(全局.DisableContinuousCreation && 事件玩家 == 最后(全局.Creator)), 2);
-		小字体信息(事件玩家, 自定义字符串("请不要连续开拓​"));
-		跳过(11);
-		根据条件跳过(!(数量(全局.CheckpointPosition) == 0), 10);
-		根据条件跳过(!在重生室中(事件玩家), 2);
-		小字体信息(事件玩家, 自定义字符串("请离开重生室​"));
-		跳过(5);
-		根据条件跳过(在地面上(事件玩家), 2);
-		小字体信息(事件玩家, 自定义字符串("请站在地上设置开拓起点​"));
-		跳过(2);
-		修改全局变量(CheckpointPosition, 添加至数组, 所选位置(事件玩家));
-		修改全局变量(UltimateState, 添加至数组, 假);
-		全局.Pioneer = 事件玩家;
-		跳过(1);
-		全局.Pioneer = 事件玩家;
+		If(全局.DisableContinuousCreation && 事件玩家 == 最后(全局.Creator));
+			小字体信息(事件玩家, 自定义字符串("请不要连续开拓​"));
+		Else If(数量(全局.CheckpointPosition) == 0);
+				If(在重生室中(事件玩家));
+					小字体信息(事件玩家, 自定义字符串("请离开重生室​"));
+				Else If(在地面上(事件玩家) == 假);
+					小字体信息(事件玩家, 自定义字符串("请站在地上设置开拓起点​"));
+				Else;
+					修改全局变量(CheckpointPosition, 添加至数组, 所选位置(事件玩家));
+					修改全局变量(UltimateState, 添加至数组, 假);
+					全局.Pioneer = 事件玩家;
+				End;
+		Else;
+			全局.Pioneer = 事件玩家;
+		End;
 		事件玩家.ultimate_worked = 假;
 		事件玩家.ultimate_log = 自定义字符串("已关闭");
 		事件玩家.UltimateUsed = 假;
@@ -3069,8 +3195,11 @@
 				"重新开始       =  互动 + Q\r\n阵亡观战       =  互动 + E\r\n开关隐身       =  任意表情\r\n到上一关       =  互动 + 蹲\r\n自由移动       =  互动 + 近战\r\n{0}",
 				自定义字符串("到下一关       =  蹲 + Q + R\r\n阵亡复位       =  长按Q\r\n切换模式       =  R + 空格")), 左边, 2, 颜色(白色), 颜色(白色), 颜色(黄色), 可见和字符串, 默认可见度);
 			创建HUD文本(已过滤的数组(所有玩家(所有队伍), 按钮被按下(全局.Pioneer, 按钮(互动)) == 真), 自定义字符串(
+				"开拓时非触地状态下按左键放置小球",
+				全局.Pioneer.pioneer_mode), 无, 无, 左边, 3, 颜色(红色), 颜色(白色), 颜色(红色), 可见和字符串, 默认可见度);
+			创建HUD文本(已过滤的数组(所有玩家(所有队伍), 按钮被按下(全局.Pioneer, 按钮(互动)) == 真), 自定义字符串(
 				"超级跳开拓模式下抓钩只能在起点启用\r\n否则出圈以后会被禁用，禁止起跳前腾空\r\n出圈后在起跳前需须保持高速移动（火球）\r\n请保持起点和紫色圈形成两点一线，遇到\r\n坐标错误就是没有紫圈，重新开拓就行\r\nR+跳=切换开拓模式。当前模式：{0}",
-				全局.Pioneer.pioneer_mode), 无, 无, 左边, 3, 颜色(亮紫色), 颜色(白色), 颜色(红色), 可见和字符串, 默认可见度);
+				全局.Pioneer.pioneer_mode), 无, 无, 左边, 4, 颜色(亮紫色), 颜色(白色), 颜色(红色), 可见和字符串, 默认可见度);
 		Else;
 			创建HUD文本(已过滤的数组(所有玩家(所有队伍), 按钮被按下(当前数组元素, 按钮(互动))), 无, 无, 自定义字符串(
 				"重新开始       =  互动 + Q\r\n阵亡观战       =  互动 + E\r\n开关隐身       =  任意表情\r\n到上一关       =  互动 + 蹲\r\n自由移动       =  互动 + 近战\r\n{0}",
@@ -3083,7 +3212,7 @@
 		创建HUD文本(已过滤的数组(所有玩家(所有队伍), 按钮被按下(当前数组元素, 按钮(互动))), 自定义字符串(
 			"超级跳:钩住一个可以让自身加速的位置，在到达紫圈前松钩并保证速度已达最大(火焰效果)，在紫色圈内瞬间起跳。\r\n原理:起跳正确的情况下高速撞击大角度斜面会获得上升动力。\r\nTIPS:紫圈圆心即为最佳起跳位，出圈钩子会被禁用，加速过程中离地会失效。"),
 			无, 无, 顶部, 10, 颜色(天蓝色), 颜色(白色), 颜色(黄色), 可见和字符串, 默认可见度);
-		创建HUD文本(已过滤的数组(所有玩家(所有队伍), 按钮被按下(当前数组元素, 按钮(互动))), 无, 自定义字符串("保存点位教学：b站up:Stan_sin\r\n  BV1da4y1W7uA"), 无, 左边, 4, 颜色(白色), 颜色(白色),
+		创建HUD文本(已过滤的数组(所有玩家(所有队伍), 按钮被按下(当前数组元素, 按钮(互动))), 无, 自定义字符串("保存点位教学：b站up:Stan_sin\r\n  BV1da4y1W7uA"), 无, 左边, 5, 颜色(白色), 颜色(白色),
 			颜色(白色), 可见和字符串, 默认可见度);
 	}
 }
@@ -3605,7 +3734,7 @@
 	}
 }
 
-规则("规则 115")
+规则("变成球")
 {
 	事件
 	{
@@ -3629,21 +3758,6 @@
 			禁用按钮(事件玩家, 按钮(技能1));
 		End;
 		禁用 小字体信息(事件玩家, 自定义字符串("ResetBallEnd"));
-	}
-}
-
-禁用 规则("规则 111")
-{
-	事件
-	{
-		持续 - 每名玩家;
-		双方;
-		全部;
-	}
-
-	动作
-	{
-		创建HUD文本(事件玩家, 自定义字符串("正在使用技能1：{0}", 正在使用技能 1(事件玩家)), 无, 无, 左边, 0, 颜色(白色), 颜色(白色), 颜色(白色), 可见和字符串, 默认可见度);
 	}
 }
 
@@ -3727,8 +3841,9 @@
 			修改全局变量(Pioneer, 根据值从数组中移除, 事件玩家);
 			小字体信息(事件玩家, 自定义字符串("自由移动​"));
 			调用子程序(SetAbility);
-			根据条件跳过(!(事件玩家.ScoreOfThisRound != 0), 1);
-			停止追踪玩家变量(事件玩家, ScoreOfThisRound);
+			If(事件玩家.ScoreOfThisRound != 0);
+				停止追踪玩家变量(事件玩家, ScoreOfThisRound);
+			End;
 		Else;
 			小字体信息(事件玩家, 自定义字符串("关闭自由移动​"));
 			调用子程序(Reset);
