@@ -1,0 +1,4676 @@
+设置
+{
+	主程序
+	{
+		描述: "お狐様の導きを！"
+		模式名称: "kiriko parkour"
+	}
+
+	大厅
+	{
+		地图轮换: 暂停轮换
+		比赛结束后转换队伍: 否
+		比赛语音聊天: 启用
+		玩家上限 队伍1: 8
+		玩家上限 队伍2: 0
+		观战者人数上限: 12
+		返回大厅: 从不
+		队列中的玩家可以加入: 是
+	}
+
+	模式
+	{
+		勇夺锦旗
+		{
+			得分后旗帜刷新时间: 20.0
+			旗帜归还时间: 5.0
+			旗帜拾取时间: 5.0
+			旗帜掉落后锁定时间: 10.0
+			旗手技能: 无限制
+			比赛时长（分）: 15
+			获胜得分: 9
+
+			启用地图
+			{
+			}
+		}
+
+		团队死斗
+		{
+			主动复生: 关闭
+			比赛时长（分钟）: 15
+			获胜得分: 200
+
+			启用地图
+			{
+				铁坂
+			}
+		}
+
+		突击模式
+		{
+			启用地图
+			{
+			}
+		}
+
+		综合
+		{
+			允许切换英雄: 关闭
+			急救包刷新: 禁用
+			敌方生命条: 关闭
+			消灭提示: 关闭
+			消灭镜头: 关闭
+			游戏模式开始: 即时
+			英雄限制: 关闭
+			随机英雄复生: 开启
+		}
+	}
+
+	英雄
+	{
+		综合
+		{
+			技能冷却时间: 0%
+			无需装弹: 开启
+			重生时终极技能充能完毕: 开启
+
+			半藏
+			{
+				跃: 关闭
+			}
+
+			美
+			{
+				冰墙: 关闭
+			}
+
+			启用英雄
+			{
+				半藏
+			}
+		}
+	}
+
+	地图工坊
+	{
+		仅通关后可跳关／退关需开启跳关／退关: 关闭
+		新建关卡半径: 1.600
+		机器人浮空: 开启
+		编辑模式: 关闭
+	}
+
+	扩展
+	{
+		增益状态效果
+		爆炸声音
+		播放更多效果
+		生成更多机器人
+	}
+}
+
+变量
+{
+	全局:
+		0: EditMode
+		1: NewCheckpointDefaultRadius
+		2: NewCheckpointDefaultCtrl
+		3: NewCheckpointDefaultMaxRefresh
+		4: BotGravity
+		5: Error
+		6: TeleportAnimation
+		7: Cheat
+		8: FinishedCheat
+		9: Sparkle
+		10: FinishedDisplaySparkle
+		11: Aura
+		12: FinishedDisplayAura
+		13: Dome
+		14: FinishedDisplayDome
+		15: Hexagram
+		16: FinishedDisplayHexagram
+		17: Checkpoint
+		18: ChooseOrbPosition
+		19: ChooseSpherePosition
+		20: ChooseCloudPosition
+		21: CurrentChooseOrb
+		22: CurrentChooseSphere
+		23: CurrentChooseCloud
+		24: TempArray
+		25: I
+		26: Once
+		27: NumberOfUsedEntity
+		28: Vips
+		29: CircleLoop
+		30: Chase
+		31: PlayersRecord
+		32: PlayersData
+		33: Top5
+		34: TipHudSpaceHolder
+		35: OnGround
+		36: CreatorAndCode
+		37: QRCode
+		38: Config
+		39: Top5Color
+		40: WorldTexts
+		41: BigMessages
+		42: SmallMessages
+		43: Tips
+		44: Debug
+		45: II
+		46: ShowHotKeyPlayers
+		47: EmoteSyncPlayers
+		48: PreviewPosition
+		49: CheckpointBPosition
+		50: TempVar
+        51: DefaultHero
+		61: CameraPos
+		62: MenuPos
+		63: HeroChoosed
+        64: DefaultNum
+
+	玩家:
+		0: editMode
+		1: checkpoint
+		2: third
+		3: freeMode
+		4: spectatorMode
+		5: cheat
+		6: time
+		7: mistake
+		8: sphereEffects
+		9: cloudEffects
+		10: objectivePosition
+		11: displayedCheckpoint
+		12: jump
+		13: bhop
+		14: bestRecord
+		15: playerData
+		16: tempCurrentOrb
+		17: chooseHero
+		18: playerEffect
+		19: choosePlayerEffect
+		20: isSetAbilities
+		21: voice
+		22: bodySize
+		23: barrierSize
+		24: projectile
+		25: playerColor
+		26: playerNickname
+		27: currentWorldText
+		28: showQRCode
+		29: currentBigMessage
+		30: currentSmallMessage
+		31: i
+		32: dataIndex
+		33: tp
+		34: leaveOriginalCheckpoint
+		35: finished
+		36: checkpointA
+		37: checkpointB
+		38: currentCheckpoint
+		39: currentCloud
+		40: currentSphere
+		41: currentOrb
+		42: orbEffects
+		43: orbIcons
+		44: botIcons
+		45: nearestOrb
+		46: botEffects
+		47: targetBot
+		48: movementCollision
+		49: resurrectTime
+		50: resurrectNumber
+		51: numberOfNeedResurrect
+		52: ability2
+		53: killTargetBot
+		54: playerTittle
+        55: fakeq
+		60: O
+		61: TY
+		62: J
+}
+
+子程序
+{
+	0: CreateNewEffect
+	1: EditChoosedEffect
+	2: CreatePlayerHUDAndEffects
+	3: InitializePlayerVariables
+	4: CreatePlayerTargetBot
+	5: SetCurrentAbilities
+	6: DisplayCurrentAbilityMsgs
+	7: CreateCurrentEffects
+	8: GetCurrentCheckpoint
+	9: EditPlayerData
+	10: TempSavePlayerData
+	11: CreateGlobalHUD
+	12: TeleportCurrentBot
+	13: CreateCurrentWorldText
+	14: DisplayCurrentCustomBigMsgs
+	15: DisplayCurrentCustomSmallMsgs
+	16: InitializeGlobalVariables
+	17: TeleportToCurrentCheckoint
+	18: ValidationPlayerData
+	19: ClearRedundantData
+	20: PlayDestroyMapEffect
+	21: CancelAbilityAndMomentum
+	22: EnableAllAbilities
+	23: ContinueTiming
+	24: ErrorWarningMessage
+	25: TeleportBotToRefreshPosition
+	26: SkipOrBackCheckpoint
+	27: ChooseCheckpoint
+	28: KillOrResurrectBot
+}
+
+规则("数据")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+    动作
+    {
+        全局.Checkpoint = 数组(数组(矢量(11.891, 18.557, -28.309), 1.600, 假, 数组(假, 假, 真), 假, 假, 数组(), 数组(), 数组()), 数组(矢量(11.719, 18.591, -33.901),
+			1.600, 假, 数组(假, 假, 真), 假, 假, 数组(), 数组(), 数组()), 数组(矢量(0.255, 8.949, -47.362), 1.600, 假, 数组(假, 假, 真), 假, 真, 数组(), 数组(), 数组()),
+			数组(矢量(12.870, 20.018, -46.599), 1.600, 假, 数组(假, 假, 真), 假, 假, 数组(), 数组(), 数组()), 数组(矢量(4.859, 19.162, -51.970), 1.600, 假, 数组(假,
+			假, 真), 假, 真, 数组(), 数组(), 数组()), 数组(矢量(-37.527, 21.152, -44.813), 1.600, 假, 数组(假, 假, 真), 假, 假, 数组(数组(矢量(-28.086, 11.916,
+			-38.313), 矢量(-10.500, 21.995, -23.225), 假, 真)), 数组(), 数组()), 数组(矢量(-4.998, 8.582, -23.917), 1.600, 假, 数组(假, 假, 真), 假, 假, 数组(),
+			数组(), 数组()), 数组(矢量(-9.854, 8.954, -12.867), 1.600, 假, 数组(假, 假, 真), 假, 假, 数组(数组(矢量(-0.312, 10.151, -11.543), 矢量(-6.453, 16.273,
+			4.930), 假, 真)), 数组(), 数组()), 数组(矢量(-12.759, 5.884, 2.401), 1.600, 假, 数组(假, 假, 真), 假, 假, 数组(), 数组(), 数组()), 数组(矢量(-26.880, 8,
+			10.070), 1.600, 假, 数组(假, 假, 真), 假, 假, 数组(), 数组(), 数组()), 数组(矢量(-33.882, 10.790, 4.055), 1.600, 假, 数组(假, 假, 真), 假, 假, 数组(),
+			数组(), 数组()), 数组(矢量(-20.287, 10.010, -5.181), 1.600, 假, 数组(假, 假, 真), 假, 假, 数组(), 数组(), 数组()), 数组(矢量(-29.779, 6.567, -9.312),
+			1.600, 假, 数组(矢量(-41.646, 13.975, -24.708), 假, 真), 假, 假, 数组(), 数组(), 数组()), 数组(矢量(-40.328, 11.091, -12.151), 1.600, 假, 数组(假, 假,
+			真), 假, 假, 数组(), 数组(), 数组()), 数组(矢量(-49.338, 13, -25.915), 1.600, 假, 数组(假, 假, 真), 假, 真, 数组(), 数组(), 数组()), 数组(矢量(-6.108, 5.840,
+			15.880), 1.600, 假, 数组(假, 假, 真), 假, 假, 数组(数组(矢量(-5.057, 9.482, 22.699), 假, 假, 真)), 数组(), 数组()), 数组(矢量(-10.914, 10.483, 23.141),
+			1.600, 假, 数组(假, 假, 真), 假, 假, 数组(), 数组(), 数组()), 数组(矢量(-35.457, 9.532, 24.386), 1.600, 假, 数组(假, 假, 真), 假, 假, 数组(数组(矢量(-34.639,
+			8.381, 27.414), 矢量(-53.998, 13.313, 35.896), 假, 真)), 数组(), 数组()), 数组(矢量(-53.195, 16.137, 31.669), 1.600, 假, 数组(假, 假, 真), 假, 假,
+			数组(), 数组(), 数组()), 数组(矢量(-45.923, 16.146, 25.740), 1.600, 假, 数组(假, 假, 真), 假, 假, 数组(数组(矢量(-46.843, 16.217, 19.729), 矢量(-42.937,
+			13, 0.916), 假, 真)), 数组(), 数组()), 数组(矢量(-43.006, 13, -4.023), 1.600, 假, 数组(假, 假, 真), 假, 真, 数组(), 数组(), 数组()), 数组(矢量(-9.994,
+			9.014, -13.854), 1.600, 真, 数组(假, 假, 真), 假, 假, 数组(), 数组(), 数组()), 数组(矢量(-10.305, 10.192, -41.027), 1.600, 真, 数组(假, 假, 真), 假, 假,
+			数组(), 数组(), 数组()), 数组(矢量(-40.082, 11, -40.873), 1.600, 真, 数组(假, 假, 真), 假, 假, 数组(), 数组(), 数组()), 数组(矢量(-37.201, 19.219,
+			-29.440), 1.600, 真, 数组(假, 假, 真), 假, 假, 数组(数组(矢量(-41.582, 14.559, -22.198), 矢量(-28, 20.292, -4.676), 假, 真)), 数组(), 数组()), 数组(矢量(
+			-17.588, 10, -10.732), 1.600, 真, 数组(假, 假, 真), 假, 假, 数组(), 数组(), 数组()), 数组(矢量(-43.029, 13, 2.028), 1.600, 真, 数组(假, 假, 真), 假, 假,
+			数组(), 数组(), 数组()), 数组(矢量(-22.266, 10.808, 13.839), 1.600, 真, 数组(假, 假, 真), 假, 假, 数组(数组(矢量(-17.606, 9.550, 4.775), 矢量(-19.249,
+			12.981, -18.479), 假, 真)), 数组(), 数组()), 数组(矢量(-5.811, 6, -11.873), 1.600, 假, 数组(假, 假, 真), 假, 假, 数组(数组(矢量(-6.104, 13.665,
+			-10.843), 矢量(-16.327, 19.392, -34.675), 假, 真), 数组(矢量(-16.026, 16.094, -31.682), 矢量(-41.373, 18.229, -42.466), 假, 真), 数组(矢量(
+			-38.925, 11.327, -40.353), 矢量(-47.593, 22.883, -15.578), 假, 真)), 数组(), 数组()), 数组(矢量(-43.548, 11, -14.207), 1.600, 真, 数组(假, 假,
+			真), 假, 假, 数组(数组(矢量(-18.946, 10.728, -11.630), 矢量(-29.053, 16.609, 18.651), 假, 真), 数组(矢量(-27.181, 9.084, 16.283), 矢量(-33.917,
+			19.242, 36.540), 假, 真)), 数组(), 数组()), 数组(矢量(-32.800, 15.964, 34.301), 1.600, 假, 数组(假, 假, 真), 假, 真, 数组(), 数组(), 数组()), 数组(矢量(
+			23.781, 13.053, 92.145), 1.600, 假, 数组(假, 假, 真), 假, 假, 数组(), 数组(), 数组()));
+    }
+}
+
+规则("作者")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+        全局.DefaultHero = 数量(全部英雄) > 32 ? 全部英雄[33] : 全部英雄[3];
+		"字符串 填写作者"
+		全局.CreatorAndCode[0] = 自定义字符串("kirikoの旦那さん");
+		"字符串 填写代码"
+		全局.CreatorAndCode[1] = 自定义字符串("TFR2H");
+		"字符串 填写攻略链接或关键字  \n　　　 如有二维码无需填写"
+		全局.CreatorAndCode[2] = 自定义字符串("");
+		"其它信息   \n无需更改, 编辑模式显示"
+		全局.CreatorAndCode[3] = 自定义字符串("做图交流群：232166145\n编辑器代码：Q4466\n上版代码：9NR3E\n炫彩代码：BJKKJ\n更新日期：4.15");
+	}
+}
+
+规则("二维码")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		"字符串 填写教程二维码"
+		全局.QRCode[0] = 自定义字符串("");
+		全局.QRCode[1] = 自定义字符串("");
+		全局.QRCode[2] = 自定义字符串("");
+		全局.QRCode[3] = 自定义字符串("");
+		全局.QRCode[4] = 自定义字符串("");
+		全局.QRCode[5] = 自定义字符串("");
+		全局.QRCode[6] = 自定义字符串("");
+		全局.QRCode[7] = 自定义字符串("");
+		全局.QRCode[8] = 自定义字符串("");
+		全局.QRCode[9] = 自定义字符串("");
+		"字符串 填写教程作者"
+		全局.QRCode[10] = 自定义字符串("");
+		"矢量 录入开始镜头"
+		全局.QRCode[11] = 矢量(0, 998, 0);
+		"矢量 录入结束镜头"
+		全局.QRCode[12] = 矢量(0, 999, 0);
+		"二维码颜色"
+		全局.QRCode[13] = 颜色(黑色);
+	}
+}
+
+规则("HUD指引文本")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		"此条规则为HUD文本"
+		禁用 继续;
+		"索引 填写关卡;\n	字符串 填写文本"
+		全局.Tips[0] = 自定义字符串("我が一族は代々\n　　　伝統という道に従うことで");
+		全局.Tips[1] = 自定义字符串("この町を守ってきた");
+		全局.Tips[2] = 自定义字符串("私？");
+		全局.Tips[3] = 自定义字符串("私は自分の道を行くんだ");
+		全局.Tips[4] = 自定义字符串("古きも…");
+		全局.Tips[5] = 自定义字符串("新しきも駆使する");
+		全局.Tips[6] = 自定义字符串("お狐様  みんなを導いて！");
+		全局.Tips[8] = 自定义字符串("私はいつでもブレードを\n　　　持って走ってるけど");
+		全局.Tips[11] = 自定义字符串("島田家の名が泣くね");
+		全局.Tips[13] = 自定义字符串("跪け！");
+		全局.Tips[14] = 自定义字符串("回復する");
+		全局.Tips[16] = 自定义字符串("お礼は後でね");
+		全局.Tips[17] = 自定义字符串("お狐様の導きを！");
+		全局.Tips[18] = 自定义字符串("門は開かれた  狩りが始まるよ！");
+		全局.Tips[20] = 自定义字符串("すべてのルールを守っていたら\n　　　世界は変わらない");
+	}
+}
+
+规则("地图指引文本")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+	   全局.HeroChoosed == 真;
+	}
+
+	动作
+	{
+		"此条规则为地图文本"
+		禁用 继续;
+		"索引 填写关卡; \n[0] 填写文本;  \n[1] 填写位置 (如不填写, 则在下一关点位处显示);  \n[2] 填写文字大小; \n[3] 填写文字颜色"
+		全局.Config[23] = 自定义字符串("{0} is refreshed！", 技能图标字符串(全局.DefaultHero, 按钮(技能1)));
+		全局.WorldTexts[0] = 数组(自定义字符串(""), 矢量(0, 0, 0), 2, 颜色(蓝色));
+		全局.WorldTexts[3] = 数组(自定义字符串("pick up sphere to activate {0}“Swift Step”", 技能图标字符串(全局.DefaultHero, 按钮(技能1))), 矢量(-30, 11, -38), 2, 颜色(蓝色));
+		全局.WorldTexts[5] = 数组(自定义字符串("pick up sphere to activate {0}“Swift Step”", 技能图标字符串(全局.DefaultHero, 按钮(技能1))), 矢量(-2.24, 8, -11.5), 2, 颜色(蓝色));
+		全局.WorldTexts[17] = 数组(自定义字符串("ultimate({0}kitsune rush) is ready", 技能图标字符串(全局.DefaultHero, 按钮(终极技能))), 矢量(-7.72, 8, -23.26), 2, 颜色(蓝色));
+	}
+}
+
+规则("大字消息文本")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		"此条规则为大字消息"
+		禁用 继续;
+		"索引 填写关卡;    \n字符串 填写文本 (一关可以多个文本) "
+		全局.BigMessages[0] = 数组(自定义字符串(""), 自定义字符串(""));
+	}
+}
+
+规则("小字消息文本")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		"此条规则为小字消息"
+		禁用 继续;
+		"索引 填写关卡;    \n字符串 填写文本 (一关可以多个文本) "
+		全局.SmallMessages[0] = 数组(自定义字符串(""), 自定义字符串(""));
+	}
+}
+
+规则("头衔(勿删除, 自行添加)")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		"此条规则为自定义头衔"
+		禁用 继续;
+		全局.Vips = 数组(数组(自定义字符串("朝如青丝暮成雪"), 自定义字符串("{0} 朝朝暮暮", 技能图标字符串(英雄(天使), 按钮(技能1))), 颜色(白色)), 数组(自定义字符串("逢源"), 自定义字符串(""), 颜色(白色)), 数组(
+			自定义字符串("大鹏小菜"), 自定义字符串("月月鸟"), 颜色(白色)), 数组(自定义字符串("冰丶柠檬"), 自定义字符串("{0} 冰柠萌", 技能图标字符串(英雄(安娜), 按钮(技能1))), 颜色(白色)), 数组(自定义字符串(
+			"Miyala"), 自定义字符串(""), 颜色(白色)), 数组(自定义字符串("金血"), 自定义字符串("金血血血血"), 颜色(白色)), 数组(自定义字符串("哩喵叽"), 自定义字符串("哩喵酱"), 颜色(白色)), 数组(自定义字符串(
+			"何故"), 自定义字符串("川分远岳秋光静"), 颜色(白色)), 数组(自定义字符串("无界"), 自定义字符串(""), 颜色(白色)), 数组(自定义字符串("有人"), 自定义字符串("有人妹妹"), 颜色(白色)), 数组(自定义字符串(
+			"日出时让恋爱终结"), 自定义字符串("恋爱时让日出终结"), 颜色(白色)), 数组(自定义字符串("寄几丸"), 自定义字符串("丸子最强！"), 颜色(白色)), 数组(自定义字符串("你要來一隻兔子嗎"), 自定义字符串("{0} 兔子跳",
+			技能图标字符串(英雄(D.Va), 按钮(终极技能))), 颜色(白色)), 数组(自定义字符串("Liya"), 自定义字符串("emt"), 颜色(白色)), 数组(自定义字符串("云里月长新"), 自定义字符串("{0} 小保必歪真君",
+			技能图标字符串(英雄(源氏), 按钮(终极技能))), 颜色(白色)), 数组(自定义字符串("YuuGumo"), 自定义字符串("Uru"), 颜色(玫红)), 数组(自定义字符串("VoxAkuma"), 自定义字符串(""), 颜色(玫红)),
+			数组(自定义字符串("timiGAME"), 自定义字符串("奶音吹风机"), 颜色(白色)), 数组(自定义字符串("FATE"), 自定义字符串("命运sensei"), 颜色(白色)), 数组(自定义字符串("苏苏"), 自定义字符串("苏宝"),
+			颜色(白色)), 数组(自定义字符串("予以"), 自定义字符串("椅子"), 颜色(白色)), 数组(自定义字符串("黑家老龙"), 自定义字符串("B站绝活部Up"), 颜色(白色)), 数组(自定义字符串("热心群众吱吱"), 自定义字符串(
+			"匿名网友"), 自定义颜色(127, 255, 0, 255)), 数组(自定义字符串("NOTITLE"), 自定义字符串("凛酱"), 颜色(白色)), 数组(自定义字符串("不在"), 自定义字符串("鹅鹅"), 颜色(白色)), 数组(
+			自定义字符串("雛鶴"), 自定义字符串("秋秋"), 颜色(玫红)), 数组(自定义字符串("猫猫布朗尼"), 自定义字符串("cat"), 颜色(白色)), 数组(自定义字符串("我要困告惹"), 自定义字符串("好运莓崽"), 自定义颜色(255,
+			179, 167, 255)), 数组(自定义字符串("喵帕斯"), 自定义字符串("短笛魔王"), 颜色(白色)), 数组(自定义字符串("才敢说沉溺"), 自定义字符串(" "), 颜色(白色)), 数组(自定义字符串("卯月夕颜"),
+			自定义字符串("月光照在你的脸"), 颜色(黄色)), 数组(自定义字符串("甜糯糯米鸡"), 自定义字符串("诺米团子"), 颜色(白色)), 数组(自定义字符串("䨻亭亭一如你风致"), 自定义字符串("芝士炸虾堡"), 颜色(白色)), 数组(
+			自定义字符串("跳舞的虾饺"), 自定义字符串("睡针瞄准金"), 颜色(天蓝色)), 数组(自定义字符串("LucidDream"), 自定义字符串("睡眠质量金"), 颜色(玫红)), 数组(自定义字符串("䨻大抵知心有庭树"), 自定义字符串(
+			"鲱鱼罐头堡"), 颜色(白色)), 数组(自定义字符串("老公祭天准度无边"), 自定义字符串("·露露子·"), 颜色(白色)), 数组(自定义字符串("烤糊了"), 自定义字符串("牛油果！"), 颜色(白色)), 数组(自定义字符串(
+			"MadpartyXW"), 自定义字符串("π"), 颜色(白色)), 数组(自定义字符串("鶸鶸"), 自定义字符串("一只鹌鹑"), 颜色(白色)), 数组(自定义字符串("转基因乌龟"), 自定义字符串("香酥脆脆火腿肠"), 颜色(白色)),
+			数组(自定义字符串("我的小毛驴不见了"), 自定义字符串("是塔塔不是灯灯"), 颜色(白色)), 数组(自定义字符串("like"), 自定义字符串("路西法"), 颜色(白色)), 数组(自定义字符串("某张或桌子"), 自定义字符串("桌桌"),
+			颜色(白色)), 数组(自定义字符串("HammondLord"), 自定义字符串("{0} 2812345", 技能图标字符串(英雄(破坏球), 按钮(终极技能))), 颜色(白色)));
+		"[0] 填写玩家昵称; \n[1] 填写显示文字, 如不填写, 默认为玩家昵称; \n[2] 填写文字颜色, 白色为随机颜色 "
+		全局.Vips[数量(全局.Vips)] = 数组(自定义字符串(""), 自定义字符串(""), 颜色(白色));
+		全局.Vips[数量(全局.Vips)] = 数组(自定义字符串(""), 自定义字符串(""), 颜色(白色));
+		全局.Vips[数量(全局.Vips)] = 数组(自定义字符串(""), 自定义字符串(""), 颜色(白色));
+	}
+}
+
+规则("个性化配置(切勿删除)")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		"此条规则为个性化配置"
+		禁用 继续;
+		"本关卡光环颜色"
+		全局.Config[0] = 自定义颜色(34, 162, 192, 255);
+		"机器人图标颜色(可蹲)"
+		全局.Config[1] = 颜色(蓝色);
+		"下关文本"
+		全局.Config[2] = 自定义字符串("Come to Me!");
+		"下关文本大小"
+		全局.Config[3] = 1.600;
+		"下关文本颜色"
+		全局.Config[4] = 颜色(白色);
+		"下关图标颜色"
+		全局.Config[5] = 颜色(灰绿色);
+		"下关效果颜色"
+		全局.Config[6] = 自定义颜色(167, 168, 189, 255);
+		"下关光环颜色"
+		全局.Config[7] = 自定义颜色(167, 168, 189, 255);
+		"下关点位效果: 0 = 光柱; 1 = 火花; 2 = 云; 3 = 有害光环"
+		全局.Config[8] = 1;
+		"传送关效果颜色"
+		全局.Config[9] = 颜色(橙色);
+		"传送关光环颜色"
+		全局.Config[10] = 颜色(红色);
+		"机器人名称文本"
+		全局.Config[11] = 自定义字符串("'s mercy");
+		"作者、代码文本颜色"
+		全局.Config[12] = 自定义颜色(251, 242, 227, 180);
+		"关卡进度文本"
+		全局.Config[13] = 自定义字符串("level progress");
+		"关卡进度颜色"
+		全局.Config[14] = 颜色(白色);
+		"自由行动文本"
+		全局.Config[15] = 自定义字符串("Movement Restrictions Lifted");
+		"进入观战文本"
+		全局.Config[16] = 自定义字符串("spectator Mode");
+		"禁蹲提示文本"
+		全局.Config[17] = 自定义字符串("{0}本关不可以蹲哦", 图标字符串(拒绝));
+		"可蹲提示文本"
+		全局.Config[18] = 自定义字符串("お狐様の導きを！");
+		"无机器人提示文本"
+		全局.Config[19] = 自定义字符串("没有天使姐姐呀＞_＜");
+		"提示捡球文本 \n不填写则显示: \n本关有 {} 个球要捡呀 "
+		全局.Config[20] = 自定义字符串("");
+		"小球已拾取文本"
+		全局.Config[21] = 自定义字符串("sphere has been picked up.");
+		"未捡球进点文本"
+		全局.Config[22] = 自定义字符串("sphere hasn't been picked up.");
+		"守护天使刷新文本"
+		全局.Config[23] = 自定义字符串("{0} is refreshed！", 技能图标字符串(全局.DefaultHero, 按钮(技能1)));
+		"Top5文本\n不填写则显示: \nToday`s Top {}"
+		全局.Config[24] = 自定义字符串("");
+		"Top5文本颜色"
+		全局.Config[25] = 颜色(绿色);
+		"其它通关者文本"
+		全局.Config[26] = 自定义字符串("HighLights");
+		"其它通关者文本颜色"
+		全局.Config[27] = 颜色(白色);
+		"其它通关者排名颜色"
+		全局.Config[28] = 自定义颜色(158, 255, 187, 255);
+		"无限次技能提示文本"
+		全局.Config[29] = 自定义字符串("{0} 已设置为无限次！", 技能图标字符串(全局.DefaultHero, 按钮(技能1)));
+		"单次技能提示文本"
+		全局.Config[30] = 自定义字符串("{0} 已设置为单次！", 技能图标字符串(全局.DefaultHero, 按钮(技能1)));
+		"小跳获取文本"
+		全局.Config[31] = 自定义字符串("你有小跳了！");
+		"复活成功提示文本"
+		全局.Config[32] = 自定义字符串("你成功复活目标啦");
+		"未复活天使进点文本"
+		全局.Config[33] = 自定义字符串("还有天使没复活呢喂！");
+		"障碍球颜色"
+		全局.Config[40] = 颜色(红色);
+		"弹力云颜色"
+		全局.Config[41] = 颜色(蓝色);
+		"小球颜色(加号)"
+		全局.Config[42] = 颜色(红色);
+		"小球图标颜色(加号)"
+		全局.Config[43] = 颜色(黄色);
+		"小球颜色(刷新)"
+		全局.Config[44] = 颜色(亮紫色);
+		"小球图标颜色(刷新)"
+		全局.Config[45] = 颜色(青绿色);
+		"机器人传送点图标颜色"
+		全局.Config[46] = 颜色(青绿色);
+		"机器人传送点效果颜色"
+		全局.Config[47] = 颜色(青绿色);
+		"小球图标颜色(刷新, 需要复活)"
+		全局.Config[48] = 颜色(红色);
+		"机器人传送点图标颜色(需要复活)"
+		全局.Config[49] = 颜色(红色);
+		"机器人传送点效果颜色(需要复活)"
+		全局.Config[50] = 颜色(红色);
+		"机器人默认位置"
+		全局.Config[60] = 矢量(30.35, 13.20, 92.12);
+		"穹顶个性化配置: [0] 颜色; [1] 位置; [2] 半径"
+		全局.Config[61] = 数组(颜色(紫色), (最近的可行走位置(矢量(500, -500, 500)) + 最近的可行走位置(矢量(-500, -500, -500))) / 2, 10000);
+		"六芒星个性化配置: [0] 颜色; [1] 位置; [2] 半径"
+		全局.Config[62] = 数组(颜色(紫色), (最近的可行走位置(矢量(500, -500, 500)) + 最近的可行走位置(矢量(-500, -500, -500))) / 2 + 矢量(0, 100, 0), 45);
+	}
+}
+
+规则("选择界面初始化")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		全局.CameraPos = 矢量(2.68, 32.43, 4.19);
+		全局.MenuPos = 矢量(7.26, 32.41, -2.83);
+		全局.HeroChoosed = 假;
+		全局.DefaultNum = 34;
+		创建地图文本(全局.HeroChoosed?无:所有玩家(所有队伍), 自定义字符串("owner needs to change default hero to kiriko, otherwise the code can't work well"), 全局.MenuPos + 上, 1.400, 不要截取, 可见，位置和字符串,
+			颜色(白色), 默认可见度);
+		创建地图文本(全局.HeroChoosed?无:所有玩家(所有队伍), 自定义字符串("「 W / S 」switch hero,「 Space 」confirm"), 全局.MenuPos + 上 * 0.5, 1.400, 不要截取, 可见，位置和字符串,
+			颜色(白色), 默认可见度);
+		创建地图文本(全局.HeroChoosed?无:所有玩家(所有队伍), 英雄图标字符串(全部英雄[全局.DefaultNum]), 全局.MenuPos + 下 * (0 / 1.500), 2, 不要截取,
+			可见，位置和字符串, 颜色(白色), 默认可见度);
+		创建地图文本(全局.HeroChoosed?无:所有玩家(所有队伍), 字符串("{0} {1} {2}", 字符串("英雄"), 全局.DefaultNum + 1, 全部英雄[全局.DefaultNum]), 全局.MenuPos + 下 * (1 / 1.500), 2, 不要截取,
+			可见，位置和字符串, 颜色(白色), 默认可见度);
+	}
+}
+
+规则("强制玩家选择难度")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.HeroChoosed == 假;
+	}
+
+	动作
+	{
+		设置移动速度(事件玩家, 0);
+		大字体信息(事件玩家, 自定义字符串("Welcome to kiriko parkour！"));
+		开始镜头(事件玩家, 全局.CameraPos, 全局.MenuPos, 2);
+	}
+}
+
+规则("选择难度操作")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.HeroChoosed == 假;
+		(Z方向分量(阈值(事件玩家)) != 0 || 按钮被按下(事件玩家, 按钮(跳跃))) == 真;
+		事件玩家 == 主机玩家;
+	}
+
+	动作
+	{
+		If(Z方向分量(阈值(事件玩家)) > 0);
+			全局.DefaultNum += 全局.DefaultNum >= 数量(全部英雄) - 1 ? 1 - 数量(全部英雄) : 1;
+		Else If(Z方向分量(阈值(事件玩家)) < 0);
+			全局.DefaultNum -= 全局.DefaultNum <= 0 ? 1 - 数量(全部英雄) : 1;
+		Else If(按钮被按下(事件玩家, 按钮(跳跃)));
+			全局.DefaultHero = 全部英雄[全局.DefaultNum];
+			全局.CreatorAndCode[0] = 自定义字符串("{0} kirikoの旦那さん", 技能图标字符串(全局.DefaultHero, 按钮(终极技能)));
+			全局.Vips[数量(全局.Vips)] = 数组(自定义字符串("Exit"), 自定义字符串("{0} Exit", 技能图标字符串(全局.DefaultHero, 按钮(终极技能))), 颜色(白色));
+			If(自定义字符串("{0}", 事件玩家) == 自定义字符串("Exit"));
+				事件玩家.playerNickname = 无;
+				调用子程序(InitializePlayerVariables);
+			End;
+			全局.HeroChoosed = 真;
+			设置移动速度(事件玩家, 100);
+			停止镜头(所有玩家(所有队伍));
+			开始强制玩家选择英雄(已过滤的数组(所有玩家(所有队伍), 是否是机器人(当前数组元素) == 假), 全局.DefaultHero);
+		End;
+	}
+}
+
+规则("全局初始化")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		调用子程序(InitializeGlobalVariables);
+		关闭游戏预设通告模式;
+		关闭游戏预设计分模式;
+		关闭游戏预设音乐模式;
+		关闭游戏预设完成条件;
+		If(!全局.Debug);
+			禁用查看器录制;
+		End;
+		// 调用子程序(CreateGlobalHUD);
+		"当前模式不是突击模式，设置比赛时间"
+		If(当前游戏模式 != 游戏模式(突击模式));
+			设置比赛时间(1);
+		End;
+		比赛时间暂停;
+	}
+}
+
+规则("全局初始化")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+	   全局.HeroChoosed == 真;
+	}
+
+	动作
+	{
+		
+		调用子程序(CreateGlobalHUD);
+	}
+}
+
+规则("玩家初始化")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		已重生(事件玩家) == 真;
+		是否是机器人(事件玩家) == 假;
+		全局.HeroChoosed == 真;
+	}
+
+	动作
+	{
+		隐藏游戏模式地图UI(事件玩家);
+		隐藏姓名板(所有玩家(所有队伍), 所有玩家(所有队伍));
+		对所有玩家启用死亡回放(事件玩家);
+		启用死亡回放时目标的HUD(事件玩家);
+		If(当前游戏模式 != 游戏模式(突击模式));
+			隐藏游戏模式HUD(事件玩家);
+		End;
+		调用子程序(InitializePlayerVariables);
+		调用子程序(ValidationPlayerData);
+		传送(事件玩家, 全局.Checkpoint[事件玩家.checkpoint] ? 全局.Checkpoint[事件玩家.checkpoint][0] : 事件玩家);
+		调用子程序(CreatePlayerTargetBot);
+		调用子程序(CreatePlayerHUDAndEffects);
+		调用子程序(GetCurrentCheckpoint);
+		If(!事件玩家.finished);
+			调用子程序(SetCurrentAbilities);
+		End;
+		调用子程序(TeleportCurrentBot);
+		调用子程序(DisplayCurrentAbilityMsgs);
+		开始规则(CreateCurrentEffects, 重新开始规则);
+		调用子程序(CreateCurrentWorldText);
+		开始规则(DisplayCurrentCustomBigMsgs, 无动作);
+		开始规则(DisplayCurrentCustomSmallMsgs, 无动作);
+	}
+}
+
+规则("切换编辑模式")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 真;
+		事件玩家 == 主机玩家;
+		按钮被按下(事件玩家, 按钮(互动)) == 真;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(辅助攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(技能2)) == 假;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 假;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 假;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		按钮被按下(事件玩家, 按钮(装填)) == 假;
+	}
+
+	动作
+	{
+		等待直到 (!按钮被按下(事件玩家, 按钮(互动)), 9999);
+		等待直到 (按钮被按下(事件玩家, 按钮(互动)), 0.300);
+		If(按钮被按下(事件玩家, 按钮(互动)));
+			事件玩家.editMode += 事件玩家.editMode == 4 ? -3 : 1;
+			事件玩家.nearestOrb = 无;
+			调用子程序(KillOrResurrectBot);
+			小字体信息(所有玩家(所有队伍), 自定义字符串("已切换至 {0} 模式", 数组(无, 自定义字符串("检查点"), 自定义字符串("拾取球"), 自定义字符串("障碍球"), 自定义字符串("弹力云"))[事件玩家.editMode]));
+			播放效果(事件玩家, 环状爆炸声音, 无, 事件玩家, 100);
+		End;
+	}
+}
+
+规则("创建或删除点位/小球/球体/弹云")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 真;
+		事件玩家 == 主机玩家;
+		按钮被按下(事件玩家, 按钮(互动)) == 真;
+		(按钮被按下(事件玩家, 按钮(主要攻击模式)) || 按钮被按下(事件玩家, 按钮(辅助攻击模式))) == 真;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(技能2)) == 假;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 假;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 假;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		按钮被按下(事件玩家, 按钮(装填)) == 假;
+	}
+
+	动作
+	{
+		If(按钮被按下(事件玩家, 按钮(主要攻击模式)));
+			If(事件玩家.editMode == 1);
+				"0, 点位坐标\n1, 点位半径\n2, 是否启用下蹲\n3, 机器人, 默认空数组(BotVector, NeedResurrect, RefreshAbility1)\n4, 是否无限技能\n5, 是否传送下关, 默认假\n6, 小球, 默认空数组\n7, 球体, 默认空数组\n8, 弹云, 默认空数组"
+				全局.Checkpoint[数量(全局.Checkpoint)] = 数组(所选位置(事件玩家), 全局.NewCheckpointDefaultRadius, 全局.NewCheckpointDefaultCtrl, 数组(假, 假, 真),
+					全局.NewCheckpointDefaultMaxRefresh, 假, 空数组, 空数组, 空数组);
+				事件玩家.checkpoint = 数量(全局.Checkpoint) - 1;
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(TeleportCurrentBot);
+				开始规则(CreateCurrentEffects, 重新开始规则);
+				小字体信息(所有玩家(所有队伍), 自定义字符串("已创建新点位"));
+			Else If(事件玩家.editMode == 2);
+				调用子程序(ErrorWarningMessage);
+				If(全局.Error);
+					全局.Error = 假;
+					中止;
+				End;
+				"0, 小球坐标\n1, 机器人坐标, 默认假\n机器人是否需要复活, 默认假"
+				事件玩家.currentOrb[数量(事件玩家.currentOrb)] = 数组((所选位置(事件玩家) + 眼睛位置(事件玩家)) / 2, 假, 假, 真);
+				全局.CurrentChooseOrb = 数量(事件玩家.currentOrb) - 1;
+				全局.ChooseOrbPosition = 事件玩家.currentOrb[全局.CurrentChooseOrb][0];
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 6 ? 事件玩家.currentOrb : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(KillOrResurrectBot);
+				调用子程序(CreateNewEffect);
+				小字体信息(所有玩家(所有队伍), 自定义字符串("已创建新小球"));
+			Else If(事件玩家.editMode == 3);
+				调用子程序(ErrorWarningMessage);
+				If(全局.Error);
+					全局.Error = 假;
+					中止;
+				End;
+				"0, 球体坐标\n1, 球体半径"
+				事件玩家.currentSphere[数量(事件玩家.currentSphere)] = 数组((所选位置(事件玩家) + 眼睛位置(事件玩家)) / 2, 4);
+				全局.CurrentChooseSphere = 数量(事件玩家.currentSphere) - 1;
+				全局.ChooseSpherePosition = 事件玩家.currentSphere[全局.CurrentChooseSphere][0];
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 7 ? 事件玩家.currentSphere : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(CreateNewEffect);
+				小字体信息(所有玩家(所有队伍), 自定义字符串("已创建新球体"));
+			Else;
+				调用子程序(ErrorWarningMessage);
+				If(全局.Error);
+					全局.Error = 假;
+					中止;
+				End;
+				"0, 弹云坐标\n1, 弹云弹力"
+				事件玩家.currentCloud[数量(事件玩家.currentCloud)] = 数组(所选位置(事件玩家), 8);
+				全局.CurrentChooseCloud = 数量(事件玩家.currentCloud) - 1;
+				全局.ChooseCloudPosition = 事件玩家.currentCloud[全局.CurrentChooseCloud][0];
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 8 ? 事件玩家.currentCloud : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(CreateNewEffect);
+				小字体信息(所有玩家(所有队伍), 自定义字符串("已创建新弹云"));
+			End;
+			播放效果(事件玩家, 正面状态施加声音, 无, 事件玩家, 100);
+		Else If(武器(事件玩家) == 2);
+			If(事件玩家.editMode == 1);
+				调用子程序(ErrorWarningMessage);
+				If(全局.Error);
+					全局.Error = 假;
+					中止;
+				End;
+				修改全局变量(Checkpoint, 根据索引从数组中移除, 事件玩家.checkpoint);
+				If(全局.Checkpoint[0]);
+					传送(事件玩家, 事件玩家.checkpoint > 0 ? 全局.Checkpoint[事件玩家.checkpoint - 1][0] : 全局.Checkpoint[事件玩家.checkpoint][0]);
+					事件玩家.checkpoint -= 事件玩家.checkpoint > 0 ? 1 : 0;
+				End;
+				调用子程序(GetCurrentCheckpoint);
+				If(!事件玩家.finished && !事件玩家.freeMode);
+					调用子程序(SetCurrentAbilities);
+				End;
+				调用子程序(KillOrResurrectBot);
+				调用子程序(DisplayCurrentAbilityMsgs);
+				开始规则(CreateCurrentEffects, 重新开始规则);
+				小字体信息(所有玩家(所有队伍), 自定义字符串("已删除选中点位"));
+			Else If(事件玩家.editMode == 2);
+				调用子程序(ErrorWarningMessage);
+				If(全局.Error);
+					全局.Error = 假;
+					中止;
+				End;
+				修改玩家变量(事件玩家, currentOrb, 根据索引从数组中移除, 全局.CurrentChooseOrb);
+				消除效果(事件玩家.orbEffects[全局.CurrentChooseOrb]);
+				修改玩家变量(事件玩家, orbEffects, 根据索引从数组中移除, 全局.CurrentChooseOrb);
+				消除图标(事件玩家.orbIcons[全局.CurrentChooseOrb]);
+				修改玩家变量(事件玩家, orbIcons, 根据索引从数组中移除, 全局.CurrentChooseOrb);
+				消除图标(事件玩家.botIcons[全局.CurrentChooseOrb]);
+				修改玩家变量(事件玩家, botIcons, 根据索引从数组中移除, 全局.CurrentChooseOrb);
+				消除效果(事件玩家.botEffects[全局.CurrentChooseOrb]);
+				修改玩家变量(事件玩家, botEffects, 根据索引从数组中移除, 全局.CurrentChooseOrb);
+				全局.CurrentChooseOrb -= 全局.CurrentChooseOrb > 0 ? 1 : 0;
+				全局.ChooseOrbPosition = 事件玩家.currentOrb[全局.CurrentChooseOrb][0];
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 6 ? 事件玩家.currentOrb : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(KillOrResurrectBot);
+				小字体信息(所有玩家(所有队伍), 自定义字符串("已删除选中小球"));
+			Else If(事件玩家.editMode == 3);
+				调用子程序(ErrorWarningMessage);
+				If(全局.Error);
+					全局.Error = 假;
+					中止;
+				End;
+				修改玩家变量(事件玩家, currentSphere, 根据索引从数组中移除, 全局.CurrentChooseSphere);
+				消除效果(事件玩家.sphereEffects[全局.CurrentChooseSphere]);
+				修改玩家变量(事件玩家, sphereEffects, 根据索引从数组中移除, 全局.CurrentChooseSphere);
+				全局.CurrentChooseSphere -= 全局.CurrentChooseSphere > 0 ? 1 : 0;
+				全局.ChooseSpherePosition = 事件玩家.currentSphere[全局.CurrentChooseSphere][0];
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 7 ? 事件玩家.currentSphere : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				小字体信息(所有玩家(所有队伍), 自定义字符串("已删除选中球体"));
+			Else;
+				调用子程序(ErrorWarningMessage);
+				If(全局.Error);
+					全局.Error = 假;
+					中止;
+				End;
+				修改玩家变量(事件玩家, currentCloud, 根据索引从数组中移除, 全局.CurrentChooseCloud);
+				消除效果(事件玩家.cloudEffects[全局.CurrentChooseCloud]);
+				修改玩家变量(事件玩家, cloudEffects, 根据索引从数组中移除, 全局.CurrentChooseCloud);
+				全局.CurrentChooseCloud -= 全局.CurrentChooseCloud > 0 ? 1 : 0;
+				全局.ChooseCloudPosition = 事件玩家.currentCloud[全局.CurrentChooseCloud][0];
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 8 ? 事件玩家.currentCloud : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				小字体信息(所有玩家(所有队伍), 自定义字符串("已删除选中弹云"));
+			End;
+			播放效果(事件玩家, 负面状态施加声音, 无, 事件玩家, 100);
+		End;
+	}
+}
+
+规则("移动点位")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 真;
+		数量(全局.Checkpoint) > 0;
+		事件玩家 == 主机玩家;
+		事件玩家.editMode == 1;
+		按钮被按下(事件玩家, 按钮(技能2)) == 真;
+		按钮被按下(事件玩家, 按钮(互动)) == 真;
+		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(辅助攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 假;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 假;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		按钮被按下(事件玩家, 按钮(装填)) == 假;
+	}
+
+	动作
+	{
+		全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 0 ? 所选位置(事件玩家) : 当前数组元素);
+		调用子程序(GetCurrentCheckpoint);
+		小字体信息(所有玩家(所有队伍), 自定义字符串("已移动点位至玩家位置"));
+		播放效果(事件玩家, 状态爆炸声音, 无, 事件玩家, 100);
+	}
+}
+
+规则("插入点位")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 真;
+		事件玩家.finished == 假;
+		事件玩家.editMode == 1;
+		事件玩家 == 主机玩家;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 真;
+		按钮被按下(事件玩家, 按钮(互动)) == 真;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 假;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(装填)) == 假;
+		按钮被按下(事件玩家, 按钮(技能2)) == 假;
+		按钮被按下(事件玩家, 按钮(辅助攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 假;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+	}
+
+	动作
+	{
+		全局.TempArray = 数组分割(全局.Checkpoint, 事件玩家.checkpoint + 1, 数量(全局.Checkpoint));
+		全局.Checkpoint = 数组分割(全局.Checkpoint, 0, 事件玩家.checkpoint + 1);
+		全局.Checkpoint[数量(全局.Checkpoint)] = 数组(所选位置(事件玩家), 全局.NewCheckpointDefaultRadius, 全局.NewCheckpointDefaultCtrl, 数组(假, 假, 真),
+			全局.NewCheckpointDefaultMaxRefresh, 假, 空数组, 空数组, 空数组);
+		修改全局变量(Checkpoint, 添加至数组, 全局.TempArray);
+		事件玩家.checkpoint += 1;
+		调用子程序(GetCurrentCheckpoint);
+		调用子程序(TeleportCurrentBot);
+		开始规则(CreateCurrentEffects, 重新开始规则);
+		等待(0.100, 无视条件);
+		小字体信息(所有玩家(所有队伍), 自定义字符串("已在第 {0} 关与 第 {1} 关之间插入点位", 事件玩家.checkpoint - 1, 事件玩家.checkpoint));
+		播放效果(事件玩家, 正面状态施加声音, 无, 事件玩家, 100);
+	}
+}
+
+规则("创建/删除机器人")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 真;
+		事件玩家.editMode < 3;
+		事件玩家 == 主机玩家;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 真;
+		(按钮被按下(事件玩家, 按钮(主要攻击模式)) || 按钮被按下(事件玩家, 按钮(辅助攻击模式))) == 真;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(技能2)) == 假;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 假;
+		按钮被按下(事件玩家, 按钮(互动)) == 假;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+		按钮被按下(事件玩家, 按钮(装填)) == 假;
+	}
+
+	动作
+	{
+		调用子程序(ErrorWarningMessage);
+		If(全局.Error);
+			全局.Error = 假;
+			中止;
+		End;
+		If(事件玩家.editMode == 1);
+			If(按钮被按下(事件玩家, 按钮(主要攻击模式)));
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 3 ? 数组(所选位置(事件玩家), 当前数组元素[1], 当前数组元素[2]) : 当前数组元素);
+				播放效果(事件玩家, 正面状态施加声音, 无, 事件玩家, 100);
+			Else;
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 3 ? 数组(假, 假, 当前数组元素[2]) : 当前数组元素);
+				播放效果(事件玩家, 负面状态施加声音, 无, 事件玩家, 100);
+			End;
+			调用子程序(GetCurrentCheckpoint);
+			If(!事件玩家.finished && !事件玩家.freeMode);
+				调用子程序(SetCurrentAbilities);
+			End;
+			调用子程序(KillOrResurrectBot);
+			小字体信息(所有玩家(所有队伍), 事件玩家.checkpointA[3] ? 自定义字符串("已创建/移动机器人") : 自定义字符串("已删除机器人"));
+		Else;
+			If(按钮被按下(事件玩家, 按钮(主要攻击模式)));
+				事件玩家.currentOrb[全局.CurrentChooseOrb] = 映射的数组(事件玩家.currentOrb[全局.CurrentChooseOrb], 当前数组索引 == 1 ? 所选位置(事件玩家) : 当前数组元素);
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 6 ? 事件玩家.currentOrb : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(KillOrResurrectBot);
+				调用子程序(CreateNewEffect);
+				小字体信息(所有玩家(所有队伍), 自定义字符串("已创建/移动机器人"));
+				播放效果(事件玩家, 正面状态施加声音, 无, 事件玩家, 100);
+			Else;
+				事件玩家.currentOrb[全局.CurrentChooseOrb] = 映射的数组(事件玩家.currentOrb[全局.CurrentChooseOrb], 当前数组索引 == 1 || 当前数组索引 == 2 ? 假 : 当前数组元素);
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 6 ? 事件玩家.currentOrb : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(KillOrResurrectBot);
+				调用子程序(CreateNewEffect);
+				小字体信息(所有玩家(所有队伍), 自定义字符串("已删除机器人"));
+				播放效果(事件玩家, 负面状态施加声音, 无, 事件玩家, 100);
+			End;
+		End;
+	}
+}
+
+规则("选择点位/小球/球体/弹云")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 真;
+		数量(全局.Checkpoint) > 0;
+		事件玩家 == 主机玩家;
+		按钮被按下(事件玩家, 按钮(技能2)) == 真;
+		(按钮被按下(事件玩家, 按钮(主要攻击模式)) || 按钮被按下(事件玩家, 按钮(辅助攻击模式))) == 真;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 假;
+		按钮被按下(事件玩家, 按钮(互动)) == 假;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 假;
+		按钮被按下(事件玩家, 按钮(装填)) == 假;
+	}
+
+	动作
+	{
+		If(事件玩家.editMode == 1 && 数量(全局.Checkpoint) > 1);
+			调用子程序(ChooseCheckpoint);
+			传送(事件玩家, 全局.Checkpoint[事件玩家.checkpoint][0]);
+			调用子程序(GetCurrentCheckpoint);
+			If(!事件玩家.freeMode);
+				调用子程序(SetCurrentAbilities);
+			End;
+			调用子程序(KillOrResurrectBot);
+			开始规则(CreateCurrentEffects, 重新开始规则);
+			调用子程序(CreateCurrentWorldText);
+		Else If(事件玩家.editMode == 2 && 数量(事件玩家.currentOrb) > 1);
+			If(按钮被按下(事件玩家, 按钮(主要攻击模式)) && 全局.CurrentChooseOrb < 数量(事件玩家.currentOrb) - 1);
+				全局.CurrentChooseOrb += 1;
+				全局.ChooseOrbPosition = 事件玩家.currentOrb[全局.CurrentChooseOrb][0];
+				调用子程序(KillOrResurrectBot);
+			Else If(按钮被按下(事件玩家, 按钮(辅助攻击模式)) && 全局.CurrentChooseOrb > 0);
+				全局.CurrentChooseOrb -= 1;
+				全局.ChooseOrbPosition = 事件玩家.currentOrb[全局.CurrentChooseOrb][0];
+				调用子程序(KillOrResurrectBot);
+			End;
+		Else If(事件玩家.editMode == 3 && 数量(事件玩家.currentSphere) > 1);
+			If(按钮被按下(事件玩家, 按钮(主要攻击模式)) && 全局.CurrentChooseSphere < 数量(事件玩家.currentSphere) - 1);
+				全局.CurrentChooseSphere += 1;
+				全局.ChooseSpherePosition = 事件玩家.currentSphere[全局.CurrentChooseSphere][0];
+			Else If(按钮被按下(事件玩家, 按钮(辅助攻击模式)) && 全局.CurrentChooseSphere > 0);
+				全局.CurrentChooseSphere -= 1;
+				全局.ChooseSpherePosition = 事件玩家.currentSphere[全局.CurrentChooseSphere][0];
+			End;
+		Else If(事件玩家.editMode == 4 && 数量(事件玩家.currentCloud) > 1);
+			If(按钮被按下(事件玩家, 按钮(主要攻击模式)) && 全局.CurrentChooseCloud < 数量(事件玩家.currentCloud) - 1);
+				全局.CurrentChooseCloud += 1;
+				全局.ChooseCloudPosition = 事件玩家.currentCloud[全局.CurrentChooseCloud][0];
+			Else If(按钮被按下(事件玩家, 按钮(辅助攻击模式)) && 全局.CurrentChooseCloud > 0);
+				全局.CurrentChooseCloud -= 1;
+				全局.ChooseCloudPosition = 事件玩家.currentCloud[全局.CurrentChooseCloud][0];
+			End;
+		End;
+	}
+}
+
+规则("设置下蹲/传送/无限GA/复活人机/复活人机刷新GA")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 真;
+		事件玩家.editMode < 3;
+		事件玩家 == 主机玩家;
+		按钮被按下(事件玩家, 按钮(互动)) == 真;
+		(按钮被按下(事件玩家, 按钮(蹲下)) || 按钮被按下(事件玩家, 按钮(跳跃)) || 按钮被按下(事件玩家, 按钮(终极技能)) || 按钮被按下(事件玩家, 按钮(装填)) || 按钮被按下(事件玩家, 按钮(技能1))) == 真;
+		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(辅助攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(技能2)) == 假;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+	}
+
+	动作
+	{
+		调用子程序(ErrorWarningMessage);
+		If(全局.Error);
+			全局.Error = 假;
+			中止;
+		End;
+		If(事件玩家.editMode == 1);
+			If(按钮被按下(事件玩家, 按钮(蹲下)));
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 2 ? !当前数组元素 : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				设置启用蹲下(事件玩家, 事件玩家.checkpointA[2]);
+				调用子程序(TeleportCurrentBot);
+				等待(0.100, 无视条件);
+				小字体信息(所有玩家(所有队伍), 事件玩家.checkpointA[2] ? 自定义字符串("选中关卡CTRL已启用") : 自定义字符串("选中关卡CTRL已禁用"));
+			Else If(按钮被按下(事件玩家, 按钮(跳跃)));
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 5 ? !当前数组元素 : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				等待(0.100, 无视条件);
+				小字体信息(所有玩家(所有队伍), 事件玩家.checkpointA[5] ? 自定义字符串("选中关卡传送已开启（正式游戏生效）") : 自定义字符串("选中关卡传送已关闭"));
+			Else If(按钮被按下(事件玩家, 按钮(终极技能)));
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 4 ? !当前数组元素 : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				等待(0.100, 无视条件);
+				小字体信息(所有玩家(所有队伍), 自定义字符串("选中关卡 {0} 已设置为{1}", 技能图标字符串(全局.DefaultHero, 按钮(技能1)), 事件玩家.checkpointA[4] ? 自定义字符串("无限次") : 自定义字符串("单次")));
+			Else If(按钮被按下(事件玩家, 按钮(装填)));
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 3 ? 数组(当前数组元素[0], !当前数组元素[1], 当前数组元素[2]) : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(KillOrResurrectBot);
+				设置启用技能 2(事件玩家, 事件玩家.checkpointA[3][1]);
+				事件玩家.ability2 = 事件玩家.checkpointA[3][1];
+				等待(0.100, 无视条件);
+				小字体信息(所有玩家(所有队伍), 事件玩家.checkpointA[3][1] ? 自定义字符串("选中关卡天使已设置为需要复活（互动＋SHIFT可关闭或开启完成复活后刷新守护天使）") : 自定义字符串("选中关卡天使已取消需要复活"));
+			Else If(按钮被按下(事件玩家, 按钮(技能1)));
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 3 ? 数组(当前数组元素[0], 当前数组元素[1], !当前数组元素[2]) : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				等待(0.100, 无视条件);
+				小字体信息(所有玩家(所有队伍), 事件玩家.checkpointA[3][2] ? 自定义字符串("选中关卡复活天使已设置刷新守护天使") : 自定义字符串("选中关卡复活天使已取消刷新守护天使"));
+			End;
+			播放效果(事件玩家, 状态爆炸声音, 无, 事件玩家, 100);
+		Else;
+			If(按钮被按下(事件玩家, 按钮(装填)));
+				事件玩家.currentOrb[全局.CurrentChooseOrb] = 映射的数组(事件玩家.currentOrb[全局.CurrentChooseOrb], 当前数组索引 == 2 ? !当前数组元素 : 当前数组元素);
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 6 ? 事件玩家.currentOrb : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(KillOrResurrectBot);
+				调用子程序(CreateNewEffect);
+				等待(0.100, 无视条件);
+				小字体信息(所有玩家(所有队伍), 事件玩家.nearestOrb[2] ? 自定义字符串("选中小球绑定天使已设置为需要复活（互动＋SHIFT可关闭或开启完成复活后刷新守护天使）") : 自定义字符串("选中小球绑定天使已取消需要复活"));
+			Else If(按钮被按下(事件玩家, 按钮(技能1)));
+				事件玩家.currentOrb[全局.CurrentChooseOrb] = 映射的数组(事件玩家.currentOrb[全局.CurrentChooseOrb], 当前数组索引 == 3 ? !当前数组元素 : 当前数组元素);
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 6 ? 事件玩家.currentOrb : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(KillOrResurrectBot);
+				等待(0.100, 无视条件);
+				小字体信息(所有玩家(所有队伍), 事件玩家.nearestOrb[3] ? 自定义字符串("选中小球复活天使已设置刷新守护天使") : 自定义字符串("选中小球复活天使已取消刷新守护天使"));
+			End;
+			播放效果(事件玩家, 状态爆炸声音, 无, 事件玩家, 100);
+		End;
+	}
+}
+
+规则("修改点位大小/球体大小/弹云弹力")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 真;
+		事件玩家.editMode != 2;
+		事件玩家 == 主机玩家;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 真;
+		(按钮被按下(事件玩家, 按钮(主要攻击模式)) || 按钮被按下(事件玩家, 按钮(辅助攻击模式))) == 真;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 假;
+		按钮被按下(事件玩家, 按钮(技能2)) == 假;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 假;
+		按钮被按下(事件玩家, 按钮(互动)) == 假;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		按钮被按下(事件玩家, 按钮(装填)) == 假;
+	}
+
+	动作
+	{
+		If(按钮被按下(主机玩家, 按钮(主要攻击模式)));
+			If(武器(事件玩家) == 2 && 事件玩家.editMode == 1 && 数量(全局.Checkpoint) > 0);
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 1 ? 当前数组元素 + 0.050 : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				等待(0.100, 无视条件);
+				如条件为”真“则循环;
+				小字体信息(所有玩家(所有队伍), 自定义字符串("选中关卡半径修改为 {0}", 事件玩家.checkpointA[1]));
+				播放效果(事件玩家, 状态爆炸声音, 无, 事件玩家, 100);
+			Else If(事件玩家.editMode == 3 && 数量(事件玩家.currentSphere) > 0);
+				If(全局.Once);
+					调用子程序(EditChoosedEffect);
+					全局.Once = 假;
+				End;
+				事件玩家.currentSphere[全局.CurrentChooseSphere] = 映射的数组(事件玩家.currentSphere[全局.CurrentChooseSphere],
+					当前数组索引 == 1 ? 当前数组元素 + 0.100 : 当前数组元素);
+				等待(0.050, 无视条件);
+				如条件为”真“则循环;
+				全局.Once = 真;
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 7 ? 事件玩家.currentSphere : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(CreateNewEffect);
+				播放效果(事件玩家, 状态爆炸声音, 无, 事件玩家, 100);
+			Else If(事件玩家.editMode == 4 && 数量(事件玩家.currentCloud) > 0);
+				事件玩家.currentCloud[全局.CurrentChooseCloud] = 映射的数组(事件玩家.currentCloud[全局.CurrentChooseCloud], 当前数组索引 == 1 ? 当前数组元素 + 1 : 当前数组元素);
+				等待(0.100, 无视条件);
+				如条件为”真“则循环;
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 8 ? 事件玩家.currentCloud : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				播放效果(事件玩家, 状态爆炸声音, 无, 事件玩家, 100);
+			End;
+		Else If(按钮被按下(主机玩家, 按钮(辅助攻击模式)));
+			If(武器(事件玩家) == 2 && 事件玩家.editMode == 1 && 数量(全局.Checkpoint) > 0 && 事件玩家.checkpointA[1] > 0.500);
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 1 ? 当前数组元素 - 0.050 : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				等待(0.100, 无视条件);
+				如条件为”真“则循环;
+				小字体信息(所有玩家(所有队伍), 自定义字符串("选中关卡半径修改为 {0}", 事件玩家.checkpointA[1]));
+				播放效果(事件玩家, 状态爆炸声音, 无, 事件玩家, 100);
+			Else If(事件玩家.editMode == 3 && 数量(事件玩家.currentSphere) > 0 && 事件玩家.currentSphere[全局.CurrentChooseSphere][1] > 1);
+				If(全局.Once);
+					调用子程序(EditChoosedEffect);
+					全局.Once = 假;
+				End;
+				事件玩家.currentSphere[全局.CurrentChooseSphere] = 映射的数组(事件玩家.currentSphere[全局.CurrentChooseSphere],
+					当前数组索引 == 1 ? 当前数组元素 - 0.100 : 当前数组元素);
+				等待(0.050, 无视条件);
+				如条件为”真“则循环;
+				全局.Once = 真;
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 7 ? 事件玩家.currentSphere : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(CreateNewEffect);
+				播放效果(事件玩家, 状态爆炸声音, 无, 事件玩家, 100);
+			Else If(事件玩家.editMode == 4 && 数量(事件玩家.currentCloud) > 0 && 事件玩家.currentCloud[全局.CurrentChooseCloud][1] > 1);
+				事件玩家.currentCloud[全局.CurrentChooseCloud] = 映射的数组(事件玩家.currentCloud[全局.CurrentChooseCloud], 当前数组索引 == 1 ? 当前数组元素 - 1 : 当前数组元素);
+				等待(0.100, 无视条件);
+				如条件为”真“则循环;
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 8 ? 事件玩家.currentCloud : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				播放效果(事件玩家, 状态爆炸声音, 无, 事件玩家, 100);
+			End;
+		End;
+	}
+}
+
+规则("移动拾取球/障碍球/弹力云")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 真;
+		事件玩家.editMode != 1;
+		事件玩家 == 主机玩家;
+		按钮被按下(事件玩家, 按钮(装填)) == 真;
+		(按钮被按下(事件玩家, 按钮(主要攻击模式)) || 按钮被按下(事件玩家, 按钮(辅助攻击模式))) == 真;
+		按钮被按下(事件玩家, 按钮(技能2)) == 假;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 假;
+		按钮被按下(事件玩家, 按钮(互动)) == 假;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 假;
+	}
+
+	动作
+	{
+		If(按钮被按下(事件玩家, 按钮(主要攻击模式)));
+			If(事件玩家.editMode == 2 && 数量(事件玩家.currentOrb) > 0);
+				If(全局.Once);
+					调用子程序(EditChoosedEffect);
+					全局.Once = 假;
+				End;
+				追踪全局变量频率(ChooseOrbPosition, 眼睛位置(事件玩家) + 面朝方向(事件玩家) * (相距距离(所选位置(事件玩家), 全局.ChooseOrbPosition) + 10), 1, 速率及最终值);
+				等待(0.016, 无视条件);
+				如条件为”真“则循环;
+				停止追踪全局变量(ChooseOrbPosition);
+				全局.Once = 真;
+				事件玩家.currentOrb[全局.CurrentChooseOrb] = 映射的数组(事件玩家.currentOrb[全局.CurrentChooseOrb], 当前数组索引 == 0 ? 全局.ChooseOrbPosition : 当前数组元素);
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 6 ? 事件玩家.currentOrb : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(CreateNewEffect);
+				播放效果(事件玩家, 状态爆炸声音, 无, 事件玩家, 100);
+			Else If(事件玩家.editMode == 3 && 数量(事件玩家.currentSphere) > 0);
+				If(全局.Once);
+					调用子程序(EditChoosedEffect);
+					全局.Once = 假;
+				End;
+				追踪全局变量频率(ChooseSpherePosition, 眼睛位置(事件玩家) + 面朝方向(事件玩家) * (相距距离(所选位置(事件玩家), 全局.ChooseSpherePosition) + 10), 1, 速率及最终值);
+				等待(0.016, 无视条件);
+				如条件为”真“则循环;
+				停止追踪全局变量(ChooseSpherePosition);
+				全局.Once = 真;
+				事件玩家.currentSphere[全局.CurrentChooseSphere] = 映射的数组(事件玩家.currentSphere[全局.CurrentChooseSphere],
+					当前数组索引 == 0 ? 全局.ChooseSpherePosition : 当前数组元素);
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 7 ? 事件玩家.currentSphere : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(CreateNewEffect);
+				播放效果(事件玩家, 状态爆炸声音, 无, 事件玩家, 100);
+			Else If(事件玩家.editMode == 4 && 数量(事件玩家.currentCloud) > 0);
+				If(全局.Once);
+					调用子程序(EditChoosedEffect);
+					全局.Once = 假;
+				End;
+				追踪全局变量频率(ChooseCloudPosition, 眼睛位置(事件玩家) + 面朝方向(事件玩家) * (相距距离(所选位置(事件玩家), 全局.ChooseCloudPosition) + 10), 1, 速率及最终值);
+				等待(0.016, 无视条件);
+				如条件为”真“则循环;
+				停止追踪全局变量(ChooseCloudPosition);
+				全局.Once = 真;
+				事件玩家.currentCloud[全局.CurrentChooseCloud] = 映射的数组(事件玩家.currentCloud[全局.CurrentChooseCloud],
+					当前数组索引 == 0 ? 全局.ChooseCloudPosition : 当前数组元素);
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 8 ? 事件玩家.currentCloud : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(CreateNewEffect);
+				播放效果(事件玩家, 状态爆炸声音, 无, 事件玩家, 100);
+			End;
+		Else If(按钮被按下(事件玩家, 按钮(辅助攻击模式)));
+			If(事件玩家.editMode == 2 && 数量(事件玩家.currentOrb) > 0);
+				If(全局.Once);
+					调用子程序(EditChoosedEffect);
+					全局.Once = 假;
+				End;
+				追踪全局变量频率(ChooseOrbPosition, 眼睛位置(事件玩家) - 面朝方向(事件玩家) * (相距距离(所选位置(事件玩家), 全局.ChooseOrbPosition) + 10), 1, 速率及最终值);
+				等待(0.016, 无视条件);
+				如条件为”真“则循环;
+				停止追踪全局变量(ChooseOrbPosition);
+				全局.Once = 真;
+				事件玩家.currentOrb[全局.CurrentChooseOrb] = 映射的数组(事件玩家.currentOrb[全局.CurrentChooseOrb], 当前数组索引 == 0 ? 全局.ChooseOrbPosition : 当前数组元素);
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 6 ? 事件玩家.currentOrb : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(CreateNewEffect);
+				播放效果(事件玩家, 状态爆炸声音, 无, 事件玩家, 100);
+			Else If(事件玩家.editMode == 3 && 数量(事件玩家.currentSphere) > 0);
+				If(全局.Once);
+					调用子程序(EditChoosedEffect);
+					全局.Once = 假;
+				End;
+				追踪全局变量频率(ChooseSpherePosition, 眼睛位置(事件玩家) - 面朝方向(事件玩家) * (相距距离(所选位置(事件玩家), 全局.ChooseSpherePosition) + 10), 1, 速率及最终值);
+				等待(0.016, 无视条件);
+				如条件为”真“则循环;
+				停止追踪全局变量(ChooseSpherePosition);
+				全局.Once = 真;
+				事件玩家.currentSphere[全局.CurrentChooseSphere] = 映射的数组(事件玩家.currentSphere[全局.CurrentChooseSphere],
+					当前数组索引 == 0 ? 全局.ChooseSpherePosition : 当前数组元素);
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 7 ? 事件玩家.currentSphere : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(CreateNewEffect);
+				播放效果(事件玩家, 状态爆炸声音, 无, 事件玩家, 100);
+			Else If(事件玩家.editMode == 4 && 数量(事件玩家.currentCloud) > 0);
+				If(全局.Once);
+					调用子程序(EditChoosedEffect);
+					全局.Once = 假;
+				End;
+				追踪全局变量频率(ChooseCloudPosition, 眼睛位置(事件玩家) - 面朝方向(事件玩家) * (相距距离(所选位置(事件玩家), 全局.ChooseCloudPosition) + 10), 1, 速率及最终值);
+				等待(0.016, 无视条件);
+				如条件为”真“则循环;
+				停止追踪全局变量(ChooseCloudPosition);
+				全局.Once = 真;
+				事件玩家.currentCloud[全局.CurrentChooseCloud] = 映射的数组(事件玩家.currentCloud[全局.CurrentChooseCloud],
+					当前数组索引 == 0 ? 全局.ChooseCloudPosition : 当前数组元素);
+				全局.Checkpoint[事件玩家.checkpoint] = 映射的数组(事件玩家.checkpointA, 当前数组索引 == 8 ? 事件玩家.currentCloud : 当前数组元素);
+				调用子程序(GetCurrentCheckpoint);
+				调用子程序(CreateNewEffect);
+				播放效果(事件玩家, 状态爆炸声音, 无, 事件玩家, 100);
+			End;
+		End;
+	}
+}
+
+规则("如果地图为3CP图, 发送集合可以传送至其它小图")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 真;
+		正在交流(事件玩家, 集合) == 真;
+		数组包含(数组(地图(釜山), 地图(伊利奥斯), 地图(漓江塔), 地图(春节漓江塔), 地图(尼泊尔), 地图(绿洲城)), 当前地图) == 真;
+	}
+
+	动作
+	{
+		事件玩家.objectivePosition += 事件玩家.objectivePosition == 2 ? -2 : 1;
+		传送(事件玩家, 最近的可行走位置(目标位置(事件玩家.objectivePosition)));
+	}
+}
+
+规则("导出数据")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 真;
+		事件玩家 == 主机玩家;
+		正在使用表情交流(事件玩家) == 真;
+		按钮被按下(事件玩家, 按钮(互动)) == 真;
+	}
+
+	动作
+	{
+		调用子程序(ClearRedundantData);
+		启用查看器录制;
+		禁用查看器录制;
+		消除所有地图文本;
+		消除所有HUD文本;
+		消除所有图标;
+		消除所有效果;
+		开始镜头(所有玩家(所有队伍), 全局.QRCode[11], 全局.QRCode[12], 0);
+		创建HUD文本(主机玩家, 无, 无, 自定义字符串("\n\n\n\n\n\n\n"), 顶部, 0.500, 无, 无, 无, 可见, 默认可见度);
+		创建HUD文本(主机玩家, 无, 自定义字符串("操作说明"), 自定义字符串(
+			"1. ESC唤出菜单, 选择 \"打开地图工坊查看器\" 并打开;\n2. 将查看器右下方的变量目标, 从自动更改为全局;\n3. 点击查看器正下方的 (X), 此时剪切板上已经获取到点位数据;\n4. Esc唤出菜单, 选择 \"打开地图工坊编辑器\" 并打开;"),
+			顶部, 1, 无, 自定义颜色(192, 196, 195, 255), 自定义颜色(205, 209, 211, 255), 可见, 默认可见度);
+		创建HUD文本(主机玩家, 无, 无, 自定义字符串("5. 点击左侧 + 展开规则1, 然后点击该规则右侧黄色的 + (粘贴);\n6. 如数据不是1条, 检查步骤是否正确, 并重复上述操作;\n7. Esc唤出菜单, 选择 \"显示大厅\" 并打开;"),
+			顶部, 2, 无, 无, 自定义颜色(205, 209, 211, 255), 可见, 默认可见度);
+		创建HUD文本(主机玩家, 无, 无, 自定义字符串(
+			"8. 进入大厅后点击右侧\"比赛设置\" ;\n9. 选择并打开左下方橙色的 \"地图工坊设置\" , 将编辑模式关闭;\n10. 点击右侧链接按钮分享并复制生成的代码;\n11. Esc回退到 \"比赛设置\" , 打开地图工坊;"), 顶部, 3,
+			无, 无, 自定义颜色(205, 209, 211, 255), 可见, 默认可见度);
+		创建HUD文本(主机玩家, 无, 无, 自定义字符串("12. 展开规则2, 按要求填入昵称和代码;\n13. Esc回退到 \"比赛设置\" , 分享并选择上传之前复制的代码. "), 顶部, 4, 无, 无, 自定义颜色(205, 209, 211,
+			255), 可见, 默认可见度);
+		创建HUD文本(主机玩家, 无, 无, 自定义字符串("　 如果想让自己的图有更多人游玩, 加群上传代码吧!"), 顶部, 5, 无, 无, 颜色(橙色), 可见, 默认可见度);
+		大字体信息(所有玩家(所有队伍), 自定义字符串("数据已导出"));
+	}
+}
+
+规则("抵达下一个检查点")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.finished == 假;
+		事件玩家.freeMode == 假;
+		事件玩家.checkpointB == 真;
+		(在地面上(事件玩家) || 在地面上(事件玩家) == 全局.OnGround) == 真;
+		是否是机器人(事件玩家) == 假;
+		正在使用终极技能(事件玩家) == 假;
+		相距距离(事件玩家, 事件玩家.checkpointB[0]) <= 事件玩家.checkpointB[1];
+	}
+
+	动作
+	{
+		If(数量(事件玩家.tempCurrentOrb) > 0);
+			调用子程序(TeleportToCurrentCheckoint);
+			小字体信息(事件玩家, 全局.Config[22]);
+			播放效果(事件玩家, 爆炸声音, 无, 事件玩家, 100);
+			中止;
+		End;
+		If(!存活(事件玩家.targetBot) || 事件玩家.resurrectNumber != 事件玩家.numberOfNeedResurrect);
+			调用子程序(TeleportToCurrentCheckoint);
+			小字体信息(事件玩家, 全局.Config[33]);
+			播放效果(事件玩家, 爆炸声音, 无, 事件玩家, 100);
+			中止;
+		End;
+		事件玩家.checkpoint += 1;
+		If(!事件玩家.cheat);
+			调用子程序(EditPlayerData);
+		End;
+		调用子程序(GetCurrentCheckpoint);
+		调用子程序(SetCurrentAbilities);
+		调用子程序(TeleportCurrentBot);
+		调用子程序(DisplayCurrentAbilityMsgs);
+		开始规则(CreateCurrentEffects, 重新开始规则);
+		调用子程序(CreateCurrentWorldText);
+		开始规则(DisplayCurrentCustomBigMsgs, 无动作);
+		开始规则(DisplayCurrentCustomSmallMsgs, 无动作);
+		If(事件玩家.checkpoint < 数量(全局.Checkpoint) - 1);
+			根据条件中止(!全局.EditMode && 事件玩家.checkpointA[5]);
+			播放效果(事件玩家, 状态爆炸声音, 无, 事件玩家, 100);
+		Else;
+			停止追踪玩家变量(事件玩家, time);
+			If(!全局.EditMode && !事件玩家.cheat);
+				"更新玩家通关成绩"
+				事件玩家.bestRecord = 事件玩家.bestRecord && 事件玩家.bestRecord < 事件玩家.time ? 事件玩家.bestRecord : 事件玩家.time;
+				全局.PlayersRecord[数组值的索引(全局.PlayersRecord, 事件玩家.playerNickname) > -1 ? 数组值的索引(全局.PlayersRecord, 事件玩家.playerNickname) / 2 : 数量(
+					全局.PlayersRecord)] = 数组值的索引(全局.PlayersRecord, 事件玩家.playerNickname) > -1 && 首个(已过滤的数组(全局.PlayersRecord,
+					当前数组元素[0] == 事件玩家.playerNickname))[1] < 事件玩家.time ? 首个(已过滤的数组(全局.PlayersRecord, 当前数组元素[0] == 事件玩家.playerNickname)) : 数组(
+					事件玩家.playerNickname, 事件玩家.time);
+				全局.Top5 = 数组分割(已排序的数组(全局.PlayersRecord, 当前数组元素[1]), 0, 5);
+			    大字体信息(所有玩家(所有队伍), 自定义字符串("{0} Finished in {1} seconds", 事件玩家.playerNickname, 事件玩家.time));
+			End;
+			播放效果(所有玩家(所有队伍), 环状爆炸声音, 无, 事件玩家, 200);
+			根据条件中止(全局.EditMode);
+			移除机器人(所在队伍(事件玩家), 栏位(事件玩家) + 栏位数量(所有队伍));
+		End;
+	}
+}
+
+规则("为玩家设置状态")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		具有状态(事件玩家, 相移) == 假;
+	}
+
+	动作
+	{
+		设置状态(事件玩家, 无, 相移, 9999);
+		If(!是否是机器人(事件玩家));
+			等待(2, 无视条件);
+			开始调整玩家大小(事件玩家, 事件玩家.bodySize, 真);
+			开始修改英雄语音(事件玩家, 事件玩家.voice, 真);
+			开始调整障碍大小(事件玩家, 事件玩家.barrierSize, 真);
+		Else;
+			关闭游戏预设复生模式(事件玩家);
+			If(全局.BotGravity);
+				等待(0.016, 无视条件);
+				设置引力(事件玩家, 0);
+				While(真);
+					If(!具有状态(事件玩家, 相移));
+						设置状态(事件玩家, 无, 相移, 9999);
+					End;
+					开始按下按钮(事件玩家, 按钮(跳跃));
+					等待(30, 无视条件);
+				End;
+			End;
+		End;
+	}
+}
+
+规则("阵亡后复活")
+{
+	事件
+	{
+		玩家阵亡;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.spectatorMode == 假;
+		是否是机器人(事件玩家) == 假;
+	}
+
+	动作
+	{
+		If(!事件玩家.finished && !事件玩家.freeMode);
+			传送(事件玩家, 事件玩家.checkpointA[0]);
+			事件玩家.mistake += 1;
+			调用子程序(SetCurrentAbilities);
+			If(事件玩家.currentOrb);
+				调用子程序(TeleportCurrentBot);
+			End;
+		Else;
+			传送(事件玩家, 最近的可行走位置(所选位置(事件玩家)));
+		End;
+		复活(事件玩家);
+	}
+}
+
+规则("击杀人机")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.numberOfNeedResurrect != 0;
+		存活(事件玩家.targetBot) == 真;
+		((事件玩家.killTargetBot && (事件玩家.freeMode || 事件玩家.finished)) || (事件玩家.ability2 && !事件玩家.freeMode && !事件玩家.finished)) == 真;
+	}
+
+	动作
+	{
+		击杀(事件玩家.targetBot, 无);
+	}
+}
+
+规则("落地后传送回点")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.finished == 假;
+		事件玩家.freeMode == 假;
+		在地面上(事件玩家) == 真;
+		是否是机器人(事件玩家) == 假;
+		相距距离(事件玩家, 事件玩家.checkpointA[0]) > 事件玩家.checkpointA[1];
+		相距距离(事件玩家, 事件玩家.checkpointB[0]) > 事件玩家.checkpointB[1];
+		"此条关闭某关地面限制   \n一个-1对应一关   \n注意: 是编辑模式玩家所在关  "
+		数组包含(数组(-1, -1, -1), 事件玩家.checkpoint) == 假;
+	}
+
+	动作
+	{
+		调用子程序(TeleportToCurrentCheckoint);
+	}
+}
+
+规则("守护天使使用限制")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.finished == 假;
+		事件玩家.freeMode == 假;
+		事件玩家.checkpointA[4] == 假;
+		正在使用技能 1(事件玩家) == 真;
+	}
+
+	动作
+	{
+		事件玩家.currentCheckpoint = 事件玩家.checkpoint;
+		等待直到 (!正在使用技能 1(事件玩家), 9999);
+		If(技能冷却时间(事件玩家, 按钮(技能1)) > 0 && !事件玩家.freeMode && 事件玩家.checkpoint == 事件玩家.currentCheckpoint && (正在空中(事件玩家) || 相距距离(事件玩家,
+			事件玩家.checkpointA[0]) > 事件玩家.checkpointA[1]));
+			设置启用技能 1(事件玩家, 假);
+		End;
+	}
+}
+
+规则("复活目标后刷新守护天使")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		天使;
+	}
+
+	条件
+	{
+		正在使用技能 2(事件玩家) == 真;
+	}
+
+	动作
+	{
+		事件玩家.resurrectTime = 0;
+		追踪玩家变量频率(事件玩家, resurrectTime, 9999, 1, 全部禁用);
+		等待直到 (!正在使用技能 2(事件玩家), 1.750);
+		停止追踪玩家变量(事件玩家, resurrectTime);
+		If(!事件玩家.finished && !事件玩家.freeMode);
+			设置启用技能 2(事件玩家, 假);
+			事件玩家.ability2 = 假;
+		End;
+		"如果玩家复活引导用时与标准用时相差小于0.05, 判定成功拉起"
+		If(绝对值(事件玩家.resurrectTime - 1.750) < 0.050);
+			事件玩家.resurrectNumber += 1;
+			复活(事件玩家.targetBot);
+			小字体信息(事件玩家, 自定义字符串("{0}{1}", 全局.Config[32], 事件玩家.checkpointA[4] || (!事件玩家.checkpointA[3][2] && !事件玩家.nearestOrb) || (
+				事件玩家.nearestOrb && !事件玩家.nearestOrb[3]) ? 自定义字符串("") : 自定义字符串(", {0}", 全局.Config[23])));
+			If(!事件玩家.freeMode && !事件玩家.finished && ((事件玩家.checkpointA[3][2] && !事件玩家.nearestOrb) || (
+				事件玩家.nearestOrb[2] && 事件玩家.nearestOrb[3])));
+				设置启用技能 1(事件玩家, 真);
+			End;
+		End;
+	}
+}
+
+规则("拾取小球效果")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.tempCurrentOrb != 空数组;
+		事件玩家.checkpointA == 真;
+		对任意为”真“(事件玩家.tempCurrentOrb, 相距距离(事件玩家, 当前数组元素[0]) <= 1.500 || 相距距离(眼睛位置(事件玩家), 当前数组元素[0]) <= 1.500) == 真;
+	}
+
+	动作
+	{
+		If(!存活(事件玩家.targetBot) && !事件玩家.freeMode && !事件玩家.finished);
+			调用子程序(TeleportToCurrentCheckoint);
+			小字体信息(事件玩家, 全局.Config[33]);
+			播放效果(事件玩家, 爆炸声音, 无, 事件玩家, 100);
+			中止;
+		End;
+		事件玩家.nearestOrb = 首个(已过滤的数组(事件玩家.tempCurrentOrb, 相距距离(事件玩家, 当前数组元素[0]) <= 1.500 || 相距距离(眼睛位置(事件玩家), 当前数组元素[0]) <= 1.500));
+		"拾取刷新球时判断目标是否存活"
+		事件玩家.tempCurrentOrb = !事件玩家.finished && !事件玩家.freeMode ? 已过滤的数组(事件玩家.tempCurrentOrb, 相距距离(事件玩家, 当前数组元素[0]) > 1.500 && 相距距离(眼睛位置(
+			事件玩家), 当前数组元素[0]) > 1.500) : 事件玩家.tempCurrentOrb;
+		If(事件玩家.nearestOrb[1] && (事件玩家.editMode != 2 || (!事件玩家.freeMode && !事件玩家.finished)));
+			"如果需要复活目标, 则启用和标记技能2, 并击杀目标"
+			If(事件玩家.nearestOrb[2]);
+				设置启用技能 2(事件玩家, 真);
+				击杀(事件玩家.targetBot, 无);
+				事件玩家.ability2 = 真;
+			Else If(!存活(事件玩家.targetBot));
+				复活(事件玩家.targetBot);
+			End;
+			调用子程序(TeleportBotToRefreshPosition);
+		End;
+		小字体信息(事件玩家, 自定义字符串("{0}{1}{2}", 全局.Config[21], !事件玩家.finished && !事件玩家.freeMode ? 自定义字符串(" {0} / {1}", 数量(事件玩家.currentOrb) - 数量(
+			事件玩家.tempCurrentOrb), 数量(事件玩家.currentOrb)) : 自定义字符串(""), 事件玩家.nearestOrb[1] && !事件玩家.checkpointA[4] ? 自定义字符串(", {0}",
+			全局.Config[23]) : 自定义字符串("")));
+		播放效果(事件玩家, 正面状态施加声音, 无, 事件玩家, 80);
+		根据条件中止(!事件玩家.nearestOrb[1] || 事件玩家.freeMode || 事件玩家.finished || (事件玩家.checkpointA[4] && 事件玩家.checkpointA[3][0]));
+		等待直到 (!正在使用技能 1(事件玩家), 9999);
+		设置启用技能 1(事件玩家, 真);
+	}
+}
+
+规则("回点刷新技能")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.finished == 假;
+		事件玩家.freeMode == 假;
+		事件玩家.checkpointA == 真;
+		在地面上(事件玩家) == 真;
+		相距距离(事件玩家, 事件玩家.checkpointA[0]) <= 事件玩家.checkpointA[1];
+	}
+
+	动作
+	{
+		If(!事件玩家.isSetAbilities);
+			调用子程序(SetCurrentAbilities);
+			If(事件玩家.currentOrb);
+				调用子程序(TeleportCurrentBot);
+			End;
+		End;
+		事件玩家.isSetAbilities = 假;
+	}
+}
+
+禁用 规则("按下蹲键, 提示禁蹲")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		按钮被按下(事件玩家, 按钮(蹲下)) == 真;
+		事件玩家.checkpointA[2] == 假;
+		事件玩家.finished == 假;
+		事件玩家.freeMode == 假;
+	}
+
+	动作
+	{
+		小字体信息(事件玩家, 全局.Config[17]);
+		等待(1, 无视条件);
+	}
+}
+
+规则("落地初始化跳跃和小跳")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		天使;
+	}
+
+	条件
+	{
+		在地面上(事件玩家) == 真;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+	}
+
+	动作
+	{
+		事件玩家.jump = 1;
+		事件玩家.bhop = 0;
+	}
+}
+
+规则("按下空格会失去跳跃")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		天使;
+	}
+
+	条件
+	{
+		按钮被按下(事件玩家, 按钮(跳跃)) == 真;
+		事件玩家.jump == 1;
+	}
+
+	动作
+	{
+		事件玩家.jump = 0;
+	}
+}
+
+规则("走出平台或使用守护天使但未按空格会获取小跳, 失去跳跃")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		天使;
+	}
+
+	条件
+	{
+		事件玩家.jump == 1;
+		正在空中(事件玩家) == 真;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+	}
+
+	动作
+	{
+		事件玩家.bhop = 1;
+		事件玩家.jump = 0;
+	}
+}
+
+规则("使用小跳")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		天使;
+	}
+
+	条件
+	{
+		事件玩家.bhop != 0;
+		正在跳跃(事件玩家) == 真;
+	}
+
+	动作
+	{
+		事件玩家.bhop = 0;
+	}
+}
+
+规则("守护天使小跳获取提示")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		天使;
+	}
+
+	条件
+	{
+		(在地面上(事件玩家) || 事件玩家.bhop >= 1) == 真;
+		正在使用技能 1(事件玩家) == 真;
+		按钮被按下(事件玩家, 按钮(技能1)) == 真;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+		正在跳跃(事件玩家) == 假;
+	}
+
+	动作
+	{
+		等待直到 (按钮被按下(事件玩家, 按钮(跳跃)) && !按钮被按下(事件玩家, 按钮(终极技能)), 9999);
+		If(!正在使用技能 1(事件玩家) && !在地面上(事件玩家) && !正在跳跃(事件玩家));
+			If(事件玩家.bhop != 2);
+				小字体信息(事件玩家, 全局.Config[31]);
+			End;
+			事件玩家.bhop = 2;
+		Else;
+			事件玩家.bhop = 0;
+		End;
+	}
+}
+
+规则("切换第三人称")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.HeroChoosed == 真;
+		按钮被按下(事件玩家, 按钮(装填)) == 真;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 真;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		存活(事件玩家) == 真;
+	}
+
+	动作
+	{
+		事件玩家.third = !事件玩家.third;
+		If(事件玩家.third);
+			"by overclocking"
+			开始镜头(事件玩家, 射线命中位置(事件玩家 + 上 * (相距距离(眼睛位置(事件玩家), 事件玩家) + 0.500), 射线命中位置(事件玩家 + 上 * (相距距离(眼睛位置(事件玩家), 事件玩家) + 0.500), 事件玩家 + 上 * (
+				相距距离(眼睛位置(事件玩家), 事件玩家) + 0.500) + 面朝方向(事件玩家) * -3, 无, 事件玩家, 真), 无, 事件玩家, 真), 事件玩家 + 面朝方向(事件玩家) * 100, 100);
+		Else;
+			停止镜头(事件玩家);
+		End;
+	}
+}
+
+规则("快速回点")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.HeroChoosed == 真;
+		事件玩家.checkpointA == 真;
+		正在交流(事件玩家, 喷漆上) == 真;
+	}
+
+	动作
+	{
+		If(!事件玩家.finished && !事件玩家.freeMode && 正在交流(事件玩家, 喷漆上));
+			调用子程序(TeleportToCurrentCheckoint);
+		Else If(全局.EditMode && 正在交流(事件玩家, 喷漆上));
+			调用子程序(CancelAbilityAndMomentum);
+			传送(事件玩家, 事件玩家.checkpointA[0]);
+			If(事件玩家.currentOrb);
+				调用子程序(TeleportCurrentBot);
+			End;
+		End;
+	}
+}
+
+规则("自由行动")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.HeroChoosed == 真;
+		事件玩家.finished == 假;
+		按钮被按下(事件玩家, 按钮(装填)) == 真;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 真;
+		存活(事件玩家) == 真;
+	}
+
+	动作
+	{
+		If(!事件玩家.freeMode);
+			停止追踪玩家变量(事件玩家, time);
+			调用子程序(EnableAllAbilities);
+			事件玩家.freeMode = !事件玩家.freeMode;
+			小字体信息(事件玩家, 全局.Config[15]);
+		Else;
+			If(!事件玩家.movementCollision);
+				开启与环境的移动碰撞(事件玩家);
+				事件玩家.movementCollision = 真;
+			End;
+			禁用按钮(事件玩家, 按钮(主要攻击模式));
+			禁用按钮(事件玩家, 按钮(辅助攻击模式));
+			调用子程序(CreatePlayerTargetBot);
+			设置启用终极技能(事件玩家, 假);
+			调用子程序(TeleportToCurrentCheckoint);
+			调用子程序(DisplayCurrentAbilityMsgs);
+			If(正在使用终极技能(事件玩家));
+				击杀(事件玩家, 无);
+				复活(事件玩家);
+			End;
+			事件玩家.freeMode = !事件玩家.freeMode;
+			调用子程序(ContinueTiming);
+			可用按钮(事件玩家, 按钮(主要攻击模式));
+			可用按钮(事件玩家, 按钮(辅助攻击模式));
+		End;
+	}
+}
+
+规则("死亡观战")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.HeroChoosed == 真;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 真;
+		按钮被按下(事件玩家, 按钮(技能2)) == 真;
+		按钮被按下(事件玩家, 按钮(互动)) == 假;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(装填)) == 假;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(辅助攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 假;
+	}
+
+	动作
+	{
+		事件玩家.spectatorMode = !事件玩家.spectatorMode;
+		If(事件玩家.spectatorMode);
+			关闭游戏预设复生模式(事件玩家);
+			停止追踪玩家变量(事件玩家, time);
+			事件玩家.tp[0] = 所选位置(事件玩家);
+			击杀(事件玩家, 无);
+			等待(0.016, 无视条件);
+			传送(事件玩家, 矢量(0, -999, 0));
+			小字体信息(事件玩家, 全局.Config[16]);
+		Else;
+			开启游戏预设复生模式(事件玩家);
+			传送(事件玩家, 最近的可行走位置(所选位置(事件玩家)));
+			复活(事件玩家);
+			调用子程序(ContinueTiming);
+		End;
+	}
+}
+
+规则("预览下关点位")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.HeroChoosed == 真;
+		事件玩家.finished == 假;
+		事件玩家.freeMode == 假;
+		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 真;
+		按钮被按下(事件玩家, 按钮(辅助攻击模式)) == 真;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 假;
+		按钮被按下(事件玩家, 按钮(技能2)) == 假;
+		按钮被按下(事件玩家, 按钮(互动)) == 假;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(装填)) == 假;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 假;
+		相距距离(事件玩家, 事件玩家.checkpointA[0]) <= 事件玩家.checkpointA[1];
+	}
+
+	动作
+	{
+		If(全局.EditMode || !全局.PreviewPosition[事件玩家.checkpoint]);
+			全局.CheckpointBPosition = 事件玩家.checkpointB[0];
+			全局.TempVar = 映射的数组(全局.TempVar, 相距距离(全局.CheckpointBPosition, 射线命中位置(全局.CheckpointBPosition, 全局.CheckpointBPosition + 与此角度的相对方向(
+				当前数组索引 * 30, -45) * 15, 无, 无, 假)));
+			While(绝对值(数量(从数组中移除(全局.TempVar, 最后(已排序的数组(全局.TempVar, 当前数组元素)))) - 5.500) < 5.500);
+				全局.TempVar = 映射的数组(全局.TempVar, 全局.TempVar[(当前数组索引 + 11) % 12] + 当前数组元素 + 全局.TempVar[(当前数组索引 + 1) % 12]);
+			End;
+			全局.PreviewPosition[事件玩家.checkpoint] = 射线命中位置(全局.CheckpointBPosition, 全局.CheckpointBPosition + 15 * 与此角度的相对方向(30 * 数组值的索引(
+				全局.TempVar, 最后(已排序的数组(全局.TempVar, 当前数组元素))), -45), 所有玩家(所有队伍), 事件玩家, 真);
+		End;
+		设置朝向(事件玩家, 方向(全局.PreviewPosition[事件玩家.checkpoint], 事件玩家.checkpointB[0]), 至地图);
+		开始镜头(事件玩家, 射线命中位置(事件玩家.checkpointB[0], 事件玩家.checkpointB[0] + 面朝方向(事件玩家) * -15, 无, 无, 假), 事件玩家.checkpointB[0], 30);
+		停止追踪玩家变量(事件玩家, time);
+		设置主要攻击模式启用(事件玩家, 假);
+		设置辅助攻击模式启用(事件玩家, 假);
+		设置状态(事件玩家, 无, 定身, 9999);
+		小字体信息(事件玩家, 自定义字符串("release {0} / {1} to cancel preview", 输入绑定字符串(按钮(主要攻击模式)), 输入绑定字符串(按钮(辅助攻击模式))));
+		等待直到 (!按钮被按下(事件玩家, 按钮(主要攻击模式)) || !按钮被按下(事件玩家, 按钮(辅助攻击模式)) || 按钮被按下(事件玩家, 按钮(技能2)) || 相距距离(事件玩家, 事件玩家.checkpointA[0])
+			> 事件玩家.checkpointA[1], 9999);
+		清除状态(事件玩家, 定身);
+		设置主要攻击模式启用(事件玩家, 真);
+		设置辅助攻击模式启用(事件玩家, 真);
+		停止镜头(事件玩家);
+		设置朝向(事件玩家, 方向(事件玩家, 事件玩家.checkpointA[3][0] ? 事件玩家.checkpointA[3][0] : 事件玩家.checkpointB[0]), 至地图);
+		调用子程序(ContinueTiming);
+		等待(0.250, 无视条件);
+	}
+}
+
+规则("语音相关：快速返回跳关点, 中断女武神, 设置目标始终死亡")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.HeroChoosed == 真;
+		(正在交流(事件玩家, 需要帮助) || 正在交流(事件玩家, 抱歉) || 正在交流(事件玩家, 感谢)) == 真;
+	}
+
+	动作
+	{
+		If(正在交流(事件玩家, 需要帮助));
+			If(事件玩家.cheat);
+				调用子程序(TempSavePlayerData);
+				事件玩家.checkpoint = 事件玩家.playerData[0];
+				调用子程序(SkipOrBackCheckpoint);
+			End;
+		Else If(事件玩家.freeMode || 事件玩家.finished);
+			If(正在交流(事件玩家, 抱歉));
+				事件玩家.tp[0] = 所选位置(事件玩家);
+				击杀(事件玩家, 无);
+				等待(0.016, 无视条件);
+				传送(事件玩家, 事件玩家.tp[0]);
+			Else If(事件玩家.numberOfNeedResurrect != 0);
+				事件玩家.killTargetBot = !事件玩家.killTargetBot;
+				小字体信息(事件玩家, 事件玩家.killTargetBot ? 自定义字符串("已开启目标天使始终阵亡") : 自定义字符串("已关闭目标天使始终阵亡"));
+			End;
+		End;
+		等待(2, 无视条件);
+	}
+}
+
+规则("设置传送点")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.HeroChoosed == 真;
+		(事件玩家.freeMode || 事件玩家.finished) == 真;
+		事件玩家.editMode < 2;
+		(按钮被按下(事件玩家, 按钮(技能2)) || 按钮被按下(事件玩家, 按钮(装填))) == 真;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 假;
+		按钮被按下(事件玩家, 按钮(互动)) == 假;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(辅助攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 假;
+	}
+
+	动作
+	{
+		If(按钮被按下(事件玩家, 按钮(技能2)));
+			等待直到 (!按钮被按下(事件玩家, 按钮(技能2)), 9999);
+			等待直到 (按钮被按下(事件玩家, 按钮(技能2)), 0.200);
+			If(按钮被按下(事件玩家, 按钮(技能2)) && !按钮被按下(事件玩家, 按钮(跳跃)) && !按钮被按下(事件玩家, 按钮(主要攻击模式)) && !按钮被按下(事件玩家, 按钮(辅助攻击模式)) && (
+				事件玩家.freeMode || 事件玩家.finished));
+				事件玩家.tp[1] = 事件玩家.tp[1] ? 假 : 所选位置(事件玩家);
+				小字体信息(事件玩家, 事件玩家.tp[1] ? 自定义字符串("teleport has been set, press {0} to use", 输入绑定字符串(按钮(装填))) : 自定义字符串("已删除传送点"));
+			End;
+		Else If(事件玩家.tp[1] && !按钮被按下(事件玩家, 按钮(近身攻击)) && !正在使用表情交流(事件玩家));
+			调用子程序(CancelAbilityAndMomentum);
+			传送(事件玩家, 事件玩家.tp[1]);
+		End;
+	}
+}
+
+规则("进入障碍球效果")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.currentSphere != 空数组;
+		事件玩家.checkpointA == 真;
+		对任意为”真“(事件玩家.currentSphere, 相距距离(事件玩家, 当前数组元素[0]) <= 当前数组元素[1] || 相距距离(眼睛位置(事件玩家), 当前数组元素[0]) <= 当前数组元素[1]) == 真;
+	}
+
+	动作
+	{
+		If(!事件玩家.finished && !事件玩家.freeMode);
+			设置状态(事件玩家, 无, 点燃, 0.150);
+			调用子程序(TeleportToCurrentCheckoint);
+		Else;
+			设置状态(事件玩家, 无, 点燃, 9999);
+			等待直到 (对全部为”真“(事件玩家.currentSphere, 相距距离(事件玩家, 当前数组元素[0]) > 当前数组元素[1] && 相距距离(眼睛位置(事件玩家), 当前数组元素[0]) > 当前数组元素[1]), 9999);
+			清除状态(事件玩家, 点燃);
+		End;
+	}
+}
+
+规则("踩弹力云效果")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.currentCloud != 空数组;
+		事件玩家.checkpointA == 真;
+		(高度(事件玩家) >= 0.030 || 在地面上(事件玩家)) == 真;
+		对任意为”真“(事件玩家.currentCloud, 相距距离(事件玩家, 当前数组元素[0]) <= 1.500) == 真;
+	}
+
+	动作
+	{
+		施加推力(事件玩家, 上, 首个(已过滤的数组(事件玩家.currentCloud, 相距距离(事件玩家, 当前数组元素[0]) <= 1.500))[1], 至地图, 取消相反运动);
+		播放效果(事件玩家, 爆炸声音, 无, 事件玩家, 80);
+	}
+}
+
+规则("玩家离开游戏, 移除专属机器人")
+{
+	事件
+	{
+		玩家离开比赛;
+		双方;
+		全部;
+	}
+
+	动作
+	{
+		If(数组包含(全局.ShowHotKeyPlayers, 事件玩家));
+			修改全局变量(ShowHotKeyPlayers, 根据值从数组中移除, 事件玩家);
+		End;
+		For 全局变量(I, 0, 栏位数量(所有队伍), 1);
+			If(!实体存在(此栏位的玩家(全局.I, 栏位数量(队伍1) > 栏位数量(队伍2) ? 队伍1 : 队伍2)));
+				移除机器人(栏位数量(队伍1) > 栏位数量(队伍2) ? 队伍1 : 队伍2, 全局.I + 栏位数量(所有队伍));
+			End;
+		End;
+	}
+}
+
+规则("离开初始点位开始计时")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 假;
+		事件玩家.freeMode == 假;
+		事件玩家.cheat == 假;
+		事件玩家.leaveOriginalCheckpoint == 假;
+		事件玩家.checkpointB == 真;
+		相距距离(事件玩家, 事件玩家.checkpointA[0]) > 事件玩家.checkpointA[1];
+	}
+
+	动作
+	{
+		追踪玩家变量频率(事件玩家, time, 16200, 1, 全部禁用);
+		事件玩家.leaveOriginalCheckpoint = 真;
+	}
+}
+
+规则("回到初始点重置计时")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 假;
+		事件玩家.checkpoint == 0;
+		事件玩家.cheat == 假;
+		相距距离(事件玩家, 全局.Checkpoint[0][0]) <= 全局.Checkpoint[0][1];
+	}
+
+	动作
+	{
+		停止追踪玩家变量(事件玩家, time);
+		事件玩家.time = 0;
+		事件玩家.mistake = 0;
+		事件玩家.leaveOriginalCheckpoint = 假;
+	}
+}
+
+规则("重新开始")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.HeroChoosed == 真;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 真;
+		按钮被按下(事件玩家, 按钮(技能2)) == 真;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		按钮被按下(事件玩家, 按钮(互动)) == 真;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(装填)) == 假;
+		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(辅助攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 假;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+		(!全局.EditMode || 事件玩家 != 主机玩家) == 真;
+		(!事件玩家.checkpointA[5] || 事件玩家.finished) == 真;
+	}
+
+	动作
+	{
+		播放效果(事件玩家, “猎空”闪回消失声音, 无, 事件玩家, 200);
+		消除效果(事件玩家.playerEffect);
+		传送(事件玩家, 全局.Checkpoint[0][0]);
+		If(正在使用终极技能(事件玩家));
+			击杀(事件玩家, 无);
+			复活(事件玩家);
+		End;
+		开始强制玩家选择英雄(事件玩家, 全局.DefaultHero);
+		调用子程序(InitializePlayerVariables);
+		调用子程序(EditPlayerData);
+		调用子程序(CreatePlayerTargetBot);
+		调用子程序(GetCurrentCheckpoint);
+		设置启用终极技能(事件玩家, 假);
+		调用子程序(SetCurrentAbilities);
+		调用子程序(TeleportCurrentBot);
+		调用子程序(DisplayCurrentAbilityMsgs);
+		开始规则(CreateCurrentEffects, 重新开始规则);
+		调用子程序(CreateCurrentWorldText);
+		开始规则(DisplayCurrentCustomBigMsgs, 无动作);
+		开始规则(DisplayCurrentCustomSmallMsgs, 无动作);
+		播放效果(事件玩家, “猎空”闪回重现声音, 无, 事件玩家, 200);
+	}
+}
+
+规则("跳关／退关")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.HeroChoosed == 真;
+		按钮被按下(事件玩家, 按钮(技能2)) == 真;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 真;
+		(按钮被按下(事件玩家, 按钮(主要攻击模式)) || 按钮被按下(事件玩家, 按钮(辅助攻击模式))) == 真;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 假;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(互动)) == 假;
+		按钮被按下(事件玩家, 按钮(装填)) == 假;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 假;
+		(全局.EditMode || (全局.Cheat && (!全局.FinishedCheat || 事件玩家.bestRecord)) || 事件玩家.playerTittle) == 真;
+		(!全局.EditMode || 事件玩家 != 主机玩家) == 真;
+		数量(全局.Checkpoint) > 1;
+		(!事件玩家.checkpointA[5] || 全局.EditMode) == 真;
+	}
+
+	动作
+	{
+		调用子程序(TempSavePlayerData);
+		调用子程序(ChooseCheckpoint);
+		While(!全局.EditMode && 全局.Checkpoint[事件玩家.checkpoint][5]);
+			调用子程序(ChooseCheckpoint);
+		End;
+		调用子程序(SkipOrBackCheckpoint);
+	}
+}
+
+规则("显示或隐藏快捷键")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		按钮被按下(事件玩家, 按钮(互动)) == 真;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 假;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(装填)) == 假;
+		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(辅助攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(技能2)) == 假;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 假;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+		全局.EditMode == 假;
+	}
+
+	动作
+	{
+		等待直到 (!按钮被按下(事件玩家, 按钮(互动)), 9999);
+		等待直到 (按钮被按下(事件玩家, 按钮(互动)), 0.300);
+		If(按钮被按下(事件玩家, 按钮(互动)));
+			If(!数组包含(全局.ShowHotKeyPlayers, 事件玩家));
+				修改全局变量(ShowHotKeyPlayers, 添加至数组, 事件玩家);
+			Else;
+				修改全局变量(ShowHotKeyPlayers, 根据值从数组中移除, 事件玩家);
+			End;
+		End;
+	}
+}
+
+规则("显示二维码")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 假;
+		(按钮被按下(事件玩家, 按钮(互动)) || (全局.QRCode[5] && 按钮被按下(事件玩家, 按钮(终极技能)))) == 真;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 假;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(装填)) == 假;
+		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(辅助攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(技能2)) == 假;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+	}
+
+	动作
+	{
+		等待(0.500, 当为“假”时中止);
+		开始镜头(事件玩家, 全局.QRCode[11], 全局.QRCode[12], 0);
+		If(按钮被按下(事件玩家, 按钮(互动)));
+			事件玩家.showQRCode = 2;
+			等待直到 (!按钮被按下(事件玩家, 按钮(互动)), 9999);
+		Else;
+			事件玩家.showQRCode = 1;
+			等待直到 (!按钮被按下(事件玩家, 按钮(终极技能)), 9999);
+		End;
+		停止镜头(事件玩家);
+		事件玩家.showQRCode = 0;
+	}
+}
+
+规则("发送你好或再见机器人自动回复")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		(正在交流(事件玩家, 问候) || 正在交流(事件玩家, 再见)) == 真;
+	}
+
+	动作
+	{
+		If(正在交流(事件玩家, 问候));
+			等待(0.500, 无视条件);
+			交流(事件玩家.targetBot, 问候);
+			If(事件玩家.finished && 玩家数量(所有队伍) > 1);
+				小字体信息(所有玩家(所有队伍), 自定义字符串("{0} 抱起了 {1} 并mua一口≥ω≤", 事件玩家.playerNickname, 距离最近的玩家(事件玩家, 所有队伍).playerNickname ? 距离最近的玩家(事件玩家, 所有队伍)
+					.playerNickname : 距离最近的玩家(事件玩家, 所有队伍)));
+			End;
+		Else;
+			等待(0.500, 无视条件);
+			交流(事件玩家.targetBot, 再见);
+		End;
+	}
+}
+
+规则("传送动画")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 假;
+		事件玩家.finished == 假;
+		事件玩家.freeMode == 假;
+		事件玩家.checkpointA[5] == 真;
+		事件玩家.checkpointB == 真;
+		相距距离(事件玩家, 事件玩家.checkpointA[0]) <= 事件玩家.checkpointA[1];
+	}
+
+	动作
+	{
+		If(全局.TeleportAnimation);
+			开始镜头(事件玩家, 射线命中位置(事件玩家 + 上, 事件玩家 + 面朝方向(事件玩家) * -1 * 20, 无, 无, 假), 事件玩家 + 上, 0);
+			设置状态(事件玩家, 无, 定身, 1.200);
+			播放效果(事件玩家, “黑影”位移传动消失声音, 无, 事件玩家, 100);
+			等待(0.300, 无视条件);
+			设置不可见(事件玩家, 全部);
+			等待(0.500, 无视条件);
+			传送(事件玩家, 事件玩家.checkpointB[0]);
+			等待(0.500, 无视条件);
+			设置不可见(事件玩家, 全部禁用);
+			播放效果(事件玩家, “黑影”位移传动重现声音, 无, 事件玩家, 100);
+			等待(0.500, 无视条件);
+			停止镜头(事件玩家);
+			事件玩家.third = 假;
+		Else;
+			等待(0.016, 无视条件);
+			传送(事件玩家, 事件玩家.checkpointB[0]);
+		End;
+	}
+}
+
+规则("穹顶,光晕,火花,六芒星效果")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+		全局.EditMode == 假;
+		(全局.Dome || 全局.Aura || 全局.Sparkle || 全局.Hexagram) == 真;
+	}
+
+	动作
+	{
+		等待(0.250, 无视条件);
+		If(全局.Dome);
+			创建效果(全局.FinishedDisplayDome ? 已过滤的数组(所有玩家(所有队伍), 当前数组元素.finished) : 所有玩家(所有队伍), 球体, 全局.Config[61][0], 全局.Config[61][1],
+				全局.Config[61][2], 可见);
+		End;
+		If(全局.Aura);
+			For 全局变量(II, 0, 6, 1);
+				创建效果(全局.FinishedDisplayAura ? 已过滤的数组(所有玩家(所有队伍), 当前数组元素.finished) : 所有玩家(所有队伍), 有益光环, 数组(颜色(水绿色), 颜色(灰绿色), 颜色(绿色), 颜色(黄色), 颜色(青绿色),
+					颜色(天蓝色))[全局.II], 全局.Config[61][1], 10000, 可见);
+				等待(0.250, 无视条件);
+			End;
+		End;
+		If(全局.Sparkle);
+			For 全局变量(II, 0, 50, 2);
+				创建效果(全局.FinishedDisplaySparkle ? 已过滤的数组(所有玩家(所有队伍), 当前数组元素.finished) : 所有玩家(所有队伍), 火花, 自定义颜色(随机整数(0, 255), 随机整数(0, 255), 随机整数(0,
+					255), 255), 全局.Config[61][1] + 矢量(0, -2 + 全局.II, 0), 10000, 可见);
+				等待(0.250, 无视条件);
+			End;
+		End;
+		If(全局.Hexagram);
+			"by Crystal#54774"
+			For 全局变量(II, 0, 6, 1);
+				创建光束效果(全局.FinishedDisplayHexagram ? 已过滤的数组(所有玩家(所有队伍), 当前数组元素.finished) : 所有玩家(所有队伍), 有害光束, 全局.Config[62][1] + 矢量(0, -0.800, 0)
+					+ 与此角度的相对方向(全局.CircleLoop * 6 + 单次赋值(全局.II * 60), 0) * 全局.Config[62][2], 全局.Config[62][1] + 矢量(0, -0.800, 0) + 与此角度的相对方向(
+					全局.CircleLoop * 6 + 单次赋值(全局.II * 60 + (全局.II < 2 ? 240 : -120)), 0) * 全局.Config[62][2], 全局.Config[62][0], 可见，位置和半径);
+				等待(0.250, 无视条件);
+			End;
+			追踪全局变量频率(CircleLoop, 360, 1, 速率及最终值);
+			While(全局.CircleLoop < 361);
+				等待直到 (全局.CircleLoop >= 360, 360);
+				全局.CircleLoop = 0;
+			End;
+		End;
+	}
+}
+
+规则("炸房效果")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+		总计消耗时间 > 16140;
+	}
+
+	动作
+	{
+		小字体信息(所有玩家(所有队伍), 自定义字符串("Room will breakdown in : 60s"));
+		根据条件中止(全局.EditMode);
+		等待(50, 无视条件);
+		大字体信息(所有玩家(所有队伍), 自定义字符串("— 10 —"));
+		等待(1, 无视条件);
+		大字体信息(所有玩家(所有队伍), 自定义字符串("— 9 —"));
+		等待(1, 无视条件);
+		大字体信息(所有玩家(所有队伍), 自定义字符串("— 8 —"));
+		等待(1, 无视条件);
+		大字体信息(所有玩家(所有队伍), 自定义字符串("— 7 —"));
+		等待(1, 无视条件);
+		大字体信息(所有玩家(所有队伍), 自定义字符串("— 6 —"));
+		等待(1, 无视条件);
+		大字体信息(所有玩家(所有队伍), 自定义字符串("— 5 —"));
+		等待(1, 无视条件);
+		大字体信息(所有玩家(所有队伍), 自定义字符串("— 4 —"));
+		等待(1, 无视条件);
+		大字体信息(所有玩家(所有队伍), 自定义字符串("— 3 —"));
+		交流(所有玩家(所有队伍), 倒计时);
+		等待(1, 无视条件);
+		大字体信息(所有玩家(所有队伍), 自定义字符串("— 2 —"));
+		等待(1, 无视条件);
+		大字体信息(所有玩家(所有队伍), 自定义字符串("— 1 —"));
+		等待(1, 无视条件);
+		大字体信息(所有玩家(所有队伍), 自定义字符串("Boom!"));
+		隐藏英雄HUD(所有玩家(所有队伍));
+		隐藏游戏模式HUD(所有玩家(所有队伍));
+		隐藏计分板(所有玩家(所有队伍));
+		隐藏游戏模式地图UI(所有玩家(所有队伍));
+		隐藏姓名板(所有玩家(所有队伍), 所有玩家(所有队伍));
+		消除所有效果;
+		消除所有图标;
+		消除所有HUD文本;
+		消除所有地图文本;
+		移除所有机器人;
+		等待(0.160, 无视条件);
+		传送(所有玩家(所有队伍), 矢量(0, 500, 0));
+		设置不可见(所有玩家(所有队伍), 全部);
+		设置引力(所有玩家(所有队伍), 0);
+		复活(所有玩家(所有队伍));
+		开始镜头(所有玩家(所有队伍), (最近的可行走位置(矢量(999, 999, 999)) + 最近的可行走位置(矢量(-999, -999, -999))) / 2 + 与此角度的相对方向(比赛时间 * 7.500, -30) * 200, (
+			最近的可行走位置(矢量(999, 999, 999)) + 最近的可行走位置(矢量(-999, -999, -999))) / 2, 5);
+		调用子程序(PlayDestroyMapEffect);
+		等待(1, 无视条件);
+		重新开始比赛;
+	}
+}
+
+规则("完成全部关卡设置")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.checkpoint >= 数量(全局.Checkpoint) - 1;
+		是否是机器人(事件玩家) == 假;
+	}
+
+	动作
+	{
+		事件玩家.finished = 真;
+		调用子程序(EnableAllAbilities);
+	}
+}
+
+规则("未完成全部关卡设置")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.checkpoint < 数量(全局.Checkpoint) - 1;
+		是否是机器人(事件玩家) == 假;
+	}
+
+	动作
+	{
+		事件玩家.finished = 假;
+		If(!事件玩家.freeMode);
+			设置启用终极技能(事件玩家, 假);
+			If(!事件玩家.movementCollision);
+				开启与环境的移动碰撞(事件玩家);
+				事件玩家.movementCollision = 真;
+			End;
+		End;
+	}
+}
+
+规则("通关或自由行动下终极技能始终充能100%")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		(事件玩家.finished || 事件玩家.freeMode) == 真;
+		终极技能充能百分比(事件玩家) < 100;
+		是否是机器人(事件玩家) == 假;
+	}
+
+	动作
+	{
+		设置终极技能充能(事件玩家, 100);
+	}
+}
+
+规则("长按R, 取消环境碰撞")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		(事件玩家.finished || 事件玩家.freeMode) == 真;
+		按钮被按下(事件玩家, 按钮(装填)) == 真;
+		按钮被按下(事件玩家, 按钮(互动)) == 假;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 假;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(辅助攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(技能2)) == 假;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 假;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+	}
+
+	动作
+	{
+		等待(1, 当为“假”时中止);
+		事件玩家.movementCollision = !事件玩家.movementCollision;
+		If(事件玩家.movementCollision);
+			开启与环境的移动碰撞(事件玩家);
+			小字体信息(事件玩家, 自定义字符串("Environmental collision enabled"));
+		Else;
+			取消与环境的移动碰撞(事件玩家, 假);
+			小字体信息(事件玩家, 自定义字符串("Environmental collision disabled"));
+		End;
+	}
+}
+
+规则("爬墙，小跳初始化")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		在地面上(事件玩家) == 真;
+	}
+
+	动作
+	{
+		事件玩家.TY = 0;
+		事件玩家.J = 2;
+		等待(0, 无视条件);
+		根据条件循环((事件玩家.TY != 0 || 事件玩家.J != 2) && 在地面上(事件玩家) == 真);
+		事件玩家.O = 1;
+	}
+}
+
+规则("跳跃判定")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		按钮被按下(事件玩家, 按钮(跳跃)) == 真;
+		事件玩家.TY != 2;
+	}
+
+	动作
+	{
+		事件玩家.TY += 1;
+	}
+}
+
+规则("踏空小跳判定")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.TY == 0;
+		正在空中(事件玩家) == 真;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+	}
+
+	动作
+	{
+		事件玩家.O = 0;
+	}
+}
+
+规则("踏空")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.TY == 0;
+		正在空中(事件玩家) == 真;
+	}
+
+	动作
+	{
+		事件玩家.TY = 1;
+	}
+}
+
+规则("玩家在墙上")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		"此条规则同时与爬墙判定挂钩，请勿关闭/删除"
+		在墙上(事件玩家) == 真;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 真;
+	}
+
+	动作
+	{
+		事件玩家.TY = 2;
+		事件玩家.J = 1;
+	}
+}
+
+规则("表情小跳判定")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		正在使用表情交流(事件玩家) == 真;
+	}
+
+	动作
+	{
+		事件玩家.O = 0;
+	}
+}
+
+规则("小跳使用判定")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.O == 0;
+		正在跳跃(事件玩家) == 真;
+	}
+
+	动作
+	{
+		事件玩家.O = 1;
+		小字体信息(事件玩家, 自定义字符串("small hop used"));
+	}
+}
+
+规则("模拟瞬")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		半藏;
+	}
+
+	条件
+	{
+		按钮被按下(事件玩家, 按钮(互动)) == 假;
+		按钮被按下(事件玩家, 按钮(技能1)) == 真;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(辅助攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(技能2)) == 假;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 假;
+		// (事件玩家.finished || 事件玩家.freeMode) == 真;
+		是否是机器人(距离准星最近的玩家(事件玩家, 所有队伍)) == 真;
+		在视野内(事件玩家, 距离准星最近的玩家(事件玩家, 所有队伍), 10) == 真;
+        (相距距离(事件玩家, 距离准星最近的玩家(事件玩家, 所有队伍)) < 30) == 真;
+		在视野内(事件玩家, 距离准星最近的玩家(事件玩家, 所有队伍), 10) == 真;
+		// (!全局.EditMode || 事件玩家 != 主机玩家) == 真;
+		数量(全局.Checkpoint) > 1;
+		事件玩家.checkpointA[5] == 假;
+		(当前地图 != 地图(釜山) || 相距距离(事件玩家, 矢量(134, 17, -125)) > 5) == 真;
+	}
+
+	动作
+	{
+        // 传送(事件玩家, 距离准星最近的玩家(事件玩家, 所有队伍) + 方向(事件玩家,距离准星最近的玩家(事件玩家, 所有队伍)));
+		施加推力(事件玩家, 速率(事件玩家) * 1, -1, 至地图, 取消相反运动);
+        设置状态(事件玩家, 无, 定身, 0.25);
+        等待(0.250, 无视条件);
+        传送(事件玩家, 距离准星最近的玩家(事件玩家, 所有队伍) + 归一化(事件玩家 - 距离准星最近的玩家(事件玩家, 所有队伍)) * 3);
+	}
+}
+
+规则("模拟狐")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		半藏;
+	}
+
+	条件
+	{
+		按钮被按下(事件玩家, 按钮(互动)) == 假;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(辅助攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(技能2)) == 假;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 真;
+		// 终极技能充能百分比(事件玩家) == 100;
+		// 事件玩家.freeMode == 假;
+		// 是否是机器人(距离准星最近的玩家(事件玩家, 所有队伍)) == 真;
+		// 在视野内(事件玩家, 距离准星最近的玩家(事件玩家, 所有队伍), 10) == 真;
+        // (相距距离(事件玩家, 距离准星最近的玩家(事件玩家, 所有队伍)) < 30) == 真;
+		// 在视野内(事件玩家, 距离准星最近的玩家(事件玩家, 所有队伍), 10) == 真;
+		// (!全局.EditMode || 事件玩家 != 主机玩家) == 真;
+		数量(全局.Checkpoint) > 1;
+		// 事件玩家.checkpointA[5] == 假;
+		(当前地图 != 地图(釜山) || 相距距离(事件玩家, 矢量(134, 17, -125)) > 5) == 真;
+	}
+
+	动作
+	{
+        // 传送(事件玩家, 距离准星最近的玩家(事件玩家, 所有队伍) + 方向(事件玩家,距离准星最近的玩家(事件玩家, 所有队伍)));
+        事件玩家.fakeq = 0;
+        追踪玩家变量频率(事件玩家, fakeq, 15, 1, 速率及最终值);
+	}
+}
+
+规则("模拟狐")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		半藏;
+	}
+
+	条件
+	{
+		事件玩家.fakeq != 15;
+	}
+
+	动作
+	{
+        设置移动速度(事件玩家, 150);
+	}
+}
+
+规则("模拟狐")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		半藏;
+	}
+
+	条件
+	{
+		事件玩家.fakeq == 15;
+	}
+
+	动作
+	{
+        设置移动速度(事件玩家, 100);
+	}
+}
+
+规则("瞄准玩家后按互动+R, 传送该玩家所在关卡")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		按钮被按下(事件玩家, 按钮(互动)) == 真;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 假;
+		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(辅助攻击模式)) == 假;
+		按钮被按下(事件玩家, 按钮(技能2)) == 假;
+		按钮被按下(事件玩家, 按钮(终极技能)) == 假;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 假;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 假;
+		(事件玩家.finished || 事件玩家.freeMode) == 真;
+		是否是机器人(距离准星最近的玩家(事件玩家, 所有队伍)) == 假;
+		在视野内(事件玩家, 距离准星最近的玩家(事件玩家, 所有队伍), 10) == 真;
+		(!全局.EditMode || 事件玩家 != 主机玩家) == 真;
+		数量(全局.Checkpoint) > 1;
+		事件玩家.checkpointA[5] == 假;
+		(当前地图 != 地图(釜山) || 相距距离(事件玩家, 矢量(134, 17, -125)) > 5) == 真;
+	}
+
+	动作
+	{
+		If(按钮被按下(事件玩家, 按钮(装填)) && !距离准星最近的玩家(事件玩家, 所有队伍).checkpointA[5] && (全局.EditMode || (全局.Cheat && (
+			!全局.FinishedCheat || 事件玩家.bestRecord)) || 事件玩家.playerTittle));
+			调用子程序(TempSavePlayerData);
+			事件玩家.checkpoint = 距离准星最近的玩家(事件玩家, 所有队伍).checkpoint;
+			调用子程序(SkipOrBackCheckpoint);
+		Else;
+			传送(事件玩家, 距离准星最近的玩家(事件玩家, 所有队伍));
+		End;
+	}
+}
+
+规则("左右键选择英雄")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		// 全局.EditMode == 假;
+		(事件玩家.freeMode || 事件玩家.finished) == 真;
+		(按钮被按下(事件玩家, 按钮(主要攻击模式)) || 按钮被按下(事件玩家, 按钮(辅助攻击模式))) == 真;
+	}
+
+	动作
+	{
+		If(按钮被按下(事件玩家, 按钮(主要攻击模式)));
+			事件玩家.chooseHero += 事件玩家.chooseHero == 数量(全部英雄) - 1 ? 1 - 数量(全部英雄) : 1;
+		Else If(按钮被按下(事件玩家, 按钮(辅助攻击模式)));
+			事件玩家.chooseHero -= 事件玩家.chooseHero == 0 ? 1 - 数量(全部英雄) : 1;
+		End;
+		预加载英雄(事件玩家, 全部英雄[事件玩家.chooseHero]);
+	}
+}
+
+规则("\"我需要治疗\", 更换英雄")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		// 全局.EditMode == 假;
+		(事件玩家.freeMode || 事件玩家.finished) == 真;
+		正在交流(事件玩家, 需要治疗) == 真;
+	}
+
+	动作
+	{
+		播放效果(所有玩家(所在队伍(事件玩家)), 布丽吉塔恢复包护甲声音, 无, 事件玩家, 100);
+		等待(0.300, 无视条件);
+		开始强制玩家选择英雄(事件玩家, 全部英雄[事件玩家.chooseHero]);
+		事件玩家.playerColor = 事件玩家.playerTittle ? (事件玩家.playerTittle[2] == 颜色(白色) ? 自定义颜色(随机整数(0, 255), 随机整数(0, 255), 随机整数(0, 255), 255)
+			: 事件玩家.playerTittle[2]) : 颜色(白色);
+	}
+}
+
+规则("范围开启内表情同步")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 假;
+		正在使用表情交流(事件玩家) == 真;
+		按钮被按下(事件玩家, 按钮(装填)) == 真;
+		(事件玩家.finished || 事件玩家.freeMode) == 真;
+	}
+
+	动作
+	{
+		全局.EmoteSyncPlayers = 已过滤的数组(范围内玩家(事件玩家, 15, 所有队伍, 关闭), 正在使用表情交流(当前数组元素) && 所用英雄(当前数组元素) == 所用英雄(事件玩家));
+		全局.EmoteSyncPlayers = 映射的数组(全局.EmoteSyncPlayers, 数组(当前数组元素, 正在交流(当前数组元素, 表情（上）) ? 0 : (正在交流(当前数组元素, 表情（下）) ? 1 : (正在交流(当前数组元素,
+			表情（左）) ? 2 : 3))));
+		取消主要动作(映射的数组(全局.EmoteSyncPlayers, 当前数组元素[0]));
+		等待(0.200, 无视条件);
+		For 全局变量(I, 0, 数量(全局.EmoteSyncPlayers), 1);
+			If(全局.EmoteSyncPlayers[全局.I][1] == 0);
+				交流(全局.EmoteSyncPlayers[全局.I][0], 表情（上）);
+			Else If(全局.EmoteSyncPlayers[全局.I][1] == 1);
+				交流(全局.EmoteSyncPlayers[全局.I][0], 表情（下）);
+			Else If(全局.EmoteSyncPlayers[全局.I][1] == 2);
+				交流(全局.EmoteSyncPlayers[全局.I][0], 表情（左）);
+			Else If(全局.EmoteSyncPlayers[全局.I][1] == 3);
+				交流(全局.EmoteSyncPlayers[全局.I][0], 表情（右）);
+			End;
+		End;
+	}
+}
+
+规则("CTRL+E+左/右/近战, 控制音调")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 假;
+		事件玩家.finished == 真;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 真;
+		按钮被按下(事件玩家, 按钮(技能2)) == 真;
+		(按钮被按下(事件玩家, 按钮(近身攻击)) || 按钮被按下(事件玩家, 按钮(主要攻击模式)) || 按钮被按下(事件玩家, 按钮(辅助攻击模式))) == 真;
+	}
+
+	动作
+	{
+		If(按钮被按下(事件玩家, 按钮(主要攻击模式)) && 事件玩家.voice < 1.500);
+			事件玩家.voice += 0.010;
+			等待(0.016, 无视条件);
+			等待(0.500, 当为“假”时中止);
+			While(按钮被按下(事件玩家, 按钮(主要攻击模式)) && 事件玩家.voice < 1.500);
+				事件玩家.voice += 0.010;
+				等待(0.016, 无视条件);
+				等待(0.030, 当为“假”时中止);
+			End;
+		Else If(按钮被按下(事件玩家, 按钮(辅助攻击模式)) && 事件玩家.voice > 0.500);
+			事件玩家.voice -= 0.010;
+			等待(0.016, 无视条件);
+			等待(0.500, 当为“假”时中止);
+			While(按钮被按下(事件玩家, 按钮(辅助攻击模式)) && 事件玩家.voice > 0.500);
+				事件玩家.voice -= 0.010;
+				等待(0.016, 无视条件);
+				等待(0.030, 当为“假”时中止);
+			End;
+		Else If(按钮被按下(事件玩家, 按钮(近身攻击)));
+			小字体信息(事件玩家, 自定义字符串("hold 2s to reset default value"));
+			等待(2, 当为“假”时中止);
+			事件玩家.voice = 1;
+			小字体信息(事件玩家, 自定义字符串("default value reset"));
+		End;
+	}
+}
+
+规则("空格+E+左/右/近战, 控制体型")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 假;
+		事件玩家.finished == 真;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 真;
+		按钮被按下(事件玩家, 按钮(技能2)) == 真;
+		(按钮被按下(事件玩家, 按钮(近身攻击)) || 按钮被按下(事件玩家, 按钮(主要攻击模式)) || 按钮被按下(事件玩家, 按钮(辅助攻击模式))) == 真;
+	}
+
+	动作
+	{
+		If(按钮被按下(事件玩家, 按钮(主要攻击模式)) && 事件玩家.bodySize < 7);
+			事件玩家.bodySize += 0.010;
+			等待(0.016, 无视条件);
+			等待(0.500, 当为“假”时中止);
+			While(按钮被按下(事件玩家, 按钮(主要攻击模式)) && 事件玩家.bodySize < 7);
+				事件玩家.bodySize += 0.010;
+				等待(0.016, 无视条件);
+				等待(0.030, 当为“假”时中止);
+			End;
+		Else If(按钮被按下(事件玩家, 按钮(辅助攻击模式)) && 事件玩家.bodySize > 0.100);
+			事件玩家.bodySize -= 0.010;
+			等待(0.016, 无视条件);
+			等待(0.500, 当为“假”时中止);
+			While(按钮被按下(事件玩家, 按钮(辅助攻击模式)) && 事件玩家.bodySize > 0.100);
+				事件玩家.bodySize -= 0.010;
+				等待(0.016, 无视条件);
+				等待(0.030, 当为“假”时中止);
+			End;
+		Else If(按钮被按下(事件玩家, 按钮(近身攻击)));
+			小字体信息(事件玩家, 自定义字符串("hold 2s to reset default value"));
+			等待(2, 当为“假”时中止);
+			事件玩家.bodySize = 1;
+			小字体信息(事件玩家, 自定义字符串("default value reset"));
+		End;
+	}
+}
+
+规则("CTRL+SHIFT+左/右/近战, 控制弹道")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 假;
+		事件玩家.finished == 真;
+		按钮被按下(事件玩家, 按钮(蹲下)) == 真;
+		按钮被按下(事件玩家, 按钮(技能1)) == 真;
+		(按钮被按下(事件玩家, 按钮(近身攻击)) || 按钮被按下(事件玩家, 按钮(主要攻击模式)) || 按钮被按下(事件玩家, 按钮(辅助攻击模式))) == 真;
+	}
+
+	动作
+	{
+		If(按钮被按下(事件玩家, 按钮(主要攻击模式)) && 事件玩家.projectile < 500);
+			事件玩家.projectile += 1;
+			等待(0.016, 无视条件);
+			设置弹道速度(事件玩家, 事件玩家.projectile);
+			设置弹道引力(事件玩家, 事件玩家.projectile);
+			等待(0.500, 当为“假”时中止);
+			While(按钮被按下(事件玩家, 按钮(蹲下)) && 按钮被按下(事件玩家, 按钮(技能1)) && 按钮被按下(事件玩家, 按钮(主要攻击模式)) && 事件玩家.projectile < 500);
+				事件玩家.projectile += 1;
+				等待(0.050, 无视条件);
+			End;
+		Else If(按钮被按下(事件玩家, 按钮(辅助攻击模式)) && 事件玩家.projectile > 0);
+			事件玩家.projectile -= 1;
+			等待(0.016, 无视条件);
+			设置弹道速度(事件玩家, 事件玩家.projectile);
+			设置弹道引力(事件玩家, 事件玩家.projectile);
+			等待(0.500, 当为“假”时中止);
+			While(按钮被按下(事件玩家, 按钮(蹲下)) && 按钮被按下(事件玩家, 按钮(技能1)) && 按钮被按下(事件玩家, 按钮(辅助攻击模式)) && 事件玩家.projectile > 0);
+				事件玩家.projectile -= 1;
+				等待(0.050, 无视条件);
+			End;
+		Else If(按钮被按下(事件玩家, 按钮(近身攻击)));
+			小字体信息(事件玩家, 自定义字符串("hold 2s to reset default value"));
+			等待(2, 当为“假”时中止);
+			事件玩家.projectile = 1;
+			小字体信息(事件玩家, 自定义字符串("default value reset"));
+		End;
+		设置弹道速度(事件玩家, 事件玩家.projectile);
+		设置弹道引力(事件玩家, 事件玩家.projectile);
+	}
+}
+
+规则("空格+SHIFT+左/右/近战, 控制屏障")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 假;
+		事件玩家.finished == 真;
+		按钮被按下(事件玩家, 按钮(跳跃)) == 真;
+		按钮被按下(事件玩家, 按钮(技能1)) == 真;
+		(按钮被按下(事件玩家, 按钮(近身攻击)) || 按钮被按下(事件玩家, 按钮(主要攻击模式)) || 按钮被按下(事件玩家, 按钮(辅助攻击模式))) == 真;
+	}
+
+	动作
+	{
+		If(按钮被按下(事件玩家, 按钮(主要攻击模式)) && 事件玩家.barrierSize < 7);
+			事件玩家.barrierSize += 0.010;
+			等待(0.016, 无视条件);
+			等待(0.500, 当为“假”时中止);
+			While(按钮被按下(事件玩家, 按钮(主要攻击模式)) && 事件玩家.barrierSize < 7);
+				事件玩家.barrierSize += 0.010;
+				等待(0.016, 无视条件);
+				等待(0.030, 当为“假”时中止);
+			End;
+		Else If(按钮被按下(事件玩家, 按钮(辅助攻击模式)) && 事件玩家.barrierSize > 0.100);
+			事件玩家.barrierSize -= 0.010;
+			等待(0.016, 无视条件);
+			等待(0.500, 当为“假”时中止);
+			While(按钮被按下(事件玩家, 按钮(辅助攻击模式)) && 事件玩家.barrierSize > 0.100);
+				事件玩家.barrierSize -= 0.010;
+				等待(0.016, 无视条件);
+				等待(0.030, 当为“假”时中止);
+			End;
+		Else If(按钮被按下(事件玩家, 按钮(近身攻击)));
+			小字体信息(事件玩家, 自定义字符串("hold 2s to reset default value"));
+			等待(2, 当为“假”时中止);
+			事件玩家.barrierSize = 1;
+			小字体信息(事件玩家, 自定义字符串("default value reset"));
+		End;
+	}
+}
+
+规则("语音（上),  更换效果")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 假;
+		事件玩家.finished == 真;
+		正在交流(事件玩家, 语音（上）) == 真;
+	}
+
+	动作
+	{
+		消除效果(事件玩家.playerEffect ? 事件玩家.playerEffect : 无);
+		事件玩家.choosePlayerEffect = 随机整数(0, 21);
+		If(事件玩家.choosePlayerEffect == 0);
+			创建效果(所有玩家(所有队伍), 球体, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 1);
+			创建效果(所有玩家(所有队伍), 光柱, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 2);
+			创建效果(所有玩家(所有队伍), 球, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 3);
+			创建效果(所有玩家(所有队伍), 环, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 4);
+			创建效果(所有玩家(所有队伍), 云, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 5);
+			创建效果(所有玩家(所有队伍), 火花, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 6);
+			创建效果(所有玩家(所有队伍), 有益光环, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 7);
+			创建效果(所有玩家(所有队伍), 有害光环, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 8);
+			创建效果(所有玩家(所有队伍), 治疗目标激活效果, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 9);
+			创建效果(所有玩家(所有队伍), 治疗目标效果, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 10);
+			创建效果(所有玩家(所有队伍), 安娜生物手雷增疗效果, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 11);
+			创建效果(所有玩家(所有队伍), 安娜纳米激素强化效果, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 12);
+			创建效果(所有玩家(所有队伍), 巴蒂斯特维生力场保护效果, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 13);
+			创建效果(所有玩家(所有队伍), “回声”复制效果, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 14);
+			创建效果(所有玩家(所有队伍), 卢西奥音障保护效果, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 15);
+			创建效果(所有玩家(所有队伍), “天使”伤害强化效果, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 16);
+			创建效果(所有玩家(所有队伍), “死神”幽灵形态效果, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 17);
+			创建效果(所有玩家(所有队伍), “士兵：76”疾跑效果, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 18);
+			创建效果(所有玩家(所有队伍), 托比昂热力过载效果, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 19);
+			创建效果(所有玩家(所有队伍), 温斯顿原始暴怒效果, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 20);
+			创建效果(所有玩家(所有队伍), “破坏球”感应护盾目标效果, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		Else If(事件玩家.choosePlayerEffect == 21);
+			创建效果(所有玩家(所有队伍), “破坏球”重力坠击火焰效果, 事件玩家.playerColor, 事件玩家, 事件玩家.bodySize, 可见，位置，半径和颜色);
+		End;
+		事件玩家.playerEffect = 最后创建的实体;
+	}
+}
+
+规则("快速近战 by 零之西洛克斯")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.EditMode == 假;
+		(事件玩家.finished || 事件玩家.freeMode) == 真;
+		所用英雄(事件玩家) != 英雄(莱因哈特);
+		所用英雄(事件玩家) != 英雄(布丽吉塔);
+		按钮被按下(事件玩家, 按钮(近身攻击)) == 真;
+		按钮被按下(事件玩家, 按钮(装填)) == 假;
+		按钮被按下(事件玩家, 按钮(技能1)) == 假;
+		按钮被按下(事件玩家, 按钮(技能2)) == 假;
+	}
+
+	动作
+	{
+		等待(0.500, 当为“假”时中止);
+		禁用按钮(事件玩家, 按钮(主要攻击模式));
+		禁用按钮(事件玩家, 按钮(辅助攻击模式));
+		禁用按钮(事件玩家, 按钮(技能1));
+		禁用按钮(事件玩家, 按钮(技能2));
+		禁用按钮(事件玩家, 按钮(终极技能));
+		While(按钮被按下(事件玩家, 按钮(近身攻击)));
+			等待(0.016, 无视条件);
+			按下按键(事件玩家, 按钮(近身攻击));
+			等待(0.034, 无视条件);
+			取消主要动作(事件玩家);
+			设置技能冷却(事件玩家, 按钮(近身攻击), 0);
+			等待(0.050, 无视条件);
+		End;
+		可用按钮(事件玩家, 按钮(主要攻击模式));
+		可用按钮(事件玩家, 按钮(辅助攻击模式));
+		可用按钮(事件玩家, 按钮(技能1));
+		可用按钮(事件玩家, 按钮(技能2));
+		可用按钮(事件玩家, 按钮(终极技能));
+	}
+}
+
+规则("错误警告消息 ErrorWarningMessage")
+{
+	事件
+	{
+		子程序;
+		ErrorWarningMessage;
+	}
+
+	动作
+	{
+		If(数量(全局.Checkpoint) == 0);
+			小字体信息(事件玩家, 自定义字符串("现在还没有检查点"));
+			播放效果(事件玩家, 爆炸声音, 无, 事件玩家, 100);
+			全局.Error = 真;
+		Else If(按钮被按下(事件玩家, 按钮(主要攻击模式)));
+			If(数量(事件玩家.currentSphere) + 数量(事件玩家.currentCloud) + 数量(事件玩家.currentOrb) * 2 + 数量(已过滤的数组(事件玩家.currentOrb, 当前数组元素[1])) * 2 >= 取整((
+				256 - 全局.NumberOfUsedEntity) / 栏位数量(所有队伍), 下));
+				小字体信息(事件玩家, 自定义字符串("当前关卡可用效果已上限"));
+				播放效果(事件玩家, 爆炸声音, 无, 事件玩家, 100);
+				全局.Error = 真;
+			Else If(按钮被按下(事件玩家, 按钮(近身攻击)) && 事件玩家.editMode == 2 && 数量(事件玩家.currentOrb) == 0);
+				小字体信息(事件玩家, 自定义字符串("现在还没有拾取球"));
+				播放效果(事件玩家, 爆炸声音, 无, 事件玩家, 100);
+				全局.Error = 真;
+			End;
+		Else If(按钮被按下(事件玩家, 按钮(辅助攻击模式)));
+			If(事件玩家.editMode == 2 && 数量(事件玩家.currentOrb) == 0);
+				小字体信息(事件玩家, 自定义字符串("现在还有没有拾取球"));
+				播放效果(事件玩家, 爆炸声音, 无, 事件玩家, 100);
+				全局.Error = 真;
+			Else If(事件玩家.editMode == 3 && 数量(事件玩家.currentSphere) == 0);
+				小字体信息(事件玩家, 自定义字符串("现在还没有障碍球"));
+				播放效果(事件玩家, 爆炸声音, 无, 事件玩家, 100);
+				全局.Error = 真;
+			Else If(事件玩家.editMode == 4 && 数量(事件玩家.currentCloud) == 0);
+				小字体信息(事件玩家, 自定义字符串("现在还没有弹力云"));
+				播放效果(事件玩家, 爆炸声音, 无, 事件玩家, 100);
+				全局.Error = 真;
+			End;
+		Else If(按钮被按下(事件玩家, 按钮(装填)));
+			If(事件玩家.editMode == 1 && !事件玩家.checkpointA[3][0]);
+				小字体信息(事件玩家, 自定义字符串("当前关卡未创建目标天使"));
+				播放效果(事件玩家, 爆炸声音, 无, 事件玩家, 100);
+				全局.Error = 真;
+			Else If(事件玩家.editMode == 2 && !事件玩家.currentOrb[全局.CurrentChooseOrb][1]);
+				小字体信息(事件玩家, 自定义字符串("当前小球未创建绑定天使"));
+				播放效果(事件玩家, 爆炸声音, 无, 事件玩家, 100);
+				全局.Error = 真;
+			End;
+		Else If(按钮被按下(事件玩家, 按钮(技能1)));
+			If(事件玩家.editMode == 1 && !事件玩家.checkpointA[3][1]);
+				小字体信息(事件玩家, 自定义字符串("当前关卡目标天使未设置需要复活"));
+				播放效果(事件玩家, 爆炸声音, 无, 事件玩家, 100);
+				全局.Error = 真;
+			Else If(事件玩家.editMode == 2 && !事件玩家.currentOrb[全局.CurrentChooseOrb][2]);
+				小字体信息(事件玩家, 自定义字符串("当前小球绑定天使未设置需要复活"));
+				播放效果(事件玩家, 爆炸声音, 无, 事件玩家, 100);
+				全局.Error = 真;
+			End;
+		End;
+	}
+}
+
+规则("创建新效果  CreateNewEffect")
+{
+	事件
+	{
+		子程序;
+		CreateNewEffect;
+	}
+
+	动作
+	{
+		If(事件玩家.editMode == 2);
+			消除图标(事件玩家.botIcons[全局.CurrentChooseOrb]);
+			修改玩家变量(事件玩家, botIcons, 根据索引从数组中移除, 全局.CurrentChooseOrb);
+			消除效果(事件玩家.botEffects[全局.CurrentChooseOrb]);
+			修改玩家变量(事件玩家, botEffects, 根据索引从数组中移除, 全局.CurrentChooseOrb);
+			消除图标(事件玩家.orbIcons[全局.CurrentChooseOrb]);
+			消除效果(事件玩家.orbEffects[全局.CurrentChooseOrb]);
+			If(事件玩家.currentOrb[全局.CurrentChooseOrb][1]);
+				创建图标(对任意为”真“(事件玩家.tempCurrentOrb, 当前数组元素[0] == 单次赋值(事件玩家.currentOrb[全局.CurrentChooseOrb][0]))
+					|| 事件玩家.finished || 事件玩家.freeMode ? 事件玩家 : 无, 事件玩家.currentOrb[全局.CurrentChooseOrb][1] + 矢量(0, 2, 0), 箭头：向下, 可见,
+					事件玩家.currentOrb[全局.CurrentChooseOrb][2] ? 全局.Config[49] : 全局.Config[46], 真);
+				事件玩家.botIcons[全局.CurrentChooseOrb] = 最后创建的实体;
+				创建效果(对任意为”真“(事件玩家.tempCurrentOrb, 当前数组元素[0] == 单次赋值(事件玩家.currentOrb[全局.CurrentChooseOrb][0]))
+					|| 事件玩家.finished || 事件玩家.freeMode ? 事件玩家 : 无, 有益光环, 事件玩家.currentOrb[全局.CurrentChooseOrb][2] ? 全局.Config[50] : 全局.Config[47],
+					事件玩家.currentOrb[全局.CurrentChooseOrb][1] + 矢量(0, 0.800, 0), 1, 可见);
+				事件玩家.botEffects[全局.CurrentChooseOrb] = 最后创建的实体;
+				创建图标(对任意为”真“(事件玩家.tempCurrentOrb, 当前数组元素[0] == 单次赋值(事件玩家.currentOrb[全局.CurrentChooseOrb][0]))
+					|| 事件玩家.finished || 事件玩家.freeMode ? 事件玩家 : 无, 事件玩家.currentOrb[全局.CurrentChooseOrb][0] + 矢量(0, 0.500, 0), 回收, 可见,
+					事件玩家.currentOrb[全局.CurrentChooseOrb][2] ? 全局.Config[48] : 全局.Config[45], 真);
+			Else;
+				创建图标(对任意为”真“(事件玩家.tempCurrentOrb, 当前数组元素[0] == 单次赋值(事件玩家.currentOrb[全局.CurrentChooseOrb][0]))
+					|| 事件玩家.finished || 事件玩家.freeMode ? 事件玩家 : 无, 事件玩家.currentOrb[全局.CurrentChooseOrb][0] + 矢量(0, 0.500, 0), 光晕, 可见, 全局.Config[43],
+					真);
+			End;
+			事件玩家.orbIcons[全局.CurrentChooseOrb] = 最后创建的实体;
+			创建效果(对任意为”真“(事件玩家.tempCurrentOrb, 当前数组元素[0] == 单次赋值(事件玩家.currentOrb[全局.CurrentChooseOrb][0]))
+				|| 事件玩家.finished || 事件玩家.freeMode ? 事件玩家 : 无, 球, 事件玩家.currentOrb[全局.CurrentChooseOrb][1] ? 全局.Config[44] : 全局.Config[42],
+				事件玩家.currentOrb[全局.CurrentChooseOrb][0], 1, 可见);
+			事件玩家.orbEffects[全局.CurrentChooseOrb] = 最后创建的实体;
+		Else If(事件玩家.editMode == 3);
+			消除效果(事件玩家.sphereEffects[全局.CurrentChooseSphere]);
+			创建效果(事件玩家, 球体, 全局.Config[40], 事件玩家.currentSphere[全局.CurrentChooseSphere][0], 事件玩家.currentSphere[全局.CurrentChooseSphere][1], 无);
+			事件玩家.sphereEffects[全局.CurrentChooseSphere] = 最后创建的实体;
+		Else If(事件玩家.editMode == 4);
+			消除效果(事件玩家.cloudEffects[全局.CurrentChooseCloud]);
+			创建效果(事件玩家, 云, 全局.Config[41], 事件玩家.currentCloud[全局.CurrentChooseCloud][0], 1, 无);
+			事件玩家.cloudEffects[全局.CurrentChooseCloud] = 最后创建的实体;
+		End;
+	}
+}
+
+规则("编辑选中效果  EditChoosedEffect")
+{
+	事件
+	{
+		子程序;
+		EditChoosedEffect;
+	}
+
+	动作
+	{
+		If(事件玩家.editMode == 2);
+			消除图标(事件玩家.orbIcons[全局.CurrentChooseOrb]);
+			消除效果(事件玩家.orbEffects[全局.CurrentChooseOrb]);
+			If(事件玩家.currentOrb[全局.CurrentChooseOrb][1]);
+				创建图标(对任意为”真“(事件玩家.tempCurrentOrb, 当前数组元素[0] == 单次赋值(事件玩家.currentOrb[全局.CurrentChooseOrb][0]))
+					|| 事件玩家.finished || 事件玩家.freeMode ? 事件玩家 : 无, 全局.ChooseOrbPosition + 矢量(0, 0.500, 0), 回收, 可见和位置,
+					事件玩家.currentOrb[全局.CurrentChooseOrb][2] ? 全局.Config[49] : 全局.Config[46], 真);
+			Else;
+				创建图标(对任意为”真“(事件玩家.tempCurrentOrb, 当前数组元素[0] == 单次赋值(事件玩家.currentOrb[全局.CurrentChooseOrb][0]))
+					|| 事件玩家.finished || 事件玩家.freeMode ? 事件玩家 : 无, 全局.ChooseOrbPosition + 矢量(0, 0.500, 0), 光晕, 可见和位置, 全局.Config[43], 真);
+			End;
+			事件玩家.orbIcons[全局.CurrentChooseOrb] = 最后创建的实体;
+			创建效果(对任意为”真“(事件玩家.tempCurrentOrb, 当前数组元素[0] == 单次赋值(事件玩家.currentOrb[全局.CurrentChooseOrb][0]))
+				|| 事件玩家.finished || 事件玩家.freeMode ? 事件玩家 : 无, 球, 事件玩家.currentOrb[全局.CurrentChooseOrb][1] ? 全局.Config[44] : 全局.Config[42],
+				全局.ChooseOrbPosition, 1, 可见，位置和半径);
+			事件玩家.orbEffects[全局.CurrentChooseOrb] = 最后创建的实体;
+		Else If(事件玩家.editMode == 3);
+			消除效果(事件玩家.sphereEffects[全局.CurrentChooseSphere]);
+			创建效果(事件玩家, 球体, 全局.Config[40], 全局.ChooseSpherePosition, 事件玩家.currentSphere[全局.CurrentChooseSphere][1], 位置和半径);
+			事件玩家.sphereEffects[全局.CurrentChooseSphere] = 最后创建的实体;
+		Else If(事件玩家.editMode == 4);
+			消除效果(事件玩家.cloudEffects[全局.CurrentChooseCloud]);
+			创建效果(事件玩家, 云, 全局.Config[41], 全局.ChooseCloudPosition, 1, 位置和半径);
+			事件玩家.cloudEffects[全局.CurrentChooseCloud] = 最后创建的实体;
+		End;
+	}
+}
+
+规则("击杀或复活机器人  KillOrResurrectBot")
+{
+	事件
+	{
+		子程序;
+		KillOrResurrectBot;
+	}
+
+	动作
+	{
+		If(事件玩家.editMode == 2);
+			事件玩家.nearestOrb = 事件玩家.currentOrb[全局.CurrentChooseOrb];
+			If(事件玩家.nearestOrb[2]);
+				击杀(事件玩家.targetBot, 无);
+			Else;
+				复活(事件玩家.targetBot);
+			End;
+			调用子程序(TeleportBotToRefreshPosition);
+		Else;
+			If(事件玩家.checkpointA[3][1]);
+				击杀(事件玩家.targetBot, 无);
+			Else;
+				复活(事件玩家.targetBot);
+			End;
+			调用子程序(TeleportCurrentBot);
+		End;
+	}
+}
+
+规则("传送机器人到刷新位置  TeleportBotToRefreshPosition")
+{
+	事件
+	{
+		子程序;
+		TeleportBotToRefreshPosition;
+	}
+
+	动作
+	{
+		传送(事件玩家.targetBot, 事件玩家.nearestOrb[1] ? 事件玩家.nearestOrb[1] : 全局.Config[60]);
+		开始强制设置玩家轮廓(事件玩家.targetBot, 事件玩家, 真, 事件玩家.nearestOrb[1] ? 颜色(红色) : 无, 总是);
+		击杀(事件玩家.nearestOrb[2] ? 事件玩家.targetBot : 无, 无);
+	}
+}
+
+规则("清除冗余数据 ClearRedundantData")
+{
+	事件
+	{
+		子程序;
+		ClearRedundantData;
+	}
+
+	动作
+	{
+		全局.EditMode = 无;
+		全局.Debug = 无;
+		全局.Error = 无;
+		全局.ChooseOrbPosition = 无;
+		全局.ChooseSpherePosition = 无;
+		全局.ChooseCloudPosition = 无;
+		全局.TipHudSpaceHolder = 无;
+		全局.Cheat = 无;
+		全局.Vips = 无;
+		全局.PlayersRecord = 无;
+		全局.PlayersData = 无;
+		全局.BigMessages = 无;
+		全局.Tips = 无;
+		全局.WorldTexts = 无;
+		全局.SmallMessages = 无;
+		全局.BotGravity = 无;
+		全局.CurrentChooseOrb = 无;
+		全局.CurrentChooseSphere = 无;
+		全局.CurrentChooseCloud = 无;
+		全局.NewCheckpointDefaultCtrl = 无;
+		全局.NewCheckpointDefaultRadius = 无;
+		全局.NewCheckpointDefaultMaxRefresh = 无;
+		全局.Config = 无;
+		全局.NumberOfUsedEntity = 无;
+		全局.Sparkle = 无;
+		全局.FinishedDisplaySparkle = 无;
+		全局.FinishedDisplayDome = 无;
+		全局.Dome = 无;
+		全局.Aura = 无;
+		全局.FinishedDisplayAura = 无;
+		全局.TempArray = 无;
+		全局.FinishedCheat = 无;
+		全局.I = 无;
+		全局.II = 无;
+		全局.CircleLoop = 无;
+		全局.Hexagram = 无;
+		全局.FinishedDisplayHexagram = 无;
+		全局.OnGround = 无;
+		全局.Chase = 无;
+		全局.Once = 无;
+		全局.CreatorAndCode = 无;
+		全局.QRCode = 无;
+		全局.Top5 = 无;
+		全局.Top5Color = 无;
+		全局.TeleportAnimation = 无;
+		全局.ShowHotKeyPlayers = 无;
+		全局.EmoteSyncPlayers = 无;
+		全局.PreviewPosition = 无;
+		全局.TempVar = 无;
+		全局.CheckpointBPosition = 无;
+	}
+}
+
+规则("初始化全局变量  InitializeGlobalVariables")
+{
+	事件
+	{
+		子程序;
+		InitializeGlobalVariables;
+	}
+
+	动作
+	{
+		全局.EditMode = 地图工坊设置开关(自定义字符串("编辑模式"), 自定义字符串("编辑模式"), 真, 0);
+		全局.NewCheckpointDefaultRadius = 地图工坊设置实数(自定义字符串("编辑模式"), 自定义字符串("新建关卡半径"), 1.600, 1, 5, 1);
+		全局.NewCheckpointDefaultCtrl = 地图工坊设置开关(自定义字符串("编辑模式"), 自定义字符串("新建关卡Ctrl"), 假, 2);
+		全局.NewCheckpointDefaultMaxRefresh = 地图工坊设置开关(自定义字符串("编辑模式"), 自定义字符串("新建关卡守护天使无限次"), 假, 3);
+		全局.BotGravity = 全局.BotGravity ? 全局.BotGravity : 地图工坊设置开关(自定义字符串("编辑模式"), 自定义字符串("机器人浮空"), 假, 4);
+		全局.OnGround = 地图工坊设置开关(自定义字符串("编辑模式"), 自定义字符串("抵达点位需要落地"), 假, 5);
+		全局.Cheat = 地图工坊设置开关(自定义字符串("正式游戏"), 自定义字符串("跳关／退关 (E + 近战 + 左／右键)"), 真, 0);
+		全局.FinishedCheat = 地图工坊设置开关(自定义字符串("正式游戏"), 自定义字符串("仅通关后可跳关／退关(需开启跳关／退关)"), 真, 1);
+		全局.TeleportAnimation = 地图工坊设置开关(自定义字符串("正式游戏"), 自定义字符串("传送动画"), 真, 2);
+		全局.Sparkle = 地图工坊设置开关(自定义字符串("正式游戏"), 自定义字符串("火花效果"), 假, 3);
+		全局.FinishedDisplaySparkle = 地图工坊设置开关(自定义字符串("正式游戏"), 自定义字符串("仅通关后可见火花(需开启火花效果)"), 真, 4);
+		全局.Dome = 地图工坊设置开关(自定义字符串("正式游戏"), 自定义字符串("穹顶效果"), 假, 5);
+		全局.FinishedDisplayDome = 地图工坊设置开关(自定义字符串("正式游戏"), 自定义字符串("仅通关后可见穹顶(需开启穹顶效果)"), 真, 6);
+		全局.Aura = 地图工坊设置开关(自定义字符串("正式游戏"), 自定义字符串("光晕效果"), 假, 7);
+		全局.FinishedDisplayAura = 地图工坊设置开关(自定义字符串("正式游戏"), 自定义字符串("仅通关后可见光晕(需开启光晕效果)"), 真, 8);
+		全局.Hexagram = 地图工坊设置开关(自定义字符串("正式游戏"), 自定义字符串("六芒星效果"), 假, 9);
+		全局.FinishedDisplayHexagram = 地图工坊设置开关(自定义字符串("正式游戏"), 自定义字符串("仅通关后可见六芒星(需开启六芒星效果)"), 真, 10);
+		全局.Debug = 地图工坊设置开关(自定义字符串("调试设置（勿动）"), 自定义字符串("Debug"), 假, 0);
+		全局.Checkpoint = 全局.Checkpoint ? 全局.Checkpoint : 空数组;
+		全局.PreviewPosition = 空数组;
+		全局.TempVar[11] = 无;
+		全局.Once = 真;
+		全局.NumberOfUsedEntity = 栏位数量(所有队伍) * 5 + 25 + 6 + 1 + 6 + 1;
+		全局.ShowHotKeyPlayers = 空数组;
+		全局.PlayersRecord = 空数组;
+		全局.PlayersData = 空数组;
+		全局.Top5 = 空数组;
+		全局.Top5Color = 数组(自定义颜色(255, 215, 0, 255), 自定义颜色(220, 223, 227, 255), 自定义颜色(191, 173, 111, 255), 自定义颜色(192, 192, 192, 255), 自定义颜色(
+			128, 138, 135, 255));
+		全局.TipHudSpaceHolder = 自定义字符串("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		全局.QRCode[20] = 自定义字符串("▒▒▒▒▒▒▒　　　▒　　　　▒▒　▒▒　　▒▒▒▒▒▒▒\n▒　　　　　▒　　▒　　　▒　▒　▒▒▒　　▒　　　　　▒\n▒　▒▒▒　▒　▒　　▒　　　▒　　　　▒　▒　▒▒▒　▒");
+		全局.QRCode[21] = 自定义字符串("▒　▒▒▒　▒　　▒　　▒　▒▒▒　▒　　　▒　▒▒▒　▒\n▒　▒▒▒　▒　　▒　　▒　▒　　　▒▒　　▒　▒▒▒　▒\n▒　　　　　▒　　　▒▒▒▒▒▒　▒▒▒▒　▒　　　　　▒");
+		全局.QRCode[22] = 自定义字符串("▒▒▒▒▒▒▒　▒　▒　▒　▒　▒　▒　▒　▒▒▒▒▒▒▒\n　　　　　　　　▒　　▒　▒　▒　▒▒　　　　　　　　　　\n▒▒▒　▒▒▒▒▒　　　▒　　▒　▒　　　▒▒　　　▒　　");
+		全局.QRCode[23] = 自定义字符串("　▒▒▒▒　　▒　▒　▒▒　　　▒▒▒　▒▒▒▒　▒　　▒\n　▒▒　　　▒▒▒　▒▒▒▒　　▒　　　　▒　▒　　▒▒▒\n　　▒　　▒　▒▒▒▒　▒▒▒　▒▒　　▒▒▒▒　　　▒　");
+		全局.QRCode[24] = 自定义字符串("　　　▒　▒▒▒　　▒▒　　　　▒▒▒▒▒▒▒▒　▒　▒▒\n　▒　▒　▒　▒　　▒▒　▒▒▒▒　　　　　▒　　▒　　▒\n　▒　▒▒▒▒　　▒　　　　　　▒▒　　　　▒▒　▒　▒▒");
+		全局.QRCode[25] = 自定义字符串("▒▒　　▒▒　　▒▒▒▒　▒▒▒▒▒▒▒▒　　▒　▒　▒　\n▒　　▒　　▒　▒▒　　▒　　▒▒　　▒▒▒▒　　▒　▒▒\n　　▒　　　　　▒▒▒▒▒▒　　▒▒　　▒　▒　　▒▒　▒");
+		全局.QRCode[26] = 自定义字符串("▒　▒▒▒▒▒　　　　▒▒　　　　　　　　　▒▒　　　▒▒\n　▒　　　▒　▒　　　　▒▒▒▒▒▒　　▒　　　▒▒　▒　\n▒　▒▒　　▒　▒▒▒▒　▒　　　　　▒▒▒▒▒▒　　　　");
+		全局.QRCode[27] = 自定义字符串("　　　　　　　　▒　▒▒　　　▒▒▒▒▒▒　　　▒　▒▒▒\n▒▒▒▒▒▒▒　▒▒▒　　　　　　▒▒▒▒　▒　▒▒　▒▒\n▒　　　　　▒　▒　▒▒　▒　▒　▒　　▒　　　▒▒　　▒");
+		全局.QRCode[28] = 自定义字符串("▒　▒▒▒　▒　▒　▒　▒▒　▒　▒　　▒▒▒▒▒　　　　\n▒　▒▒▒　▒　　　▒▒▒　▒▒▒　　　▒▒　▒▒　▒▒▒\n▒　▒▒▒　▒　▒▒▒▒▒　▒　▒▒　　▒　　▒▒▒　　▒");
+		全局.QRCode[29] = 自定义字符串("▒　　　　　▒　▒　▒　▒▒　　▒▒　▒▒　▒▒　　　▒　\n▒▒▒▒▒▒▒　▒▒▒▒▒　▒　　　　▒▒　　▒▒　　▒▒");
+	}
+}
+
+规则("初始化玩家变量  InitializePlayerVariables")
+{
+	事件
+	{
+		子程序;
+		InitializePlayerVariables;
+	}
+
+	动作
+	{
+		事件玩家.checkpoint = 0;
+		事件玩家.freeMode = 假;
+		事件玩家.spectatorMode = 假;
+		事件玩家.cheat = 假;
+		事件玩家.leaveOriginalCheckpoint = 假;
+		事件玩家.time = 0;
+		事件玩家.mistake = 0;
+		事件玩家.bodySize = 1;
+		"如果环境碰撞状态为假, 则开启碰撞"
+		If(!事件玩家.movementCollision);
+			开启与环境的移动碰撞(事件玩家);
+			事件玩家.movementCollision = 真;
+		End;
+		"用以判断是否为开局初始化"
+		If(!事件玩家.playerNickname);
+			事件玩家.editMode = 全局.EditMode ? 1 : 0;
+			事件玩家.bestRecord = 首个(已过滤的数组(全局.PlayersRecord, 当前数组元素[0] == 自定义字符串("{0}", 事件玩家)))[1];
+			事件玩家.showQRCode = 0;
+			事件玩家.chooseHero = 0;
+			事件玩家.voice = 1;
+			事件玩家.barrierSize = 1;
+			事件玩家.projectile = 100;
+			事件玩家.currentOrb = 空数组;
+			事件玩家.currentSphere = 空数组;
+			事件玩家.currentCloud = 空数组;
+			事件玩家.playerTittle = 首个(已过滤的数组(全局.Vips, 当前数组元素[0] == 自定义字符串("{0}", 事件玩家)));
+			事件玩家.playerNickname = 事件玩家.playerTittle ? (事件玩家.playerTittle[1] ? 事件玩家.playerTittle[1] : 自定义字符串("{0}", 事件玩家)) : 自定义字符串("{0}",
+				事件玩家);
+			事件玩家.playerColor = 事件玩家.playerTittle ? (事件玩家.playerTittle[2] == 颜色(白色) ? 自定义颜色(随机整数(0, 255), 随机整数(0, 255), 随机整数(0, 255), 255)
+				: 事件玩家.playerTittle[2]) : 颜色(白色);
+			If(全局.EditMode && !数组包含(全局.ShowHotKeyPlayers, 事件玩家));
+				修改全局变量(ShowHotKeyPlayers, 添加至数组, 事件玩家);
+			End;
+		End;
+	}
+}
+
+规则("创建玩家专属机器人  CreatePlayerTargetBot")
+{
+	事件
+	{
+		子程序;
+		CreatePlayerTargetBot;
+	}
+
+	动作
+	{
+		If(!实体存在(事件玩家.targetBot));
+			生成机器人(英雄(天使), 所在队伍(事件玩家), 栏位(事件玩家) + 栏位数量(所有队伍),
+				全局.Checkpoint[事件玩家.checkpoint][3][0] ? 全局.Checkpoint[事件玩家.checkpoint][3][0] : 全局.Config[60], 无);
+			事件玩家.targetBot = 最后创建的实体;
+			等待(0.016, 无视条件);
+			开始为机器人强制设置名称(事件玩家.targetBot, 自定义字符串("{0}{1}", 事件玩家.playerNickname, 全局.Config[11]));
+			等待(0.016, 无视条件);
+			开始朝向(事件玩家.targetBot, 方向(逐帧更新(眼睛位置(事件玩家.targetBot)), 逐帧更新(眼睛位置(事件玩家))), 9999, 至地图, 方向及角速率);
+		End;
+	}
+}
+
+规则("创建全局显示HUD文本 CreateGlobalHUD")
+{
+	事件
+	{
+		子程序;
+		CreateGlobalHUD;
+	}
+
+	动作
+	{
+		"运行时间"
+		If(当前游戏模式 == 游戏模式(突击模式));
+			设置目标点描述(所有玩家(所有队伍), 自定义字符串("Elapsed Time {0} minutes {1} seconds", 取整(总计消耗时间 / 60, 下), 取整(总计消耗时间 % 60, 下)), 可见和字符串);
+		Else;
+			创建HUD文本(所有玩家(所有队伍), 无, 自定义字符串("Elapsed Time {0} minutes {1} seconds", 取整(总计消耗时间 / 60, 下), 取整(总计消耗时间 % 60, 下)), 无, 顶部, 0, 无, 颜色(白色), 无, 可见和字符串,
+				默认可见度);
+		End;
+		"本地玩家小跳状态"
+		创建效果(本地玩家.bhop ? 本地玩家 : 无, 安娜纳米激素强化效果, 无, 本地玩家, 1, 可见，位置和半径);
+		"作者"
+		创建HUD文本(所有玩家(所有队伍), 无, 无, !全局.EditMode ? 自定义字符串("Author：{0}\nCode：{1}{2}", 全局.CreatorAndCode[0] ? 全局.CreatorAndCode[0] : 自定义字符串("佚名"),
+			全局.CreatorAndCode[1] ? 全局.CreatorAndCode[1] : 自定义字符串(""), 全局.CreatorAndCode[2] ? 自定义字符串("\n攻略：{0}", 全局.CreatorAndCode[2]) : (
+			全局.QRCode[5] ? 自定义字符串("\n攻略：长按 {0} 显示", 输入绑定字符串(按钮(终极技能))) : 自定义字符串(""))) : 全局.CreatorAndCode[3], 左边, -999, 无, 无,
+			全局.Config[12], 可见和字符串, 默认可见度);
+		创建HUD文本(所有玩家(所有队伍), 无, 无, 自定义字符串("　"), 左边, -998, 无, 无, 无, 可见, 默认可见度);
+		创建HUD文本(所有玩家(所有队伍), 无, 无, 自定义字符串("　"), 右边, 2, 无, 无, 无, 可见, 默认可见度);
+		创建HUD文本(已过滤的数组(所有玩家(所有队伍), !全局.EditMode && !当前数组元素.finished), 无, 自定义字符串("　\n　\n　"), 自定义字符串("　"), 右边, 3, 无, 无, 无, 可见, 默认可见度);
+		创建HUD文本(所有玩家(所有队伍), 无, 无, 自定义字符串("　"), 右边, 10, 无, 无, 无, 可见, 默认可见度);
+		创建HUD文本(所有玩家(所有队伍), 无, 无, 自定义字符串("\r\n{0} Double Press Interact（{1}）to Get ShortCuts", 技能图标字符串(英雄(托比昂), 按钮(技能2)), 输入绑定字符串(按钮(互动))), 右边, 98, 无, 无, 自定义颜色(220,
+			220, 220, 200), 可见和字符串, 默认可见度);
+		创建HUD文本(已过滤的数组(所有玩家(所有队伍), 当前数组元素.showQRCode != 0), 无, 自定义字符串("　"), 无, 右边, 99, 无, 无, 无, 可见, 默认可见度);
+		创建HUD文本(已过滤的数组(全局.ShowHotKeyPlayers, 当前数组元素.showQRCode == 0), 无, 自定义字符串("－－－－－－－－－－－－－－－－－－－－{0}{1}", 字符串("问候") == 自定义字符串("问候") ? (
+			!全局.EditMode || 本地玩家 != 主机玩家 ? (字符串长度(输入绑定字符串(按钮(互动))) > 1 ? (字符串长度(输入绑定字符串(按钮(互动))) > 3 ? 自定义字符串("－－－－") : 自定义字符串("－－－"))
+			: 自定义字符串("")) : 自定义字符串("")) : (字符串("问候") == 自定义字符串("Hello") ? (字符串长度(输入绑定字符串(按钮(互动))) > 1 ? (字符串长度(输入绑定字符串(按钮(互动)))
+			> 5 ? 自定义字符串("－－－－－－") : 自定义字符串("－－")) : 自定义字符串("")) : (字符串长度(输入绑定字符串(按钮(互动))) > 1 ? (字符串长度(输入绑定字符串(按钮(互动))) > 3 ? (字符串长度(
+			输入绑定字符串(按钮(互动))) > 5 ? 自定义字符串("－－－－－－－") : 自定义字符串("－－－")) : 自定义字符串("－－")) : 自定义字符串(""))), 字符串长度(输入绑定字符串(按钮(蹲下))) > 6 ? 自定义字符串(
+			"－－") : 自定义字符串("")), 自定义字符串("　Preview Next Checkpoint | {0} + {1}\n{2}", 输入绑定字符串(按钮(主要攻击模式)), 输入绑定字符串(按钮(辅助攻击模式)), 自定义字符串(
+			"　　　Fast Reset | {0}\n{1}", 自定义字符串("T"), 自定义字符串("　　　free mode | {0} + {1}\n{2}",
+			输入绑定字符串(按钮(装填)), 输入绑定字符串(按钮(近身攻击)), 自定义字符串("　Toggle 3rd person | {0} + {1}\n{2}", 输入绑定字符串(按钮(装填)), 输入绑定字符串(按钮(跳跃)), 自定义字符串(
+			"　　　Spectator Mode | {0} + {1}{2}", 输入绑定字符串(按钮(终极技能)), 输入绑定字符串(按钮(技能2)), 全局.EditMode && 本地玩家 == 主机玩家 ? 自定义字符串("") : 自定义字符串(
+			"\n　　　restart | {0} + {1} + {2}", 输入绑定字符串(按钮(蹲下)), 输入绑定字符串(按钮(技能2)), 输入绑定字符串(按钮(互动)))))))), 右边, 100, 无, 无, 自定义颜色(205, 209, 211,
+			255), 可见和字符串, 默认可见度);
+		创建HUD文本(已过滤的数组(全局.ShowHotKeyPlayers, 当前数组元素.showQRCode == 0 && (当前数组元素.freeMode || 当前数组元素.finished)), 无, 自定义字符串(
+			"－－－－－－－－－－－－－－－－－－－－{0}{1}", 字符串("问候") == 自定义字符串("问候") ? (!全局.EditMode || 本地玩家 != 主机玩家 ? (字符串长度(输入绑定字符串(按钮(互动))) > 1 ? (字符串长度(
+			输入绑定字符串(按钮(互动))) > 3 ? 自定义字符串("－－－－") : 自定义字符串("－－－")) : 自定义字符串("")) : 自定义字符串("")) : (字符串("问候") == 自定义字符串("Hello") ? (字符串长度(
+			输入绑定字符串(按钮(互动))) > 1 ? (字符串长度(输入绑定字符串(按钮(互动))) > 5 ? 自定义字符串("－－－－－－") : 自定义字符串("－－")) : 自定义字符串("")) : (字符串长度(输入绑定字符串(按钮(互动)))
+			> 1 ? (字符串长度(输入绑定字符串(按钮(互动))) > 3 ? (字符串长度(输入绑定字符串(按钮(互动))) > 5 ? 自定义字符串("－－－－－－－") : 自定义字符串("－－－")) : 自定义字符串("－－")) : 自定义字符串(
+			""))), 字符串长度(输入绑定字符串(按钮(蹲下))) > 6 ? 自定义字符串("－－") : 自定义字符串("")), 自定义字符串("　取消环境碰撞 | 长按 {0}\n{1}", 输入绑定字符串(按钮(装填)), 自定义字符串(
+			"　　　break ultimate | voice \"{0}\"\n{1}", 字符串("抱歉"), 自定义字符串("　　　set teleport | double press {0}{1}{2}", 输入绑定字符串(按钮(技能2)),
+			本地玩家.numberOfNeedResurrect == 0 ? 自定义字符串("") : 自定义字符串("\n　目标始终阵亡｜语音 \"谢谢\""), 全局.EditMode && 本地玩家 == 主机玩家 ? 自定义字符串("")
+			: 自定义字符串("")))), 右边, 101, 无,
+			自定义颜色(205, 209, 211, 255), 自定义颜色(205, 209, 211, 175), 可见和字符串, 默认可见度);
+		创建HUD文本(已过滤的数组(全局.ShowHotKeyPlayers, 当前数组元素.showQRCode == 0 && ((全局.EditMode && 当前数组元素 != 主机玩家) || (!全局.EditMode && ((全局.Cheat && (
+			!全局.FinishedCheat || 当前数组元素.bestRecord)) || 当前数组元素.playerTittle)))), 无, 自定义字符串("－－－－－－－－－－－－－－－－－－－－{0}{1}", 字符串("问候")
+			== 自定义字符串("问候") ? (!全局.EditMode || 本地玩家 != 主机玩家 ? (字符串长度(输入绑定字符串(按钮(互动))) > 1 ? (字符串长度(输入绑定字符串(按钮(互动))) > 3 ? 自定义字符串("－－－－")
+			: 自定义字符串("－－－")) : 自定义字符串("")) : 自定义字符串("")) : (字符串("问候") == 自定义字符串("Hello") ? (字符串长度(输入绑定字符串(按钮(互动))) > 1 ? (字符串长度(输入绑定字符串(按钮(
+			互动))) > 5 ? 自定义字符串("－－－－－－") : 自定义字符串("－－")) : 自定义字符串("")) : (字符串长度(输入绑定字符串(按钮(互动))) > 1 ? (字符串长度(输入绑定字符串(按钮(互动))) > 3 ? (
+			字符串长度(输入绑定字符串(按钮(互动))) > 5 ? 自定义字符串("－－－－－－－") : 自定义字符串("－－－")) : 自定义字符串("－－")) : 自定义字符串(""))), 字符串长度(输入绑定字符串(按钮(蹲下)))
+			> 6 ? 自定义字符串("－－") : 自定义字符串("")), 自定义字符串("　　　next checkpoint | {0} + {1} + {2}", 输入绑定字符串(按钮(技能2)), 输入绑定字符串(按钮(近身攻击)), 自定义字符串(
+			"{0}\n　　　last checkpoint | {1} + {2}", 输入绑定字符串(按钮(主要攻击模式)), 输入绑定字符串(按钮(技能2)), 自定义字符串("{0} + {1}", 输入绑定字符串(按钮(近身攻击)), 输入绑定字符串(按钮(
+			辅助攻击模式))))), 右边, 102, 无, 自定义颜色(205, 209, 211, 175), 颜色(橙色), 可见和字符串, 默认可见度);
+		If(!全局.EditMode);
+			"TOP5"
+			创建HUD文本(全局.Top5 ? 所有玩家(所有队伍) : 无, 无, 无, 全局.Config[24] ? 全局.Config[24] : 自定义字符串("Today`s Top {0}", 数量(全局.Top5)), 左边, -991, 无, 无,
+				全局.Config[25], 可见和字符串, 默认可见度);
+			For 全局变量(I, 0, 5, 1);
+				创建HUD文本(全局.Top5[单次赋值(全局.I)] ? 所有玩家(所有队伍) : 无, 英雄图标字符串(全局.DefaultHero), 自定义字符串("{0} {1}", 数组(自定义字符串("1st"), 自定义字符串("2nd"), 自定义字符串("3rd"),
+					自定义字符串("4th"), 自定义字符串("5th"))[单次赋值(全局.I)], 全局.Top5[单次赋值(全局.I)][0]), 自定义字符串("{0} sec", 全局.Top5[单次赋值(全局.I)][1]), 左边, -990 + 全局.I,
+					全局.Top5Color[全局.I], 全局.Top5Color[全局.I], 全局.Top5Color[全局.I], 可见和字符串, 默认可见度);
+			End;
+			创建HUD文本(所有玩家(所有队伍), 无, 无, 自定义字符串("　"), 左边, -901, 无, 无, 无, 可见, 默认可见度);
+			"HighLights"
+			创建HUD文本(对任意为”真“(所有玩家(所有队伍), 当前数组元素.bestRecord && 数组值的索引(全局.Top5, 自定义字符串("{0}", 当前数组元素.playerNickname)) < 0) ? 所有玩家(所有队伍) : 无, 无, 无,
+				全局.Config[26], 左边, -1 * 900, 无, 无, 全局.Config[27], 可见, 默认可见度);
+			"教程二维码"
+			If(全局.QRCode[5]);
+				For 全局变量(I, 0, 10, 1);
+					创建HUD文本(本地玩家.showQRCode == 1 ? 本地玩家 : 无, 无, 全局.QRCode[全局.I], 无, 右边, 全局.I + 900, 无, 全局.QRCode[13], 无, 可见, 默认可见度);
+				End;
+				创建HUD文本(本地玩家.showQRCode == 1 ? 本地玩家 : 无, 无, 无, 自定义字符串(
+					"　\n                                                                                                                   		By  {0}",
+					全局.QRCode[10]), 右边, 2000, 无, 无, 颜色(橙色), 可见和字符串, 默认可见度);
+			End;
+			// "代码文档二维码"
+			// 创建HUD文本(所有玩家(所有队伍), 无, 无, 自定义字符串("{0} 长按互动键（{1}）获取更多代码", 技能图标字符串(英雄(天使), 按钮(技能2)), 输入绑定字符串(按钮(互动))), 左边, -997, 无, 无, 自定义颜色(220,
+			// 	220, 220, 200), 可见和字符串, 默认可见度);
+			// 创建HUD文本(所有玩家(所有队伍), 无, 无, 自定义字符串("　"), 左边, -996, 无, 无, 无, 可见, 默认可见度);
+			// For 全局变量(I, 20, 30, 1);
+			// 	创建HUD文本(本地玩家.showQRCode == 2 ? 本地玩家 : 无, 无, 全局.QRCode[全局.I], 无, 右边, 全局.I + 900, 无, 全局.QRCode[13], 无, 可见, 默认可见度);
+			// End;
+		Else;
+			创建HUD文本(主机玩家, 无, 自定义字符串("玩家位置: {0}  眼睛位置: {1}  看向位置: {2} ", 所选位置(主机玩家), 眼睛位置(主机玩家), 射线命中位置(眼睛位置(主机玩家), 眼睛位置(主机玩家) + 面朝方向(主机玩家)
+				* 1000, 无, 无, 假)), 无, 顶部, -1, 无, 颜色(白色), 无, 可见和字符串, 默认可见度);
+			创建HUD文本(主机玩家, 无, 数组(自定义字符串(""), 自定义字符串("操作说明｜检查点"), 自定义字符串("操作说明｜拾取球"), 自定义字符串("操作说明｜障碍球"), 自定义字符串("操作说明｜弹力云"))[主机玩家.editMode], 数组(
+				自定义字符串(""), 自定义字符串("创建点位｜互动＋左键\n删除点位｜互动＋右键[手枪状态]\n插入点位｜互动＋近战\n选择点位｜Ｅ＋左／右键\n移动点位｜互动＋Ｅ\nＣＴＲＬ｜互动＋ＣＴＲＬ\n无限技能｜互动＋Ｑ{0}", 自定义字符串(
+				"\n开关传送｜互动＋空格\n创建人机｜近战＋左键\n删除人机｜近战＋右键\n复活人机｜互动＋Ｒ")), 自定义字符串(
+				"创建小球｜互动＋左键\n删除小球｜互动＋右键[手枪状态]\n选择小球｜Ｅ＋左／右键\n移动位置｜Ｒ＋左／右键\n创建人机｜近战＋左键\n删除人机｜近战＋右键\n复活人机｜互动＋Ｒ"), 自定义字符串(
+				"创建球体｜互动＋左键\n删除球体｜互动＋右键[手枪状态]\n选择球体｜Ｅ＋左／右键\n移动位置｜Ｒ＋左／右键\n调整大小｜空格＋左／右键"), 自定义字符串(
+				"创建弹云｜互动＋左键\n删除弹云｜互动＋右键[手枪状态]\n选择弹云｜Ｅ＋左／右键\n移动位置｜Ｒ＋左／右键\n调整弹力｜空格＋左／右键"))[主机玩家.editMode], 左边, 100, 无, 颜色(白色), 颜色(青绿色), 可见和字符串,
+				默认可见度);
+			创建HUD文本(主机玩家.editMode == 1 ? 主机玩家 : 无, 无, 无, 自定义字符串("修改半径｜空格＋左／右键 [手枪状态]"), 左边, 102, 无, 无, 武器(主机玩家) == 2 ? 颜色(青绿色) : 自定义颜色(181,
+				152, 161, 255), 可见，字符串和颜色, 默认可见度);
+			创建HUD文本(主机玩家.editMode == 1 && 数组包含(数组(地图(釜山), 地图(伊利奥斯), 地图(漓江塔), 地图(春节漓江塔), 地图(尼泊尔), 地图(绿洲城)), 当前地图) ? 主机玩家 : 无, 无, 无, 自定义字符串(
+				"下一小图｜语音 \"集合\""), 左边, 103, 无, 无, 颜色(青绿色), 可见，排序规则，字符串和颜色, 默认可见度);
+			创建HUD文本(主机玩家, 无, 无, 自定义字符串("－－－－－－－－－－－－－－\n当前模式｜{0}（双击 {1} 切换）\n导出数据｜表情＋{1}", 数组(自定义字符串(""), 自定义字符串("点位"), 自定义字符串("小球"), 自定义字符串(
+				"球体"), 自定义字符串("弹云"))[主机玩家.editMode], 输入绑定字符串(按钮(互动))), 左边, 104, 无, 无, 自定义颜色(205, 209, 211, 255), 可见和字符串, 默认可见度);
+			"点位标识"
+			创建图标(数量(全局.Checkpoint) > 0 ? 所有玩家(所有队伍) : 无, 主机玩家.checkpointA[0] + 矢量(0, 1.200, 0), 旗帜, 可见和位置, 颜色(红色), 真);
+			创建效果(数量(全局.Checkpoint) > 0 ? 所有玩家(所有队伍) : 无, 光柱, 颜色(红色), 主机玩家.checkpointA[0], 主机玩家.checkpointA[1], 可见，位置和半径);
+			创建地图文本(数量(全局.Checkpoint) > 0 ? 所有玩家(所有队伍) : 无, 自定义字符串("　　　　关卡：{0}\n{1}", 主机玩家.checkpoint, 自定义字符串("　　　　半径：{0}\n{1}",
+				主机玩家.checkpointA[1], 自定义字符串("　　ＣＴＲＬ：{0}\n{1}", 主机玩家.checkpointA[2] ? 自定义字符串("√") : 自定义字符串("×"), 自定义字符串("　　复活人机：{0}\n{1}",
+				主机玩家.checkpointA[3][1] ? 自定义字符串("√") : 自定义字符串("×"), 自定义字符串("复活刷新技能：{0}\n{1}",
+				主机玩家.checkpointA[3][1] && 主机玩家.checkpointA[3][2] ? 自定义字符串("√") : 自定义字符串("×"), 自定义字符串("　　无限技能：{0}\n{1}",
+				主机玩家.checkpointA[4] ? 自定义字符串("√") : 自定义字符串("×"), 自定义字符串("　　传送下关：{0}\n{1}", 主机玩家.checkpointA[5] ? 自定义字符串("√") : 自定义字符串("×"),
+				自定义字符串("　　可用效果：{0}\n{1}", 取整((256 - 全局.NumberOfUsedEntity) / 栏位数量(所有队伍), 下) - 数量(主机玩家.currentOrb) * 2 - 数量(已过滤的数组(
+				主机玩家.currentOrb, 当前数组元素[1])) * 2 - 数量(主机玩家.currentSphere) - 数量(主机玩家.currentCloud), 自定义字符串("　　　　坐标：{0}",
+				主机玩家.checkpointA[0]))))))))), 主机玩家.checkpointA[0] + 矢量(0, 0.500, 0), 1.200, 不要截取, 可见，位置和字符串, 颜色(绿色), 默认可见度);
+			"拾取球标识"
+			创建效果(数量(主机玩家.currentOrb) > 0 && 主机玩家.editMode == 2 ? 所有玩家(所有队伍) : 无, 有益光环,
+				主机玩家.currentOrb[全局.CurrentChooseOrb][1] ? 全局.Config[44] : 全局.Config[42], 全局.ChooseOrbPosition, 1.300, 可见，位置，半径和颜色);
+			创建地图文本(数量(主机玩家.currentOrb) > 0 && 主机玩家.editMode == 2 ? 所有玩家(所有队伍) : 无, 自定义字符串("　　传送人机：{0}\n{1}",
+				主机玩家.currentOrb[全局.CurrentChooseOrb][1] ? 自定义字符串("√") : 自定义字符串("×"), 自定义字符串("　　复活人机：{0}\n{1}",
+				主机玩家.currentOrb[全局.CurrentChooseOrb][2] ? 自定义字符串("√") : 自定义字符串("×"), 自定义字符串("复活刷新技能：{0}\n{1}",
+				主机玩家.currentOrb[全局.CurrentChooseOrb][2] && 主机玩家.currentOrb[全局.CurrentChooseOrb][3] ? 自定义字符串("√") : 自定义字符串("×"), 自定义字符串(
+				"　　　　距离：{0}\n{1}", 相距距离(主机玩家, 全局.ChooseOrbPosition) - 主机玩家.currentOrb[全局.CurrentChooseOrb][0], 自定义字符串("　　　　坐标：{0}",
+				全局.ChooseOrbPosition))))), 全局.ChooseOrbPosition + 矢量(0, 0.500, 0), 1.200, 不要截取, 可见，位置和字符串, 颜色(绿色), 默认可见度);
+			"障碍球标识"
+			创建效果(数量(主机玩家.currentSphere) > 0 && 主机玩家.editMode == 3 ? 所有玩家(所有队伍) : 无, 球, 颜色(绿色), 全局.ChooseSpherePosition, 1, 可见，位置和半径);
+			创建地图文本(数量(主机玩家.currentSphere) > 0 && 主机玩家.editMode == 3 ? 所有玩家(所有队伍) : 无, 自定义字符串("半径：{0}\n{1}",
+				主机玩家.currentSphere[全局.CurrentChooseSphere][1], 自定义字符串("距离：{0}\n{1}", 相距距离(主机玩家, 全局.ChooseSpherePosition)
+				- 主机玩家.currentSphere[全局.CurrentChooseSphere][0], 自定义字符串("坐标：{0}", 全局.ChooseSpherePosition))), 全局.ChooseSpherePosition + 矢量(0,
+				0.500, 0), 1.200, 不要截取, 可见，位置和字符串, 颜色(绿色), 默认可见度);
+			"弹力云标识"
+			创建效果(数量(主机玩家.currentCloud) > 0 && 主机玩家.editMode == 4 ? 所有玩家(所有队伍) : 无, 有益光环, 颜色(绿色), 全局.ChooseCloudPosition, 1.300, 可见，位置和半径);
+			创建地图文本(数量(主机玩家.currentCloud) > 0 && 主机玩家.editMode == 4 ? 所有玩家(所有队伍) : 无, 自定义字符串("弹力：{0}\n{1}",
+				主机玩家.currentCloud[全局.CurrentChooseCloud][1], 自定义字符串("距离：{0}\n{1}", 相距距离(主机玩家, 全局.ChooseCloudPosition)
+				- 主机玩家.currentCloud[全局.CurrentChooseCloud][0], 自定义字符串("坐标：{0}", 全局.ChooseCloudPosition))), 全局.ChooseCloudPosition + 矢量(0,
+				0.500, 0), 1.200, 不要截取, 可见，位置和字符串, 颜色(绿色), 默认可见度);
+		End;
+	}
+}
+
+规则("创建玩家显示HUD文本和效果 CreatePlayerHUDAndEffects")
+{
+	事件
+	{
+		子程序;
+		CreatePlayerHUDAndEffects;
+	}
+
+	动作
+	{
+		"头顶文字"
+		创建地图文本(已过滤的数组(所有玩家(所有队伍), 当前数组元素.showQRCode == 0), 自定义字符串("{0}  {1}", 事件玩家.playerNickname,
+			全局.EditMode ? 事件玩家.checkpoint : 事件玩家.displayedCheckpoint), 事件玩家, 1.300, 不要截取, 可见，位置，字符串和颜色, 事件玩家.playerColor, 默认可见度);
+		"中间关卡进度"
+		创建HUD文本(事件玩家, 无, 无, 自定义字符串("{0} {1} / {2}", 全局.Config[13], 全局.EditMode ? 事件玩家.checkpoint : 事件玩家.displayedCheckpoint, 自定义字符串(
+			"{0}{1}{2}", 全局.EditMode ? 数量(全局.Checkpoint) - 1 : 单次赋值(数量(已过滤的数组(全局.Checkpoint, !当前数组元素[5])) - 1), 全局.EditMode && 对任意为”真“(
+			全局.Checkpoint, 当前数组元素[5]) ? 自定义字符串(" [{0}]", 数量(已过滤的数组(全局.Checkpoint, !当前数组元素[5])) - 1) : 自定义字符串(""), 全局.TipHudSpaceHolder)),
+			顶部, 1, 无, 无, 全局.Config[14], 可见和字符串, 默认可见度);
+		"当前点位环效果"
+		创建效果(事件玩家.checkpointA[0] && (全局.EditMode || 事件玩家.checkpointB[0]) ? 事件玩家 : 无, 环,
+			!事件玩家.checkpointA[5] ? 全局.Config[0] : 全局.Config[10], 事件玩家.checkpointA[0], 事件玩家.checkpointA[1], 可见，位置，半径和颜色);
+		"机器人头顶向下图标"
+		创建图标((事件玩家.checkpointA[3][0] && 事件玩家.showQRCode == 0 && 事件玩家.editMode != 2 && !事件玩家.nearestOrb) || 事件玩家.nearestOrb[1] ? 事件玩家 : 无,
+			存活(事件玩家.targetBot) ? 事件玩家.targetBot : 所选位置(事件玩家.targetBot) + 矢量(0, 2, 0), 箭头：向下, 可见，位置和颜色,
+			事件玩家.checkpointA[2] && !事件玩家.nearestOrb[1] ? 全局.Config[1] : 颜色(红色), 真);
+		"目标点指引文本"
+		创建地图文本(事件玩家.checkpointB[0] && 事件玩家.showQRCode == 0 ? 事件玩家 : 无, 全局.Config[2], 事件玩家.checkpointB[0] + 矢量(0, 0.200, 0), 全局.Config[3],
+			不要截取, 可见，位置和字符串, 全局.Config[4], 默认可见度);
+		"目标点指引图标旗帜"
+		创建图标(事件玩家.checkpointB[0] && 事件玩家.showQRCode == 0 ? 事件玩家 : 无, 事件玩家.checkpointB[0] + 矢量(0, 1.300, 0), 旗帜, 可见和位置, 全局.Config[5], 真);
+		"目标点位环效果"
+		创建效果(事件玩家.checkpointB[0] ? 事件玩家 : 无, 环, !事件玩家.checkpointB[5] ? 全局.Config[7] : 全局.Config[10], 事件玩家.checkpointB[0],
+			事件玩家.checkpointB[1], 可见，位置，半径和颜色);
+		"目标点效果"
+		If(全局.Config[8] == 0);
+			创建效果(事件玩家.checkpointB[0] ? 事件玩家 : 无, 光柱, !事件玩家.checkpointB[5] ? 全局.Config[6] : 全局.Config[9], 事件玩家.checkpointB[0],
+				事件玩家.checkpointB[1], 可见，位置，半径和颜色);
+		Else If(全局.Config[8] == 1);
+			创建效果(事件玩家.checkpointB[0] ? 事件玩家 : 无, 火花, !事件玩家.checkpointB[5] ? 全局.Config[6] : 全局.Config[9], 事件玩家.checkpointB[0],
+				事件玩家.checkpointB[1], 可见，位置，半径和颜色);
+		Else If(全局.Config[8] == 2);
+			创建效果(事件玩家.checkpointB[0] ? 事件玩家 : 无, 云, !事件玩家.checkpointB[5] ? 全局.Config[6] : 全局.Config[9], 事件玩家.checkpointB[0],
+				事件玩家.checkpointB[1], 可见，位置，半径和颜色);
+		Else;
+			创建效果(事件玩家.checkpointB[0] ? 事件玩家 : 无, 有害光环, !事件玩家.checkpointB[5] ? 全局.Config[6] : 全局.Config[9], 事件玩家.checkpointB[0],
+				事件玩家.checkpointB[1], 可见，位置，半径和颜色);
+		End;
+        创建HUD文本(事件玩家, 事件玩家.J == 1 ? 自定义字符串("wall climb disabled") : 自定义字符串("wall climb enabled"), 无, 无, 左边, 2, 事件玩家.J == 1 ? 颜色(红色) : 颜色(橙色), 颜色(白色), 颜色(白色),
+                可见，字符串和颜色, 默认可见度);
+		If(!全局.EditMode);
+			"左边排行"
+			创建HUD文本(事件玩家.bestRecord && 数组值的索引(全局.Top5, 事件玩家.playerNickname) < 0 ? 所有玩家(所有队伍) : 无, 英雄图标字符串(全局.DefaultHero), 事件玩家.playerNickname, 自定义字符串(
+				"{0} sec", 事件玩家.bestRecord), 左边, 事件玩家.bestRecord / 100, 全局.Config[28], 全局.Config[28], 全局.Config[28], 可见性，排序规则和字符串, 默认可见度);
+			"TipHUD"
+			创建HUD文本(全局.HeroChoosed && 全局.Tips[事件玩家.displayedCheckpoint] && !事件玩家.freeMode && !事件玩家.finished ? 事件玩家 : 无, 自定义字符串(
+				"{0}：　　　　　　　　　　　　　　　　\n　　　{1}\n", 英雄图标字符串(全局.DefaultHero), 全局.Tips[事件玩家.displayedCheckpoint]), 无, 无, 顶部, 100, 颜色(青绿色), 无, 无,
+				可见和字符串, 默认可见度);
+			"右上失误, 时间"
+			创建HUD文本(事件玩家, 无, 无, 自定义字符串("mistake: {0} \ntime: {1} s", 事件玩家.cheat ? 自定义字符串("∞") : 事件玩家.mistake, 事件玩家.cheat ? 自定义字符串("∞") : 事件玩家.time),
+				右边, 1, 无, 无, 颜色(白色), 可见和字符串, 默认可见度);
+			"右侧英雄音调弹道"
+			创建HUD文本((事件玩家.freeMode || 事件玩家.finished) ? 事件玩家 : 无, 英雄图标字符串(全部英雄[事件玩家.chooseHero]), 字符串("{0} {1}", 字符串("英雄"), 事件玩家.chooseHero + 1),
+				全部英雄[事件玩家.chooseHero], 右边, 5, 颜色(白色), 颜色(白色), 颜色(白色), 可见和字符串, 默认可见度);
+			创建HUD文本(事件玩家.finished ? 事件玩家 : 无, 无, 自定义字符串("tone: {0}{1}  {2}", 事件玩家.voice, 事件玩家.voice % 1 == 0 ? 自定义字符串(".00") : 自定义字符串(""),
+				自定义字符串("shape: {0}{1}\n		{2}", 事件玩家.bodySize, 事件玩家.bodySize % 1 == 0 ? 自定义字符串(".00") : 自定义字符串(""), 自定义字符串("projectile: {0}{1}  {2}",
+				事件玩家.projectile / 100, 事件玩家.projectile % 100 == 0 ? 自定义字符串(".00") : 自定义字符串(""), 自定义字符串("barrier: {0}{1}", 事件玩家.barrierSize,
+				事件玩家.barrierSize % 1 == 0 ? 自定义字符串(".00") : 自定义字符串(""))))), 无, 右边, 6, 无, 颜色(白色), 无, 可见和字符串, 默认可见度);
+		Else;
+            创建HUD文本(事件玩家, 英雄图标字符串(全部英雄[事件玩家.chooseHero]), 字符串("{0} {1}", 字符串("英雄"), 事件玩家.chooseHero + 1),
+				全部英雄[事件玩家.chooseHero], 右边, 5, 颜色(白色), 颜色(白色), 颜色(白色), 可见和字符串, 默认可见度);
+            创建HUD文本(事件玩家, 自定义字符串("fakeq:"), 自定义字符串("{0}", 事件玩家.fakeq), 无, 右边, 7, 颜色(白色), 颜色(白色), 颜色(白色), 可见和字符串, 默认可见度);
+            创建HUD文本(事件玩家, 自定义字符串("速度"), 自定义字符串("{0}", 速度(事件玩家)), 无, 右边, 8, 颜色(白色), 颜色(白色), 颜色(白色), 可见和字符串, 默认可见度);
+        End;
+
+	}
+}
+
+规则("传送回当前检查点 TeleportToCurrentCheckoint")
+{
+	事件
+	{
+		子程序;
+		TeleportToCurrentCheckoint;
+	}
+
+	动作
+	{
+		调用子程序(CancelAbilityAndMomentum);
+		事件玩家.mistake += 事件玩家.checkpoint != 0 && !事件玩家.freeMode && 相距距离(事件玩家, 事件玩家.checkpointA[0]) > 事件玩家.checkpointA[1] ? 1 : 0;
+		传送(事件玩家, 事件玩家.checkpointA[0]);
+		设置状态(事件玩家, 无, 定身, 0.250);
+		调用子程序(SetCurrentAbilities);
+        If(所用英雄(事件玩家) != 全局.DefaultHero);
+            开始强制玩家选择英雄(事件玩家, 全局.DefaultHero);
+        End;
+		If(事件玩家.currentOrb);
+			调用子程序(TeleportCurrentBot);
+		End;
+	}
+}
+
+规则("继续计时 ContinueTiming")
+{
+	事件
+	{
+		子程序;
+		ContinueTiming;
+	}
+
+	动作
+	{
+		If(!全局.EditMode && !事件玩家.finished && !事件玩家.freeMode && !事件玩家.cheat && 事件玩家.leaveOriginalCheckpoint);
+			追踪玩家变量频率(事件玩家, time, 16200, 1, 全部禁用);
+		End;
+	}
+}
+
+规则("获取当前点位信息 GetCurrentCheckpoint")
+{
+	事件
+	{
+		子程序;
+		GetCurrentCheckpoint;
+	}
+
+	动作
+	{
+		事件玩家.checkpointA = 全局.Checkpoint[事件玩家.checkpoint] ? 全局.Checkpoint[事件玩家.checkpoint] : 无;
+		事件玩家.checkpointB = 全局.Checkpoint[事件玩家.checkpoint + 1] ? 全局.Checkpoint[事件玩家.checkpoint + 1] : 无;
+		事件玩家.displayedCheckpoint = 事件玩家.checkpoint - 数量(已过滤的数组(全局.Checkpoint, 当前数组索引 <= 事件玩家.checkpoint && 当前数组元素[5]));
+		事件玩家.numberOfNeedResurrect = (事件玩家.checkpointA[3][1] ? 1 : 0) + 数量(已过滤的数组(事件玩家.checkpointA[6], 当前数组元素[2] && 当前数组元素[1]));
+		事件玩家.currentOrb = 事件玩家.checkpointA[6];
+		事件玩家.tempCurrentOrb = 事件玩家.currentOrb;
+		事件玩家.currentSphere = 事件玩家.checkpointA[7];
+		事件玩家.currentCloud = 事件玩家.checkpointA[8];
+	}
+}
+
+规则("设置当前关卡技能  SetCurrentAbilities")
+{
+	事件
+	{
+		子程序;
+		SetCurrentAbilities;
+	}
+
+	动作
+	{
+		// 设置启用蹲下(事件玩家, 事件玩家.checkpointA[2]);
+        设置启用终极技能(事件玩家, 事件玩家.checkpointA[2]);
+        If(所用英雄(事件玩家) == 英雄(半藏));
+			While(正在使用技能 1(事件玩家));
+				设置启用技能 1(事件玩家, 真);
+				可用按钮(事件玩家, 按钮(技能1));
+				等待(0.10, 无视条件);
+				按下按键(事件玩家, 按钮(技能1));
+				等待直到 (!正在使用技能 1(事件玩家), 0.500);
+			End;
+        End;
+        设置终极技能充能(事件玩家, 100);
+		设置启用技能 1(事件玩家, 事件玩家.checkpointA[3][0] ? 真 : 假);
+		设置启用技能 2(事件玩家, 事件玩家.checkpointA[3][1]);
+		If(事件玩家.checkpointA[3][1]);
+			击杀(事件玩家.targetBot, 无);
+		Else;
+			复活(事件玩家.targetBot);
+		End;
+        事件玩家.fakeq = 15;
+		事件玩家.ability2 = 事件玩家.checkpointA[3][1];
+		事件玩家.resurrectNumber = 0;
+		事件玩家.tempCurrentOrb = 事件玩家.currentOrb;
+		事件玩家.nearestOrb = 无;
+		事件玩家.isSetAbilities = 真;
+	}
+}
+
+规则("传送当前关卡机器人 TeleportCurrentBot")
+{
+	事件
+	{
+		子程序;
+		TeleportCurrentBot;
+	}
+
+	动作
+	{
+		传送(事件玩家.targetBot, 事件玩家.checkpointA[3][0] ? 事件玩家.checkpointA[3][0] : 全局.Config[60]);
+		开始强制设置玩家轮廓(事件玩家.targetBot, 事件玩家, 真, 事件玩家.checkpointA[3][0] ? (事件玩家.checkpointA[2] ? 全局.Config[1] : 颜色(红色)) : 无, 总是);
+	}
+}
+
+规则("显示当前关卡技能消息  DisplayCurrentAbilityMsgs")
+{
+	事件
+	{
+		子程序;
+		DisplayCurrentAbilityMsgs;
+	}
+
+	动作
+	{
+		根据条件中止(事件玩家.checkpointA[5] || !事件玩家.checkpointB);
+		If(数量(事件玩家.currentOrb) > 0);
+			小字体信息(事件玩家, 全局.Config[20] ? 全局.Config[20] : 自定义字符串("{0} sphere to pick up", 数量(事件玩家.currentOrb)));
+		End;
+		If(!事件玩家.checkpointA[3][0]);
+			禁用 小字体信息(事件玩家, 全局.Config[19]);
+		Else;
+			If(数量(已过滤的数组(全局.Checkpoint, 当前数组元素[2])) >= 数量(已过滤的数组(全局.Checkpoint, !当前数组元素[2])) && !事件玩家.checkpointA[2]);
+				禁用 小字体信息(事件玩家, 全局.Config[17]);
+			Else If(数量(已过滤的数组(全局.Checkpoint, 当前数组元素[2])) < 数量(已过滤的数组(全局.Checkpoint, !当前数组元素[2])) && 事件玩家.checkpointA[2]);
+				小字体信息(事件玩家, 全局.Config[18]);
+			End;
+			If(事件玩家.checkpointA[4]);
+				小字体信息(事件玩家, 全局.Config[29]);
+			Else If(数量(已过滤的数组(全局.Checkpoint, 当前数组元素[4])) >= 数量(已过滤的数组(全局.Checkpoint, !当前数组元素[4])) && !事件玩家.checkpointA[4]);
+				小字体信息(事件玩家, 全局.Config[30]);
+			End;
+		End;
+	}
+}
+
+规则("创建当前关卡效果  CreateCurrentEffects")
+{
+	事件
+	{
+		子程序;
+		CreateCurrentEffects;
+	}
+
+	动作
+	{
+		"消除效果与图标"
+		消除效果(事件玩家.orbEffects);
+		消除效果(事件玩家.botEffects);
+		事件玩家.orbEffects = 空数组;
+		事件玩家.botEffects = 空数组;
+		While(数量(事件玩家.orbIcons) > 0);
+			消除图标(事件玩家.orbIcons[0]);
+			修改玩家变量(事件玩家, orbIcons, 根据索引从数组中移除, 0);
+			消除图标(事件玩家.botIcons[0]);
+			修改玩家变量(事件玩家, botIcons, 根据索引从数组中移除, 0);
+		End;
+		消除效果(事件玩家.sphereEffects);
+		事件玩家.sphereEffects = 空数组;
+		消除效果(事件玩家.cloudEffects);
+		事件玩家.cloudEffects = 空数组;
+		"编辑模式下房主初始化当前关卡效果选中序号"
+		If(全局.EditMode && 事件玩家 == 主机玩家);
+			全局.CurrentChooseOrb = 0;
+			全局.ChooseOrbPosition = 事件玩家.currentOrb[全局.CurrentChooseOrb][0];
+			全局.CurrentChooseSphere = 0;
+			全局.ChooseSpherePosition = 事件玩家.currentSphere[全局.CurrentChooseSphere][0];
+			全局.CurrentChooseCloud = 0;
+			全局.ChooseCloudPosition = 事件玩家.currentCloud[全局.CurrentChooseCloud][0];
+		End;
+		"创建当前关卡小球效果"
+		For 玩家变量(事件玩家, i, 0, 数量(事件玩家.currentOrb), 1);
+			If(事件玩家.currentOrb[事件玩家.i][1]);
+				创建图标(对任意为”真“(事件玩家.tempCurrentOrb, 当前数组元素[0] == 单次赋值(事件玩家.currentOrb[事件玩家.i][0])) || 事件玩家.finished || 事件玩家.freeMode ? 事件玩家 : 无,
+					事件玩家.currentOrb[事件玩家.i][1] + 矢量(0, 2, 0), 箭头：向下, 可见, 事件玩家.currentOrb[事件玩家.i][2] ? 全局.Config[49] : 全局.Config[46], 真);
+				事件玩家.botIcons[事件玩家.i] = 最后创建的实体;
+				创建效果(对任意为”真“(事件玩家.tempCurrentOrb, 当前数组元素[0] == 单次赋值(事件玩家.currentOrb[事件玩家.i][0])) || 事件玩家.finished || 事件玩家.freeMode ? 事件玩家 : 无,
+					有益光环, 事件玩家.currentOrb[事件玩家.i][2] ? 全局.Config[50] : 全局.Config[47], 事件玩家.currentOrb[事件玩家.i][1] + 矢量(0, 0.800, 0), 1, 可见);
+				事件玩家.botEffects[事件玩家.i] = 最后创建的实体;
+				创建图标(对任意为”真“(事件玩家.tempCurrentOrb, 当前数组元素[0] == 单次赋值(事件玩家.currentOrb[事件玩家.i][0])) || 事件玩家.finished || 事件玩家.freeMode ? 事件玩家 : 无,
+					事件玩家.currentOrb[事件玩家.i][0] + 矢量(0, 0.500, 0), 回收, 可见, 事件玩家.currentOrb[事件玩家.i][2] ? 全局.Config[48] : 全局.Config[45], 真);
+			Else;
+				创建图标(对任意为”真“(事件玩家.tempCurrentOrb, 当前数组元素[0] == 单次赋值(事件玩家.currentOrb[事件玩家.i][0])) || 事件玩家.finished || 事件玩家.freeMode ? 事件玩家 : 无,
+					事件玩家.currentOrb[事件玩家.i][0] + 矢量(0, 0.500, 0), 光晕, 可见, 全局.Config[43], 真);
+			End;
+			事件玩家.orbIcons[事件玩家.i] = 最后创建的实体;
+			创建效果(对任意为”真“(事件玩家.tempCurrentOrb, 当前数组元素[0] == 单次赋值(事件玩家.currentOrb[事件玩家.i][0])) || 事件玩家.finished || 事件玩家.freeMode ? 事件玩家 : 无, 球,
+				事件玩家.currentOrb[事件玩家.i][1] ? 全局.Config[44] : 全局.Config[42], 事件玩家.currentOrb[事件玩家.i][0], 1, 可见);
+			事件玩家.orbEffects[事件玩家.i] = 最后创建的实体;
+		End;
+		"创建当前关卡球体效果"
+		For 玩家变量(事件玩家, i, 0, 数量(事件玩家.currentSphere), 1);
+			创建效果(事件玩家, 球体, 全局.Config[40], 事件玩家.currentSphere[事件玩家.i][0], 事件玩家.currentSphere[事件玩家.i][1], 可见);
+			事件玩家.sphereEffects[事件玩家.i] = 最后创建的实体;
+		End;
+		"创建当前关卡弹云效果"
+		For 玩家变量(事件玩家, i, 0, 数量(事件玩家.currentCloud), 1);
+			创建效果(事件玩家, 云, 全局.Config[41], 事件玩家.currentCloud[事件玩家.i][0], 1, 可见);
+			事件玩家.cloudEffects[事件玩家.i] = 最后创建的实体;
+		End;
+	}
+}
+
+规则("创建当前关卡地图文本 CreateCurrentWorldText")
+{
+	事件
+	{
+		子程序;
+		CreateCurrentWorldText;
+	}
+
+	动作
+	{
+		消除地图文本(事件玩家.currentWorldText);
+		If(全局.WorldTexts[事件玩家.displayedCheckpoint] && !事件玩家.checkpointA[5]);
+			创建地图文本(事件玩家, 全局.WorldTexts[事件玩家.displayedCheckpoint][0],
+				全局.WorldTexts[事件玩家.displayedCheckpoint][1] ? 全局.WorldTexts[事件玩家.displayedCheckpoint][1] : 事件玩家.checkpointB[0] + 矢量(0, 1.800,
+				0), 全局.WorldTexts[事件玩家.displayedCheckpoint][2], 不要截取, 可见, 全局.WorldTexts[事件玩家.displayedCheckpoint][3], 默认可见度);
+			事件玩家.currentWorldText = 上一个文本ID;
+		End;
+	}
+}
+
+规则("显示当前关卡自定义大字消息 DisplayCurrentCustomBigMsgs")
+{
+	事件
+	{
+		子程序;
+		DisplayCurrentCustomBigMsgs;
+	}
+
+	动作
+	{
+		If(全局.BigMessages[事件玩家.displayedCheckpoint] && !事件玩家.checkpointA[5]);
+			事件玩家.currentBigMessage = 已过滤的数组(全局.BigMessages[事件玩家.displayedCheckpoint], 当前数组元素);
+			While(数量(事件玩家.currentBigMessage) > 0);
+				等待(0.500, 无视条件);
+				大字体信息(事件玩家, 事件玩家.currentBigMessage[0]);
+				等待(2.300, 无视条件);
+				修改玩家变量(事件玩家, currentBigMessage, 根据索引从数组中移除, 0);
+			End;
+		End;
+	}
+}
+
+规则("显示当前关卡自定义小字消息 DisplayCurrentCustomSmallMsgs")
+{
+	事件
+	{
+		子程序;
+		DisplayCurrentCustomSmallMsgs;
+	}
+
+	动作
+	{
+		If(全局.SmallMessages[事件玩家.displayedCheckpoint] && !事件玩家.checkpointA[5]);
+			事件玩家.currentSmallMessage = 已过滤的数组(全局.SmallMessages[事件玩家.displayedCheckpoint], 当前数组元素);
+			While(数量(事件玩家.currentSmallMessage) > 0);
+				等待(0.500, 无视条件);
+				小字体信息(事件玩家, 事件玩家.currentSmallMessage[0]);
+				等待(2.300, 无视条件);
+				修改玩家变量(事件玩家, currentSmallMessage, 根据索引从数组中移除, 0);
+			End;
+		End;
+	}
+}
+
+规则("启用所有技能 EnableAllAbilities")
+{
+	事件
+	{
+		子程序;
+		EnableAllAbilities;
+	}
+
+	动作
+	{
+		设置启用蹲下(事件玩家, 真);
+		设置启用技能 1(事件玩家, 真);
+		设置启用技能 2(事件玩家, 真);
+		设置启用终极技能(事件玩家, 真);
+		设置终极技能充能(事件玩家, 100);
+	}
+}
+
+规则("取消技能和动力  CancelAbilityAndMomentum -- 铁拳跑酷编辑器(by 昭华#51243)")
+{
+	事件
+	{
+		子程序;
+		CancelAbilityAndMomentum;
+	}
+
+	动作
+	{
+		取消主要动作(事件玩家);
+		施加推力(事件玩家, 上, 0, 至地图, 取消相反运动XYZ);
+		等待(0.016, 当为“真”时重新开始);
+		施加推力(事件玩家, 归一化(速率(事件玩家)) * -1 * 1, 速度(事件玩家), 至地图, 合并相反运动);
+	}
+}
+
+规则("验证玩家数据 ValidationPlayerData")
+{
+	事件
+	{
+		子程序;
+		ValidationPlayerData;
+	}
+
+	动作
+	{
+		"如果数组中有玩家数据, 则将值赋给事件玩家 checkpoint, time, mistake"
+		If(数组值的索引(全局.PlayersData, 自定义字符串("{0}", 事件玩家)) > -1);
+			事件玩家.checkpoint = 首个(已过滤的数组(全局.PlayersData, 当前数组元素[0] == 自定义字符串("{0}", 事件玩家)))[1];
+			事件玩家.time = 首个(已过滤的数组(全局.PlayersData, 当前数组元素[0] == 自定义字符串("{0}", 事件玩家)))[2];
+			事件玩家.mistake = 首个(已过滤的数组(全局.PlayersData, 当前数组元素[0] == 自定义字符串("{0}", 事件玩家)))[3];
+			小字体信息(事件玩家, 自定义字符串("welcome back, {0}", 事件玩家.playerNickname));
+		"反之, 将 玩家昵称, checkpoint, time, mistake 组成数组 添加到末尾索引"
+		Else;
+			全局.PlayersData[数量(全局.PlayersData)] = 数组(自定义字符串("{0}", 事件玩家), 事件玩家.checkpoint, 事件玩家.time, 事件玩家.mistake);
+		End;
+		事件玩家.dataIndex = 数组值的索引(全局.PlayersData, 自定义字符串("{0}", 事件玩家)) / 4;
+	}
+}
+
+规则("编辑玩家数据 EditPlayerData")
+{
+	事件
+	{
+		子程序;
+		EditPlayerData;
+	}
+
+	动作
+	{
+		全局.PlayersData[事件玩家.dataIndex] = 事件玩家.checkpoint < 数量(全局.Checkpoint) - 1 ? 数组(自定义字符串("{0}", 事件玩家), 事件玩家.checkpoint, 事件玩家.time,
+			事件玩家.mistake) : 数组(自定义字符串("{0}", 事件玩家), 0, 0, 0);
+	}
+}
+
+规则("临时保存玩家数据 TempSavePlayerData")
+{
+	事件
+	{
+		子程序;
+		TempSavePlayerData;
+	}
+
+	动作
+	{
+		If(!全局.EditMode);
+			If(!事件玩家.cheat);
+				停止追踪玩家变量(事件玩家, time);
+				调用子程序(EditPlayerData);
+				事件玩家.playerData = 已过滤的数组(全局.PlayersData[事件玩家.dataIndex], 当前数组索引 != 0);
+				修改玩家变量(事件玩家, playerData, 添加至数组, 事件玩家.displayedCheckpoint);
+				If(!事件玩家.finished);
+					大字体信息(事件玩家, 自定义字符串("Timer paused, return to checkpoint {0} to recover", 事件玩家.playerData[3]));
+					大字体信息(事件玩家, 自定义字符串("send 'need help' return to checkpoint {0}", 事件玩家.playerData[3]));
+				End;
+			End;
+			If(事件玩家.finished);
+				事件玩家.bodySize = 1;
+				开始强制玩家选择英雄(事件玩家, 全局.DefaultHero);
+				调用子程序(CreatePlayerTargetBot);
+			End;
+		End;
+	}
+}
+
+规则("选择检查点 ChooseCheckpoint")
+{
+	事件
+	{
+		子程序;
+		ChooseCheckpoint;
+	}
+
+	动作
+	{
+		If(按钮被按下(事件玩家, 按钮(主要攻击模式)));
+			事件玩家.checkpoint += 事件玩家.checkpoint == 数量(全局.Checkpoint) - 1 ? 1 - 数量(全局.Checkpoint) : 1;
+		Else;
+			事件玩家.checkpoint -= 事件玩家.checkpoint == 0 ? 1 - 数量(全局.Checkpoint) : 1;
+		End;
+	}
+}
+
+规则("跳关／退关 SkipOrBackCheckpoint")
+{
+	事件
+	{
+		子程序;
+		SkipOrBackCheckpoint;
+	}
+
+	动作
+	{
+		If(正在移动(事件玩家));
+			调用子程序(CancelAbilityAndMomentum);
+		End;
+		If(!全局.EditMode);
+			If(事件玩家.checkpoint == 事件玩家.playerData[0]);
+				事件玩家.cheat = 假;
+				事件玩家.leaveOriginalCheckpoint = 假;
+				事件玩家.time = 事件玩家.playerData[1];
+				事件玩家.mistake = 事件玩家.playerData[2];
+				If(事件玩家.checkpoint != 0 || 事件玩家.playerData[3] == 0);
+					大字体信息(事件玩家, 自定义字符串("you have returned to checkpoint {0}, timer continue", 事件玩家.playerData[3]));
+				End;
+			Else;
+				事件玩家.cheat = 真;
+			End;
+		End;
+		传送(事件玩家, 全局.Checkpoint[事件玩家.checkpoint][0]);
+		调用子程序(GetCurrentCheckpoint);
+		If(!事件玩家.freeMode);
+			调用子程序(SetCurrentAbilities);
+		End;
+		调用子程序(KillOrResurrectBot);
+		开始规则(CreateCurrentEffects, 重新开始规则);
+		调用子程序(CreateCurrentWorldText);
+		If(!全局.EditMode && 事件玩家.checkpoint == 数量(全局.Checkpoint) - 1);
+			移除机器人(所在队伍(事件玩家), 栏位(事件玩家) + 栏位数量(所有队伍));
+		End;
+	}
+}
+
+规则("播放破坏地图效果  PlayDestroyMapEffect -- by Mazattack#1183")
+{
+	事件
+	{
+		子程序;
+		PlayDestroyMapEffect;
+	}
+
+	动作
+	{
+		If(当前地图 == 地图(监测站：直布罗陀));
+			设置比赛时间(48 + 随机整数(与此方向的水平角度(方向(目标位置(1), 目标位置(0))) / 7.500 - 12, 与此方向的水平角度(方向(目标位置(1), 目标位置(0))) / 7.500 + -6));
+		Else If(当前地图 == 地图(66号公路));
+			设置比赛时间(48 + 随机整数(与此方向的水平角度(方向(目标位置(1), 目标位置(0))) / 7.500 - -6, 与此方向的水平角度(方向(目标位置(1), 目标位置(0))) / 7.500 + 12));
+		Else;
+			设置比赛时间(48 + 随机整数(与此方向的水平角度(方向(目标位置(1), 目标位置(0))) / 7.500 - 6, 与此方向的水平角度(方向(目标位置(1), 目标位置(0))) / 7.500 + 9));
+		End;
+		全局.Chase = (最近的可行走位置(矢量(999, 999, 999)) + 最近的可行走位置(矢量(-999, -999, -999))) / 2 + 与此角度的相对方向(随机整数(0, 359), 随机实数(-45, -60)) * 500;
+		等待(0.016, 无视条件);
+		持续追踪全局变量(Chase, (最近的可行走位置(矢量(999, 999, 999)) + 最近的可行走位置(矢量(-999, -999, -999))) / 2, 5, 终点及持续时间);
+		While(相距距离(全局.Chase, (最近的可行走位置(矢量(999, 999, 999)) + 最近的可行走位置(矢量(-999, -999, -999))) / 2) > 1);
+			播放效果(所有玩家(所有队伍), 有益爆炸, 颜色(天蓝色), 全局.Chase, 3);
+			等待(0.016, 无视条件);
+		End;
+		For 全局变量(I, 0, 400, 1);
+			播放效果(所有玩家(所有队伍), 有害爆炸, 颜色(橙色), (最近的可行走位置(矢量(999, 999, 999)) + 最近的可行走位置(矢量(-999, -999, -999))) / 2 + 与此角度的相对方向(随机实数(0, 360), 0)
+				* 随机整数(0, (全局.I + 1) / 1), 随机整数(全局.I / 5, 全局.I));
+			播放效果(所有玩家(所有队伍), 有害爆炸, 颜色(橙色), (最近的可行走位置(矢量(999, 999, 999)) + 最近的可行走位置(矢量(-999, -999, -999))) / 2 + 与此角度的相对方向(随机实数(0, 360), 0)
+				* 随机整数(0, (全局.I + 1) / 1), 全局.I);
+			等待(0.016, 无视条件);
+		End;
+	}
+}
